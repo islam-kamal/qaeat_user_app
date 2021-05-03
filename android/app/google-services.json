@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "201111378019",
+    "project_id": "qaeat-user",
+    "storage_bucket": "qaeat-user.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:201111378019:android:f23bcd0ed6bfdcb2c68056",
+        "android_client_info": {
+          "package_name": "com.wothoq.qaeatuser"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "201111378019-7cc6sknfedqogj7mk92kkvh96tnf1ns9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOeTJtbw7_OYKY47F-CeNsfwRu4bRZSow"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "201111378019-7cc6sknfedqogj7mk92kkvh96tnf1ns9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "201111378019-to0glo78q0v0366vh45rgdkqjv4mjpd8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.wothoq.qaeatuser"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
