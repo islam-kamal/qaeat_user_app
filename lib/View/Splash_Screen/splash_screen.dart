@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:notification_permissions/notification_permissions.dart';
-import 'package:Massara/Custom_Widgets/export_file.dart';
-import 'package:Massara/Model/Search/search_by_location_model.dart';
-import 'package:Massara/Presenter/static_methods.dart';
-import 'package:Massara/View/Home/Search/search_class.dart';
+import 'package:Qaeat/Custom_Widgets/export_file.dart';
+import 'package:Qaeat/Model/Search/search_by_location_model.dart';
+import 'package:Qaeat/Presenter/static_methods.dart';
+import 'package:Qaeat/View/Home/Search/search_class.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -50,16 +50,12 @@ class SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Scaffold(
-      body: Container(
-        alignment: Alignment.center,
-        child: Image(
-          image: AssetImage('images/splash_screen/massara_logo.png'),
-          height: 200,
-          width: 200,
-        ),
-      ),
-    );
+    return  Image(
+          image: AssetImage('images/splash_screen/qaeat_splash.png'),
+        fit: BoxFit.fill,
+        );
+
+
   }
 
   void checkAuthentication(String token) async {

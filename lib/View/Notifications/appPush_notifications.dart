@@ -5,8 +5,8 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:Massara/Custom_Widgets/export_file.dart';
-import 'package:Massara/View/Notifications/notification_model.dart';
+import 'package:Qaeat/Custom_Widgets/export_file.dart';
+import 'package:Qaeat/View/Notifications/notification_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AppPushNotifications {
@@ -53,8 +53,8 @@ class AppPushNotifications {
   Future<String> getFcmToken() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('msgToken', await _firebaseMessaging.getToken());
-    ('firebase token => ${await _firebaseMessaging.getToken()}');
-    ("_____________" + await _firebaseMessaging.getToken());
+    print('firebase token => ${await _firebaseMessaging.getToken()}');
+    print("_____________" + await _firebaseMessaging.getToken());
     return await _firebaseMessaging.getToken();
   }
 

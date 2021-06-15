@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:rating_bar/rating_bar.dart';
-import 'package:Massara/Custom_Widgets/export_file.dart';
-import 'package:Massara/Model/order_model.dart';
-import 'package:Massara/View/Reservation/rating.dart';
+import 'package:Qaeat/Custom_Widgets/export_file.dart';
+import 'package:Qaeat/Model/order_model.dart';
+import 'package:Qaeat/View/Reservation/rating.dart';
 
 class MyReservation extends StatefulWidget {
   final String token;
@@ -49,27 +49,32 @@ class MyReservation_State extends State<MyReservation> {
         },
         child: Scaffold(
           appBar: AppBar(
-            centerTitle: true,
-            title: Text(
-              'حجوزاتى',
-              style: TextStyle(fontFamily: 'Cairo'),
+            automaticallyImplyLeading: false,
+            title: Container(
+              alignment: Alignment.centerRight,
+              child: Text(
+                'حجوزاتى',
+                style: TextStyle(
+                    fontFamily: 'Cairo', color: Colors.white, fontSize: 16),
+              ),
             ),
-            backgroundColor: MassaraColor.primary_color,
+            actions: [
+              InkWell(
+                onTap: () {
+                  Navigator.pushReplacement(
+                      context, MaterialPageRoute(builder: (context) => MorePage()));
+                },
+                child: Icon(Icons.arrow_forward_ios),
+              )
+            ],
+            backgroundColor: QaeatColor.primary_color,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(
                 bottom: Radius.circular(10),
               ),
             ),
-            leading: IconButton(
-                icon: Icon(
-                  Icons.arrow_back_ios,
-                  color: Color(0xFFFFFFFF),
-                ),
-                onPressed: () {
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => MorePage()));
-                }),
           ),
+
           body: Padding(
             padding: EdgeInsets.only(top: 10, left: 5, right: 5),
             child: Directionality(
@@ -103,7 +108,7 @@ class MyReservation_State extends State<MyReservation> {
                                                     Expanded(
                                                       flex: 1,
                                                       child: Image.network(
-                                                        '${snapshot.data[index].salon.logo}',
+                                                        '${snapshot.data[index].hall.logo}',
                                                         fit: BoxFit.cover,
                                                         alignment:
                                                             Alignment.topCenter,
@@ -129,7 +134,7 @@ class MyReservation_State extends State<MyReservation> {
                                                                     .center,
                                                             children: <Widget>[
                                                               Text(
-                                                                '${snapshot.data[index].salon.name}',
+                                                                '${snapshot.data[index].hall.name}',
                                                                 style: TextStyle(
                                                                     fontFamily:
                                                                         'Cairo',
@@ -158,12 +163,12 @@ class MyReservation_State extends State<MyReservation> {
                                                                               5.0),
                                                                       side:
                                                                           BorderSide(
-                                                                        color: MassaraColor.primary_color,
+                                                                        color: QaeatColor.primary_color,
                                                                         width:
                                                                             1.0,
                                                                       ),
                                                                     ),
-                                                                    color: MassaraColor.primary_color,
+                                                                    color: QaeatColor.primary_color,
                                                                     child: Text(
                                                                       'تقييم',
                                                                       style: TextStyle(
@@ -185,12 +190,12 @@ class MyReservation_State extends State<MyReservation> {
                                             5.0),
                                         side:
                                         BorderSide(
-                                          color: MassaraColor.primary_color,
+                                          color: QaeatColor.primary_color,
                                           width:
                                           1.0,
                                         ),
                                       ),
-                                      color: MassaraColor.primary_color,
+                                      color: QaeatColor.primary_color,
                                       child: Text(
                                         'تقييم',
                                         style: TextStyle(
@@ -241,7 +246,7 @@ class MyReservation_State extends State<MyReservation> {
                                                         Expanded(
                                                           flex: 7,
                                                           child: Text(
-                                                            '${snapshot.data[index].salon.address}',
+                                                            '${snapshot.data[index].hall.address}',
                                                             style: TextStyle(
                                                               color: Color(
                                                                   0xFF403E3E),
@@ -327,7 +332,7 @@ class MyReservation_State extends State<MyReservation> {
                                                             child: Column(
                                                               children: <
                                                                   Widget>[
-                                                                (snapshot.data[index]
+                                                               /* (snapshot.data[index]
                                                                             .employee ==
                                                                         null)
                                                                     ? Container()
@@ -377,7 +382,7 @@ class MyReservation_State extends State<MyReservation> {
                                                                             ),
                                                                           ],
                                                                         ),
-                                                                      ),
+                                                                      ),*/
                                                                 Padding(
                                                                   padding:
                                                                       EdgeInsets
@@ -438,7 +443,7 @@ class MyReservation_State extends State<MyReservation> {
                                                                               borderRadius: BorderRadius.circular(5)),
                                                                           child:
                                                                               Text(
-                                                                            '  ${snapshot.data[index].total_cost} ريال  ',
+                                                                            '  ${snapshot.data[index].totalCost} ريال  ',
                                                                             style: TextStyle(
                                                                                 fontFamily: 'Cairo',
                                                                                 color: Color(0xFF403E3E),
@@ -576,7 +581,7 @@ class MyReservation_State extends State<MyReservation> {
                                                                                     alignment: Alignment.center,
                                                                                     decoration: BoxDecoration(color: Color(0xFFF6F6F6), borderRadius: BorderRadius.circular(5)),
                                                                                     child: Text(
-                                                                                      '${snapshot.data[index].services[i].name} * ${snapshot.data[index].services[i].person_num}  ',
+                                                                                      '${snapshot.data[index].services[i].name}   ',
                                                                                       style: TextStyle(fontFamily: 'Cairo', color: Color(0xFF403E3E), fontWeight: FontWeight.bold),
                                                                                     ),
                                                                                   ),
@@ -708,7 +713,7 @@ class MyReservation_State extends State<MyReservation> {
                                             MediaQuery.of(context).size.height /
                                                 4,
                                         image: AssetImage(
-                                            'images/splash_screen/massara_logo.png'),
+                                            'images/splash_screen/Qaeat_logo.png'),
                                       ),
                                       SizedBox(
                                         height: 20,
@@ -717,7 +722,7 @@ class MyReservation_State extends State<MyReservation> {
                                         'لا يوجد حجوزات  حاليا ',
                                         style: TextStyle(
                                             fontFamily: 'Cairo',
-                                            color: MassaraColor.secondary_color,
+                                            color: QaeatColor.primary_color,
                                             fontWeight: FontWeight.bold,
                                             fontSize: 21),
                                       )
@@ -741,7 +746,7 @@ class MyReservation_State extends State<MyReservation> {
                                           MediaQuery.of(context).size.height /
                                               4,
                                       image: AssetImage(
-                                          'images/splash_screen/massara_logo.png'),
+                                          'images/splash_screen/Qaeat_logo.png'),
                                     ),
                                     SizedBox(
                                       height: 20,
@@ -750,7 +755,7 @@ class MyReservation_State extends State<MyReservation> {
                                       'لا يوجد حجوزات  حاليا ',
                                       style: TextStyle(
                                           fontFamily: 'Cairo',
-                                          color: MassaraColor.secondary_color,
+                                          color: QaeatColor.primary_color,
                                           fontWeight: FontWeight.bold,
                                           fontSize: 21),
                                     )

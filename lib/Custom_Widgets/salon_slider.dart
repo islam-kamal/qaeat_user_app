@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:Massara/Custom_Widgets/export_file.dart';
+import 'package:Qaeat/Custom_Widgets/export_file.dart';
 
 class SalonSlider extends StatefulWidget {
   List<Gallery> salonPictures;

@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:Massara/Custom_Widgets/export_file.dart';
-import 'package:Massara/Model/invoices_model.dart';
-import 'package:Massara/Model/order_model.dart';
+import 'package:Qaeat/Custom_Widgets/export_file.dart';
+import 'package:Qaeat/Model/invoices_model.dart';
+import 'package:Qaeat/Model/order_model.dart';
 
 class Invoices extends StatefulWidget{
   final String token;
@@ -40,20 +40,33 @@ class Bills_State extends State<Invoices>{
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        centerTitle: true,
-        title: Text(
-          'فواتيري',
-          style: TextStyle(fontFamily: 'Cairo'),
-        ),
-        backgroundColor: MassaraColor.primary_color,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(10),
+
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          title: Container(
+            alignment: Alignment.centerRight,
+            child: Text(
+              'فواتيري',
+              style: TextStyle(
+                  fontFamily: 'Cairo', color: Colors.white, fontSize: 16),
+            ),
+          ),
+          actions: [
+            InkWell(
+              onTap: () {
+                Navigator.pushReplacement(
+                    context, MaterialPageRoute(builder: (context) => MorePage()));
+              },
+              child: Icon(Icons.arrow_forward_ios),
+            )
+          ],
+          backgroundColor: QaeatColor.primary_color,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(10),
+            ),
           ),
         ),
-      ),
       body: WillPopScope(
         onWillPop: (){
     Navigator.pushReplacement(
@@ -107,7 +120,7 @@ class Bills_State extends State<Invoices>{
                                                  textScaleFactor: 1,
                                                  textAlign: TextAlign.center,
                                                  style: TextStyle(
-                                                     color: MassaraColor.primary_color,
+                                                     color: QaeatColor.primary_color,
                                                      fontFamily: 'Cairo',
                                                      fontSize: 16,
                                                      fontWeight: FontWeight.bold
@@ -136,7 +149,7 @@ class Bills_State extends State<Invoices>{
                                                  textScaleFactor: 1,
                                                  textAlign: TextAlign.center,
                                                  style: TextStyle(
-                                                     color: MassaraColor.primary_color,
+                                                     color: QaeatColor.primary_color,
                                                      fontFamily: 'Cairo',
                                                      fontSize: 16,
                                                      fontWeight: FontWeight.bold
@@ -166,7 +179,7 @@ class Bills_State extends State<Invoices>{
                                                  textScaleFactor: 1,
                                                  textAlign: TextAlign.center,
                                                  style: TextStyle(
-                                                     color: MassaraColor.primary_color,
+                                                     color: QaeatColor.primary_color,
                                                      fontFamily: 'Cairo',
                                                      fontSize: 16,
                                                      fontWeight: FontWeight.bold
@@ -195,7 +208,7 @@ class Bills_State extends State<Invoices>{
                                                  textScaleFactor: 1,
                                                  textAlign: TextAlign.center,
                                                  style: TextStyle(
-                                                     color: MassaraColor.primary_color,
+                                                     color: QaeatColor.primary_color,
                                                      fontFamily: 'Cairo',
                                                      fontSize: 16,
                                                      fontWeight: FontWeight.bold
@@ -224,7 +237,7 @@ class Bills_State extends State<Invoices>{
                                                  textScaleFactor: 1,
                                                  textAlign: TextAlign.center,
                                                  style: TextStyle(
-                                                     color: MassaraColor.primary_color,
+                                                     color: QaeatColor.primary_color,
                                                      fontFamily: 'Cairo',
                                                      fontSize: 16,
                                                      fontWeight: FontWeight.bold
@@ -253,7 +266,7 @@ class Bills_State extends State<Invoices>{
                                                  textScaleFactor: 1,
                                                  textAlign: TextAlign.center,
                                                  style: TextStyle(
-                                                     color: MassaraColor.primary_color,
+                                                     color: QaeatColor.primary_color,
                                                      fontFamily: 'Cairo',
                                                      fontSize: 16,
                                                      fontWeight: FontWeight.bold
@@ -297,7 +310,7 @@ class Bills_State extends State<Invoices>{
                               MediaQuery.of(context).size.height /
                                   4,
                               image: AssetImage(
-                                  'images/splash_screen/massara_logo.png'),
+                                  'images/splash_screen/Qaeat_logo.png'),
                             ),
                             SizedBox(
                               height: 20,
@@ -306,7 +319,7 @@ class Bills_State extends State<Invoices>{
                               'لا يوجد فواتير  حاليا ',
                               style: TextStyle(
                                   fontFamily: 'Cairo',
-                                  color: MassaraColor.secondary_color,
+                                  color: QaeatColor.primary_color,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 21),
                             )
@@ -330,7 +343,7 @@ class Bills_State extends State<Invoices>{
                             MediaQuery.of(context).size.height /
                                 4,
                             image: AssetImage(
-                                'images/splash_screen/massara_logo.png'),
+                                'images/splash_screen/Qaeat_logo.png'),
                           ),
                           SizedBox(
                             height: 20,
@@ -339,7 +352,7 @@ class Bills_State extends State<Invoices>{
                             'لا يوجد فواتير  حاليا ',
                             style: TextStyle(
                                 fontFamily: 'Cairo',
-                                color: MassaraColor.secondary_color,
+                                color: QaeatColor.primary_color,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 21),
                           )

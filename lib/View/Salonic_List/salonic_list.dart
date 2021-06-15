@@ -2,17 +2,18 @@ import 'dart:ffi';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:Massara/Custom_Widgets/export_file.dart';
+import 'package:Qaeat/Custom_Widgets/export_file.dart';
 
 class SalonicList extends StatefulWidget {
   final String token;
-  final int salon_id;
-  final int route; // if route =1 you must return to map page else return to offer page
-  SalonicList({this.token, this.salon_id, this.route});
+  final int hall_id;
+  final int
+      route; // if route =1 you must return to map page else return to offer page
+  SalonicList({this.token, this.hall_id, this.route});
   @override
   State<StatefulWidget> createState() {
     ('SalonicList');
-    ('salon_id : ${salon_id}');
+    ('salon_id : ${hall_id}');
     // TODO: implement createState
     return SalonicList_state();
   }
@@ -35,7 +36,8 @@ class SalonicList_state extends State<SalonicList> {
         sharedPrefs = prefs;
       });
     });
-    salonic_list = ApiProvider.getAllSalons(widget.token, context);
+    salonic_list = ApiProvider.getAllSalonsByService_id(
+        widget.token, widget.hall_id, context);
   }
 
   @override
@@ -56,7 +58,7 @@ class SalonicList_state extends State<SalonicList> {
               MaterialPageRoute(
                   builder: (context) => NearestSalonic(
                         token: widget.token,
-                    map_details_route: 1,
+                        map_details_route: 1,
                       )));
         } else {
           Navigator.push(
@@ -69,7 +71,7 @@ class SalonicList_state extends State<SalonicList> {
       },
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: MassaraColor.primary_color,
+          backgroundColor: QaeatColor.primary_color,
           title: Text('احجز الآن',
               style: TextStyle(
                 fontFamily: 'Cairo',
@@ -90,7 +92,7 @@ class SalonicList_state extends State<SalonicList> {
                     MaterialPageRoute(
                         builder: (context) => NearestSalonic(
                               token: widget.token,
-                          map_details_route: 1,
+                              map_details_route: 1,
                             )));
               } else {
                 Navigator.push(
@@ -115,12 +117,11 @@ class SalonicList_state extends State<SalonicList> {
                   savedStrList = sharedPrefs.getStringList('salon_list');
                   fav_salon_id = savedStrList.map((i) => int.parse(i)).toList();
                 }
-                if (widget.salon_id == null) {
+                if (widget.hall_id == null) {
                   return ListView.builder(
                     itemCount: snapshot.data.length,
                     itemBuilder: (BuildContext context, index) {
-                      double rate = (snapshot.data[index].total_rate ==
-                              null)
+                      double rate = (snapshot.data[index].total_rate == null)
                           ? 0.0
                           : snapshot.data[index].total_rate.value.toDouble();
 
@@ -132,18 +133,18 @@ class SalonicList_state extends State<SalonicList> {
                             children: <Widget>[
                               Padding(
                                 padding:
-                                EdgeInsets.only(top: 20, left: 5, right: 5),
+                                    EdgeInsets.only(top: 20, left: 5, right: 5),
                                 child: Card(
                                   shape: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(5),
                                     borderSide:
-                                    BorderSide(color: Color(0xFFDCDCDC)),
+                                        BorderSide(color: Color(0xFFDCDCDC)),
                                   ),
                                   child: Column(
                                     children: <Widget>[
                                       SalonSlider(
                                         salonPictures:
-                                        snapshot.data[index].gallery,
+                                            snapshot.data[index].gallery,
                                       ),
                                       Row(
                                         children: <Widget>[
@@ -151,9 +152,9 @@ class SalonicList_state extends State<SalonicList> {
                                               flex: 3,
                                               child: Column(
                                                 crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                                    CrossAxisAlignment.start,
                                                 mainAxisAlignment:
-                                                MainAxisAlignment.start,
+                                                    MainAxisAlignment.start,
                                                 children: <Widget>[
                                                   Container(
                                                     padding: EdgeInsets.only(
@@ -163,9 +164,9 @@ class SalonicList_state extends State<SalonicList> {
                                                       style: TextStyle(
                                                           fontFamily: 'Cairo',
                                                           color:
-                                                          Color(0xFF707070),
+                                                              Color(0xFF707070),
                                                           fontWeight:
-                                                          FontWeight.bold,
+                                                              FontWeight.bold,
                                                           fontSize: 18),
                                                     ),
                                                   ),
@@ -174,7 +175,7 @@ class SalonicList_state extends State<SalonicList> {
                                                     //  padding: EdgeInsets.only(right: 20),
                                                     child: HelperWidgets
                                                         .ratingbar_fun(
-                                                        5, rate, 18),
+                                                            5, rate, 18),
                                                   ),
                                                 ],
                                               )),
@@ -182,41 +183,42 @@ class SalonicList_state extends State<SalonicList> {
                                               flex: 2,
                                               child: Padding(
                                                 padding:
-                                                EdgeInsets.only(left: 20),
+                                                    EdgeInsets.only(left: 20),
                                                 child: new Container(
                                                     padding: EdgeInsets.only(
                                                         top: 15.0),
                                                     alignment: Alignment.center,
                                                     child: ButtonTheme(
                                                       minWidth:
-                                                      MediaQuery.of(context)
-                                                          .size
-                                                          .width,
+                                                          MediaQuery.of(context)
+                                                              .size
+                                                              .width,
                                                       child: RaisedButton(
                                                         shape:
-                                                        RoundedRectangleBorder(
+                                                            RoundedRectangleBorder(
                                                           borderRadius:
-                                                          BorderRadius
-                                                              .circular(
-                                                              5.0),
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      5.0),
                                                           side: BorderSide(
-                                                            color: MassaraColor.primary_color,
+                                                            color: QaeatColor
+                                                                .primary_color,
                                                             width: 1.0,
                                                           ),
                                                         ),
-                                                        color:
-                                                        MassaraColor.primary_color,
+                                                        color: QaeatColor
+                                                            .primary_color,
                                                         child: Text(
                                                           'احجز الان',
                                                           style: TextStyle(
                                                               color:
-                                                              Colors.white,
+                                                                  Colors.white,
                                                               fontSize: 16.0,
                                                               fontFamily:
-                                                              'Cairo',
+                                                                  'Cairo',
                                                               fontWeight:
-                                                              FontWeight
-                                                                  .normal),
+                                                                  FontWeight
+                                                                      .normal),
                                                         ),
                                                         onPressed: () {
                                                           Navigator.push(
@@ -224,39 +226,39 @@ class SalonicList_state extends State<SalonicList> {
                                                               MaterialPageRoute(
                                                                 builder:
                                                                     (context) =>
-                                                                    RerservationNow(
-                                                                      token: widget
-                                                                          .token,
-                                                                      salon_id: snapshot
-                                                                          .data[
-                                                                      index]
-                                                                          .id,
-                                                                      logo: snapshot
-                                                                          .data[
-                                                                      index]
-                                                                          .logo,
-                                                                      name: snapshot
-                                                                          .data[
-                                                                      index]
-                                                                          .name,
-                                                                      rate: rate,
-                                                                      home_services:
+                                                                        RerservationNow(
+                                                                  token: widget
+                                                                      .token,
+                                                                  salon_id: snapshot
+                                                                      .data[
+                                                                          index]
+                                                                      .id,
+                                                                  logo: snapshot
+                                                                      .data[
+                                                                          index]
+                                                                      .logo,
+                                                                  name: snapshot
+                                                                      .data[
+                                                                          index]
+                                                                      .name,
+                                                                  rate: rate,
+                                                                  home_services:
                                                                       snapshot
                                                                           .data[
-                                                                      index]
+                                                                              index]
                                                                           .home_service,
-                                                                      payment: snapshot
-                                                                          .data[
-                                                                      index]
-                                                                          .payment,
-                                                                      salonPictures:
+                                                                  payment: snapshot
+                                                                      .data[
+                                                                          index]
+                                                                      .payment,
+                                                                  salonPictures:
                                                                       snapshot
                                                                           .data[
-                                                                      index]
+                                                                              index]
                                                                           .gallery,
-                                                                      salon_list_type:
+                                                                  salon_list_type:
                                                                       1,
-                                                                    ),
+                                                                ),
                                                               ));
                                                         },
                                                       ),
@@ -271,23 +273,24 @@ class SalonicList_state extends State<SalonicList> {
                                                 right: 20, top: 5),
                                             child: Row(
                                               children: <Widget>[
-                                              Expanded(
-                                                flex: 1,
-                                                child: Row(
-                                                  children: [
-                                                    Icon(
-                                                      Icons.location_on,
-                                                      color: Color(0xFF959090),
-                                                    ),
-                                                    SizedBox(
-                                                      width: 5,
-                                                    ),
-                                                  ],
+                                                Expanded(
+                                                  flex: 1,
+                                                  child: Row(
+                                                    children: [
+                                                      Icon(
+                                                        Icons.location_on,
+                                                        color:
+                                                            Color(0xFF959090),
+                                                      ),
+                                                      SizedBox(
+                                                        width: 5,
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
-                                              ),
                                                 Expanded(
                                                   flex: 7,
-                                                  child:  Text(
+                                                  child: Text(
                                                     '${snapshot.data[index].address.isEmpty ? '' : snapshot.data[index].address}',
                                                     style: TextStyle(
                                                       color: Color(0xFF403E3E),
@@ -295,7 +298,6 @@ class SalonicList_state extends State<SalonicList> {
                                                     ),
                                                   ),
                                                 )
-
                                               ],
                                             ),
                                           ),
@@ -311,112 +313,111 @@ class SalonicList_state extends State<SalonicList> {
                                                     style: TextStyle(
                                                         fontFamily: 'Cairo',
                                                         color:
-                                                        Color(0xFF292929)),
+                                                            Color(0xFF292929)),
                                                   ),
                                                 ),
                                                 (snapshot.data[index].payment ==
-                                                    2)
+                                                        2)
                                                     ? Row(
-                                                  children: <Widget>[
-                                                    Container(
-                                                      padding:
-                                                      EdgeInsets.only(
-                                                          right: 10,
-                                                          left: 10),
-                                                      child: Container(
-
-                                                        alignment:
-                                                        Alignment
-                                                            .center,
-                                                        decoration: BoxDecoration(
-                                                            color: Color(
-                                                                0xFFDCDCDC),
-                                                            borderRadius:
-                                                            BorderRadius
-                                                                .circular(
-                                                                5)),
-                                                        child: Text(
-                                                          '  الدفع في المركز  ',
-                                                          style: TextStyle(
-                                                              fontFamily:
-                                                              'Cairo',
-                                                              color: Color(
-                                                                  0xFF292929),
-                                                              fontWeight:
-                                                              FontWeight
-                                                                  .normal),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Container(
-                                                      padding:
-                                                      EdgeInsets.only(
-                                                          right: 10,
-                                                          left: 10),
-                                                      child: Container(
-
-                                                        alignment:
-                                                        Alignment
-                                                            .center,
-                                                        decoration: BoxDecoration(
-                                                            color: Color(
-                                                                0xFFDCDCDC),
-                                                            borderRadius:
-                                                            BorderRadius
-                                                                .circular(
-                                                                5)),
-                                                        child: Text(
-                                                          '    اونلاين    ',
-                                                          style: TextStyle(
-                                                              fontFamily:
-                                                              'Cairo',
-                                                              color: Color(
-                                                                  0xFF292929),
-                                                              fontWeight:
-                                                              FontWeight
-                                                                  .normal),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                )
+                                                        children: <Widget>[
+                                                          Container(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    right: 10,
+                                                                    left: 10),
+                                                            child: Container(
+                                                              alignment:
+                                                                  Alignment
+                                                                      .center,
+                                                              decoration: BoxDecoration(
+                                                                  color: Color(
+                                                                      0xFFDCDCDC),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              5)),
+                                                              child: Text(
+                                                                '  الدفع في المركز  ',
+                                                                style: TextStyle(
+                                                                    fontFamily:
+                                                                        'Cairo',
+                                                                    color: Color(
+                                                                        0xFF292929),
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .normal),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          Container(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    right: 10,
+                                                                    left: 10),
+                                                            child: Container(
+                                                              alignment:
+                                                                  Alignment
+                                                                      .center,
+                                                              decoration: BoxDecoration(
+                                                                  color: Color(
+                                                                      0xFFDCDCDC),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              5)),
+                                                              child: Text(
+                                                                '    اونلاين    ',
+                                                                style: TextStyle(
+                                                                    fontFamily:
+                                                                        'Cairo',
+                                                                    color: Color(
+                                                                        0xFF292929),
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .normal),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      )
                                                     : Container(
-                                                  padding:
-                                                  EdgeInsets.only(
-                                                      right: 10,
-                                                      left: 10),
-                                                  child: Container(
-                                                    alignment:
-                                                    Alignment.center,
-                                                    decoration: BoxDecoration(
-                                                        color: Color(
-                                                            0xFFDCDCDC),
-                                                        borderRadius:
-                                                        BorderRadius
-                                                            .circular(
-                                                            5)),
-                                                    child: Text(
-                                                      (snapshot.data[index]
-                                                          .payment ==
-                                                          1)
-                                                          ? '    اونلاين    '
-                                                          : '   الدفع في المركز   ',
-                                                      style: TextStyle(
-                                                          fontFamily:
-                                                          'Cairo',
-                                                          color: Color(
-                                                              0xFF292929),
-                                                          fontWeight:
-                                                          FontWeight
-                                                              .normal),
-                                                    ),
-                                                  ),
-                                                ),
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                right: 10,
+                                                                left: 10),
+                                                        child: Container(
+                                                          alignment:
+                                                              Alignment.center,
+                                                          decoration: BoxDecoration(
+                                                              color: Color(
+                                                                  0xFFDCDCDC),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          5)),
+                                                          child: Text(
+                                                            (snapshot.data[index]
+                                                                        .payment ==
+                                                                    1)
+                                                                ? '    اونلاين    '
+                                                                : '   الدفع في المركز   ',
+                                                            style: TextStyle(
+                                                                fontFamily:
+                                                                    'Cairo',
+                                                                color: Color(
+                                                                    0xFF292929),
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal),
+                                                          ),
+                                                        ),
+                                                      ),
                                               ],
                                             ),
                                           ),
                                           Container(
-                                            padding: EdgeInsets.only(top: 10,bottom: 10),
+                                            padding: EdgeInsets.only(
+                                                top: 10, bottom: 10),
                                             child: Row(
                                               children: <Widget>[
                                                 Container(
@@ -427,121 +428,121 @@ class SalonicList_state extends State<SalonicList> {
                                                     style: TextStyle(
                                                         fontFamily: 'Cairo',
                                                         color:
-                                                        Color(0xFF292929)),
+                                                            Color(0xFF292929)),
                                                   ),
                                                 ),
                                                 (snapshot.data[index]
-                                                    .home_service ==
-                                                    2)
+                                                            .home_service ==
+                                                        2)
                                                     ? Row(
-                                                  children: <Widget>[
-                                                    Container(
-                                                      padding:
-                                                      EdgeInsets.only(
-                                                          right: 10,
-                                                          left: 10),
-                                                      child: Container(
-                                                        width: MediaQuery.of(
-                                                            context)
-                                                            .size
-                                                            .width /
-                                                            4,
-                                                        alignment:
-                                                        Alignment
-                                                            .center,
-                                                        decoration: BoxDecoration(
-                                                            color: Color(
-                                                                0xFFDCDCDC),
-                                                            borderRadius:
-                                                            BorderRadius
-                                                                .circular(
-                                                                5)),
-                                                        child: Text(
-                                                          '  فى المركز  ',
-                                                          style: TextStyle(
-                                                              fontFamily:
-                                                              'Cairo',
-                                                              color: Color(
-                                                                  0xFF292929),
-                                                              fontWeight:
-                                                              FontWeight
-                                                                  .normal),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Container(
-                                                      padding:
-                                                      EdgeInsets.only(
-                                                          right: 10,
-                                                          left: 10),
-                                                      child: Container(
-                                                        width: MediaQuery.of(
-                                                            context)
-                                                            .size
-                                                            .width /
-                                                            4,
-                                                        alignment:
-                                                        Alignment
-                                                            .center,
-                                                        decoration: BoxDecoration(
-                                                            color: Color(
-                                                                0xFFDCDCDC),
-                                                            borderRadius:
-                                                            BorderRadius
-                                                                .circular(
-                                                                5)),
-                                                        child: Text(
-                                                          'في المنزل',
-                                                          style: TextStyle(
-                                                              fontFamily:
-                                                              'Cairo',
-                                                              color: Color(
-                                                                  0xFF292929),
-                                                              fontWeight:
-                                                              FontWeight
-                                                                  .normal),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                )
+                                                        children: <Widget>[
+                                                          Container(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    right: 10,
+                                                                    left: 10),
+                                                            child: Container(
+                                                              width: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width /
+                                                                  4,
+                                                              alignment:
+                                                                  Alignment
+                                                                      .center,
+                                                              decoration: BoxDecoration(
+                                                                  color: Color(
+                                                                      0xFFDCDCDC),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              5)),
+                                                              child: Text(
+                                                                '  فى المركز  ',
+                                                                style: TextStyle(
+                                                                    fontFamily:
+                                                                        'Cairo',
+                                                                    color: Color(
+                                                                        0xFF292929),
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .normal),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          Container(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    right: 10,
+                                                                    left: 10),
+                                                            child: Container(
+                                                              width: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width /
+                                                                  4,
+                                                              alignment:
+                                                                  Alignment
+                                                                      .center,
+                                                              decoration: BoxDecoration(
+                                                                  color: Color(
+                                                                      0xFFDCDCDC),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              5)),
+                                                              child: Text(
+                                                                'في المنزل',
+                                                                style: TextStyle(
+                                                                    fontFamily:
+                                                                        'Cairo',
+                                                                    color: Color(
+                                                                        0xFF292929),
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .normal),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      )
                                                     : Container(
-                                                  padding:
-                                                  EdgeInsets.only(
-                                                      right: 10,
-                                                      left: 10),
-                                                  child: Container(
-                                                    width: MediaQuery.of(
-                                                        context)
-                                                        .size
-                                                        .width /
-                                                        4,
-                                                    alignment:
-                                                    Alignment.center,
-                                                    decoration: BoxDecoration(
-                                                        color: Color(
-                                                            0xFFDCDCDC),
-                                                        borderRadius:
-                                                        BorderRadius
-                                                            .circular(
-                                                            5)),
-                                                    child: Text(
-                                                      (snapshot.data[index]
-                                                          .home_service ==
-                                                          1)
-                                                          ? 'فى البيت'
-                                                          : ' فى المركز ',
-                                                      style: TextStyle(
-                                                          fontFamily:
-                                                          'Cairo',
-                                                          color: Color(
-                                                              0xFF292929),
-                                                          fontWeight:
-                                                          FontWeight
-                                                              .normal),
-                                                    ),
-                                                  ),
-                                                ),
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                right: 10,
+                                                                left: 10),
+                                                        child: Container(
+                                                          width: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width /
+                                                              4,
+                                                          alignment:
+                                                              Alignment.center,
+                                                          decoration: BoxDecoration(
+                                                              color: Color(
+                                                                  0xFFDCDCDC),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          5)),
+                                                          child: Text(
+                                                            (snapshot.data[index]
+                                                                        .home_service ==
+                                                                    1)
+                                                                ? 'فى البيت'
+                                                                : ' فى المركز ',
+                                                            style: TextStyle(
+                                                                fontFamily:
+                                                                    'Cairo',
+                                                                color: Color(
+                                                                    0xFF292929),
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal),
+                                                          ),
+                                                        ),
+                                                      ),
                                               ],
                                             ),
                                           ),
@@ -557,79 +558,79 @@ class SalonicList_state extends State<SalonicList> {
                                     decoration: BoxDecoration(
                                         color: Colors.white,
                                         borderRadius:
-                                        BorderRadius.circular(30)),
+                                            BorderRadius.circular(30)),
                                     child: (fav_salon_id
-                                        .contains(snapshot.data[index].id))
+                                            .contains(snapshot.data[index].id))
                                         ? IconButton(
-                                      icon: Icon(
-                                        Icons.favorite,
-                                        size: 30,
-                                        color: MassaraColor.primary_color,
-                                      ),
-                                      onPressed: () {
-                                        if (widget.token ==
-                                            StaticMethods.vistor_token) {
-                                        } else {
-                                          setState(() async {
-                                            await ApiProvider
-                                                .removeSalonFromFavourite(
-                                                widget.token,
-                                                snapshot
-                                                    .data[index].id,
-                                                sharedPrefs.getInt(
-                                                    'user_id'),
-                                                context);
-                                            await ApiProvider
-                                                .getAllFavourits(
-                                                widget.token,
-                                                sharedPrefs.getInt(
-                                                    'user_id'),
-                                                context);
-                                            Navigator.pushReplacement(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (BuildContext
-                                                    context) =>
-                                                    super.widget));
-                                          });
-                                        }
-                                      },
-                                    )
+                                            icon: Icon(
+                                              Icons.favorite,
+                                              size: 30,
+                                              color: QaeatColor.primary_color,
+                                            ),
+                                            onPressed: () {
+                                              if (widget.token ==
+                                                  StaticMethods.vistor_token) {
+                                              } else {
+                                                setState(() async {
+                                                  await ApiProvider
+                                                      .removeSalonFromFavourite(
+                                                          widget.token,
+                                                          snapshot
+                                                              .data[index].id,
+                                                          sharedPrefs.getInt(
+                                                              'user_id'),
+                                                          context);
+                                                  await ApiProvider
+                                                      .getAllFavourits(
+                                                          widget.token,
+                                                          sharedPrefs.getInt(
+                                                              'user_id'),
+                                                          context);
+                                                  Navigator.pushReplacement(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (BuildContext
+                                                                  context) =>
+                                                              super.widget));
+                                                });
+                                              }
+                                            },
+                                          )
                                         : IconButton(
-                                      icon: Icon(
-                                        Icons.favorite_border,
-                                        size: 30,
-                                        color: MassaraColor.primary_color,
-                                      ),
-                                      onPressed: () {
-                                        if (widget.token ==
-                                            StaticMethods.vistor_token) {
-                                        } else {
-                                          setState(() async {
-                                            await ApiProvider
-                                                .addSalonToFavourite(
-                                                widget.token,
-                                                snapshot
-                                                    .data[index].id,
-                                                sharedPrefs.getInt(
-                                                    'user_id'),
-                                                context);
-                                            await ApiProvider
-                                                .getAllFavourits(
-                                                widget.token,
-                                                sharedPrefs.getInt(
-                                                    'user_id'),
-                                                context);
-                                            Navigator.pushReplacement(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (BuildContext
-                                                    context) =>
-                                                    super.widget));
-                                          });
-                                        }
-                                      },
-                                    ),
+                                            icon: Icon(
+                                              Icons.favorite_border,
+                                              size: 30,
+                                              color: QaeatColor.primary_color,
+                                            ),
+                                            onPressed: () {
+                                              if (widget.token ==
+                                                  StaticMethods.vistor_token) {
+                                              } else {
+                                                setState(() async {
+                                                  await ApiProvider
+                                                      .addSalonToFavourite(
+                                                          widget.token,
+                                                          snapshot
+                                                              .data[index].id,
+                                                          sharedPrefs.getInt(
+                                                              'user_id'),
+                                                          context);
+                                                  await ApiProvider
+                                                      .getAllFavourits(
+                                                          widget.token,
+                                                          sharedPrefs.getInt(
+                                                              'user_id'),
+                                                          context);
+                                                  Navigator.pushReplacement(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (BuildContext
+                                                                  context) =>
+                                                              super.widget));
+                                                });
+                                              }
+                                            },
+                                          ),
                                   ))
                             ],
                           )
@@ -642,9 +643,8 @@ class SalonicList_state extends State<SalonicList> {
                   return ListView.builder(
                     itemCount: snapshot.data.length,
                     itemBuilder: (BuildContext context, index) {
-                      if (snapshot.data[index].id == widget.salon_id) {
-                        double rate = (snapshot.data[index].total_rate ==
-                                null)
+                      if (snapshot.data[index].id == widget.hall_id) {
+                        double rate = (snapshot.data[index].total_rate == null)
                             ? 0.0
                             : snapshot.data[index].total_rate.value.toDouble();
 
@@ -669,13 +669,13 @@ class SalonicList_state extends State<SalonicList> {
                                     shape: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(5),
                                       borderSide:
-                                      BorderSide(color: Color(0xFFDCDCDC)),
+                                          BorderSide(color: Color(0xFFDCDCDC)),
                                     ),
                                     child: Column(
                                       children: <Widget>[
                                         SalonSlider(
                                           salonPictures:
-                                          snapshot.data[index].gallery,
+                                              snapshot.data[index].gallery,
                                         ),
                                         Row(
                                           children: <Widget>[
@@ -683,9 +683,9 @@ class SalonicList_state extends State<SalonicList> {
                                                 flex: 3,
                                                 child: Column(
                                                   crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
+                                                      CrossAxisAlignment.start,
                                                   mainAxisAlignment:
-                                                  MainAxisAlignment.start,
+                                                      MainAxisAlignment.start,
                                                   children: <Widget>[
                                                     Container(
                                                       padding: EdgeInsets.only(
@@ -697,25 +697,25 @@ class SalonicList_state extends State<SalonicList> {
                                                             color: Color(
                                                                 0xFF707070),
                                                             fontWeight:
-                                                            FontWeight.bold,
+                                                                FontWeight.bold,
                                                             fontSize: 18),
                                                       ),
                                                     ),
                                                     Row(
                                                       crossAxisAlignment:
-                                                      CrossAxisAlignment
-                                                          .start,
+                                                          CrossAxisAlignment
+                                                              .start,
                                                       mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .start,
+                                                          MainAxisAlignment
+                                                              .start,
                                                       children: [
                                                         Container(
                                                           padding:
-                                                          EdgeInsets.only(
-                                                              right: 20),
+                                                              EdgeInsets.only(
+                                                                  right: 20),
                                                           child: HelperWidgets
                                                               .ratingbar_fun(
-                                                              5, rate, 18),
+                                                                  5, rate, 18),
                                                         ),
                                                       ],
                                                     )
@@ -725,31 +725,32 @@ class SalonicList_state extends State<SalonicList> {
                                                 flex: 2,
                                                 child: Padding(
                                                   padding:
-                                                  EdgeInsets.only(left: 20),
+                                                      EdgeInsets.only(left: 20),
                                                   child: new Container(
                                                       padding: EdgeInsets.only(
                                                           top: 15.0),
                                                       alignment:
-                                                      Alignment.center,
+                                                          Alignment.center,
                                                       child: ButtonTheme(
                                                         minWidth: MediaQuery.of(
-                                                            context)
+                                                                context)
                                                             .size
                                                             .width,
                                                         child: RaisedButton(
                                                           shape:
-                                                          RoundedRectangleBorder(
+                                                              RoundedRectangleBorder(
                                                             borderRadius:
-                                                            BorderRadius
-                                                                .circular(
-                                                                5.0),
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        5.0),
                                                             side: BorderSide(
-                                                              color: MassaraColor.primary_color,
+                                                              color: QaeatColor
+                                                                  .primary_color,
                                                               width: 1.0,
                                                             ),
                                                           ),
-                                                          color:
-                                                          MassaraColor.primary_color,
+                                                          color: QaeatColor
+                                                              .primary_color,
                                                           child: Text(
                                                             'احجز الان',
                                                             style: TextStyle(
@@ -757,10 +758,10 @@ class SalonicList_state extends State<SalonicList> {
                                                                     .white,
                                                                 fontSize: 16.0,
                                                                 fontFamily:
-                                                                'Cairo',
+                                                                    'Cairo',
                                                                 fontWeight:
-                                                                FontWeight
-                                                                    .normal),
+                                                                    FontWeight
+                                                                        .normal),
                                                           ),
                                                           onPressed: () {
                                                             Navigator.push(
@@ -768,37 +769,37 @@ class SalonicList_state extends State<SalonicList> {
                                                                 MaterialPageRoute(
                                                                   builder:
                                                                       (context) =>
-                                                                      RerservationNow(
-                                                                        token: widget
-                                                                            .token,
-                                                                        salon_id:
+                                                                          RerservationNow(
+                                                                    token: widget
+                                                                        .token,
+                                                                    salon_id:
                                                                         snapshot
                                                                             .data[index]
                                                                             .id,
-                                                                        logo: snapshot
-                                                                            .data[
-                                                                        index]
-                                                                            .logo,
-                                                                        name: snapshot
-                                                                            .data[
-                                                                        index]
-                                                                            .name,
-                                                                        rate: rate,
-                                                                        home_services: snapshot
-                                                                            .data[
-                                                                        index]
-                                                                            .home_service,
-                                                                        payment: snapshot
-                                                                            .data[
-                                                                        index]
-                                                                            .payment,
-                                                                        salonPictures: snapshot
-                                                                            .data[
-                                                                        index]
-                                                                            .gallery,
-                                                                        salon_list_type:
+                                                                    logo: snapshot
+                                                                        .data[
+                                                                            index]
+                                                                        .logo,
+                                                                    name: snapshot
+                                                                        .data[
+                                                                            index]
+                                                                        .name,
+                                                                    rate: rate,
+                                                                    home_services: snapshot
+                                                                        .data[
+                                                                            index]
+                                                                        .home_service,
+                                                                    payment: snapshot
+                                                                        .data[
+                                                                            index]
+                                                                        .payment,
+                                                                    salonPictures: snapshot
+                                                                        .data[
+                                                                            index]
+                                                                        .gallery,
+                                                                    salon_list_type:
                                                                         1,
-                                                                      ),
+                                                                  ),
                                                                 ));
                                                           },
                                                         ),
@@ -813,31 +814,32 @@ class SalonicList_state extends State<SalonicList> {
                                                   right: 20, top: 5),
                                               child: Row(
                                                 children: <Widget>[
-                                                Expanded(
-                                                  flex: 1,
-                                                  child: Row(
-                                                    children: [
-                                                      Icon(
-                                                        Icons.location_on,
-                                                        color: Color(0xFF959090),
-                                                      ),
-                                                      SizedBox(
-                                                        width: 5,
-                                                      ),
-                                                    ],
+                                                  Expanded(
+                                                    flex: 1,
+                                                    child: Row(
+                                                      children: [
+                                                        Icon(
+                                                          Icons.location_on,
+                                                          color:
+                                                              Color(0xFF959090),
+                                                        ),
+                                                        SizedBox(
+                                                          width: 5,
+                                                        ),
+                                                      ],
+                                                    ),
                                                   ),
-                                                ),
                                                   Expanded(
                                                     flex: 7,
                                                     child: Text(
                                                       '${snapshot.data[index].address}',
                                                       style: TextStyle(
-                                                        color: Color(0xFF403E3E),
+                                                        color:
+                                                            Color(0xFF403E3E),
                                                         fontFamily: 'Cairo',
                                                       ),
                                                     ),
                                                   )
-
                                                 ],
                                               ),
                                             ),
@@ -857,77 +859,78 @@ class SalonicList_state extends State<SalonicList> {
                                                     ),
                                                   ),
                                                   (snapshot.data[index]
-                                                      .payment == 2)
+                                                              .payment ==
+                                                          2)
                                                       ? Row(
-                                                    children: <Widget>[
-                                                      Expanded(
-                                                        flex: 2,
-                                                          child: Text(
-                                                            'الدفع في المركز',
-                                                            style: TextStyle(
-                                                                fontFamily:
-                                                                'Cairo',
-                                                                color: Color(
-                                                                    0xFF292929),
-                                                                fontWeight:
-                                                                FontWeight
-                                                                    .normal),
-                                                          ),
-                                                        ),
-                                                   Expanded(
-                                                     flex: 1,
-                                                     child:Text(
-                                                            '    اونلاين    ',
-                                                            style: TextStyle(
-                                                                fontFamily:
-                                                                'Cairo',
-                                                                color: Color(
-                                                                    0xFF292929),
-                                                                fontWeight:
-                                                                FontWeight
-                                                                    .normal),
-                                                          ),
-                                                        ),
-
-                                                    ],
-                                                  )
+                                                          children: <Widget>[
+                                                            Expanded(
+                                                              flex: 2,
+                                                              child: Text(
+                                                                'الدفع في المركز',
+                                                                style: TextStyle(
+                                                                    fontFamily:
+                                                                        'Cairo',
+                                                                    color: Color(
+                                                                        0xFF292929),
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .normal),
+                                                              ),
+                                                            ),
+                                                            Expanded(
+                                                              flex: 1,
+                                                              child: Text(
+                                                                '    اونلاين    ',
+                                                                style: TextStyle(
+                                                                    fontFamily:
+                                                                        'Cairo',
+                                                                    color: Color(
+                                                                        0xFF292929),
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .normal),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        )
                                                       : Container(
-                                                    padding:
-                                                    EdgeInsets.only(
-                                                        right: 10,
-                                                        left: 10),
-                                                    child: Container(
-                                                      alignment: Alignment
-                                                          .center,
-                                                      decoration: BoxDecoration(
-                                                          color: Color(
-                                                              0xFFDCDCDC),
-                                                          borderRadius:
-                                                          BorderRadius
-                                                              .circular(
-                                                              5)),
-                                                      child: Text(
-                                                        (snapshot.data[index]
-                                                            .payment ==
-                                                            1)
-                                                            ? '    اونلاين    '
-                                                            : '   الدفع في المركز   ',
-                                                        style: TextStyle(
-                                                            fontFamily:
-                                                            'Cairo',
-                                                            color: Color(
-                                                                0xFF292929),
-                                                            fontWeight:
-                                                            FontWeight
-                                                                .normal),
-                                                      ),
-                                                    ),
-                                                  ),
+                                                          padding:
+                                                              EdgeInsets.only(
+                                                                  right: 10,
+                                                                  left: 10),
+                                                          child: Container(
+                                                            alignment: Alignment
+                                                                .center,
+                                                            decoration: BoxDecoration(
+                                                                color: Color(
+                                                                    0xFFDCDCDC),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            5)),
+                                                            child: Text(
+                                                              (snapshot.data[index]
+                                                                          .payment ==
+                                                                      1)
+                                                                  ? '    اونلاين    '
+                                                                  : '   الدفع في المركز   ',
+                                                              style: TextStyle(
+                                                                  fontFamily:
+                                                                      'Cairo',
+                                                                  color: Color(
+                                                                      0xFF292929),
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal),
+                                                            ),
+                                                          ),
+                                                        ),
                                                 ],
                                               ),
                                             ),
                                             Container(
-                                              padding: EdgeInsets.only(top: 10,bottom: 10),
+                                              padding: EdgeInsets.only(
+                                                  top: 10, bottom: 10),
                                               child: Row(
                                                 children: <Widget>[
                                                   Container(
@@ -942,115 +945,115 @@ class SalonicList_state extends State<SalonicList> {
                                                     ),
                                                   ),
                                                   (snapshot.data[index]
-                                                      .home_service ==
-                                                      2)
+                                                              .home_service ==
+                                                          2)
                                                       ? Row(
-                                                    children: <Widget>[
-                                                      Container(
-                                                        padding: EdgeInsets
-                                                            .only(
-                                                            right: 10,
-                                                            left: 10),
-                                                        child: Container(
-                                                          width: MediaQuery.of(
-                                                              context)
-                                                              .size
-                                                              .width /
-                                                              4,
-                                                          alignment:
-                                                          Alignment
-                                                              .center,
-                                                          decoration: BoxDecoration(
-                                                              color: Color(
-                                                                  0xFFDCDCDC),
-                                                              borderRadius:
-                                                              BorderRadius.circular(
-                                                                  5)),
-                                                          child: Text(
-                                                            '  فى المركز  ',
-                                                            style: TextStyle(
-                                                                fontFamily:
-                                                                'Cairo',
-                                                                color: Color(
-                                                                    0xFF292929),
-                                                                fontWeight:
-                                                                FontWeight
-                                                                    .normal),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      Container(
-                                                        padding: EdgeInsets
-                                                            .only(
-                                                            right: 10,
-                                                            left: 10),
-                                                        child: Container(
-                                                          width: MediaQuery.of(
-                                                              context)
-                                                              .size
-                                                              .width /
-                                                              4,
-                                                          alignment:
-                                                          Alignment
-                                                              .center,
-                                                          decoration: BoxDecoration(
-                                                              color: Color(
-                                                                  0xFFDCDCDC),
-                                                              borderRadius:
-                                                              BorderRadius.circular(
-                                                                  5)),
-                                                          child: Text(
-                                                            'فى البيت',
-                                                            style: TextStyle(
-                                                                fontFamily:
-                                                                'Cairo',
-                                                                color: Color(
-                                                                    0xFF292929),
-                                                                fontWeight:
-                                                                FontWeight
-                                                                    .normal),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  )
+                                                          children: <Widget>[
+                                                            Container(
+                                                              padding: EdgeInsets
+                                                                  .only(
+                                                                      right: 10,
+                                                                      left: 10),
+                                                              child: Container(
+                                                                width: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width /
+                                                                    4,
+                                                                alignment:
+                                                                    Alignment
+                                                                        .center,
+                                                                decoration: BoxDecoration(
+                                                                    color: Color(
+                                                                        0xFFDCDCDC),
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            5)),
+                                                                child: Text(
+                                                                  '  فى المركز  ',
+                                                                  style: TextStyle(
+                                                                      fontFamily:
+                                                                          'Cairo',
+                                                                      color: Color(
+                                                                          0xFF292929),
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .normal),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            Container(
+                                                              padding: EdgeInsets
+                                                                  .only(
+                                                                      right: 10,
+                                                                      left: 10),
+                                                              child: Container(
+                                                                width: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width /
+                                                                    4,
+                                                                alignment:
+                                                                    Alignment
+                                                                        .center,
+                                                                decoration: BoxDecoration(
+                                                                    color: Color(
+                                                                        0xFFDCDCDC),
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            5)),
+                                                                child: Text(
+                                                                  'فى البيت',
+                                                                  style: TextStyle(
+                                                                      fontFamily:
+                                                                          'Cairo',
+                                                                      color: Color(
+                                                                          0xFF292929),
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .normal),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        )
                                                       : Container(
-                                                    padding:
-                                                    EdgeInsets.only(
-                                                        right: 10,
-                                                        left: 10),
-                                                    child: Container(
-                                                      width: MediaQuery.of(
-                                                          context)
-                                                          .size
-                                                          .width /
-                                                          4,
-                                                      alignment: Alignment
-                                                          .center,
-                                                      decoration: BoxDecoration(
-                                                          color: Color(
-                                                              0xFFDCDCDC),
-                                                          borderRadius:
-                                                          BorderRadius
-                                                              .circular(
-                                                              5)),
-                                                      child: Text(
-                                                        (snapshot.data[index]
-                                                            .home_service ==
-                                                            1)
-                                                            ? 'فى البيت'
-                                                            : ' فى المركز ',
-                                                        style: TextStyle(
-                                                            fontFamily:
-                                                            'Cairo',
-                                                            color: Color(
-                                                                0xFF292929),
-                                                            fontWeight:
-                                                            FontWeight
-                                                                .normal),
-                                                      ),
-                                                    ),
-                                                  ),
+                                                          padding:
+                                                              EdgeInsets.only(
+                                                                  right: 10,
+                                                                  left: 10),
+                                                          child: Container(
+                                                            width: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width /
+                                                                4,
+                                                            alignment: Alignment
+                                                                .center,
+                                                            decoration: BoxDecoration(
+                                                                color: Color(
+                                                                    0xFFDCDCDC),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            5)),
+                                                            child: Text(
+                                                              (snapshot.data[index]
+                                                                          .home_service ==
+                                                                      1)
+                                                                  ? 'فى البيت'
+                                                                  : ' فى المركز ',
+                                                              style: TextStyle(
+                                                                  fontFamily:
+                                                                      'Cairo',
+                                                                  color: Color(
+                                                                      0xFF292929),
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal),
+                                                            ),
+                                                          ),
+                                                        ),
                                                 ],
                                               ),
                                             ),
@@ -1066,81 +1069,81 @@ class SalonicList_state extends State<SalonicList> {
                                       decoration: BoxDecoration(
                                           color: Colors.white,
                                           borderRadius:
-                                          BorderRadius.circular(30)),
+                                              BorderRadius.circular(30)),
                                       child: (fav_salon_id.contains(
-                                          snapshot.data[index].id))
+                                              snapshot.data[index].id))
                                           ? IconButton(
-                                        icon: Icon(
-                                          Icons.favorite,
-                                          size: 30,
-                                          color: MassaraColor.primary_color,
-                                        ),
-                                        onPressed: () {
-                                          if (widget.token ==
-                                              StaticMethods
-                                                  .vistor_token) {
-                                          } else {
-                                            setState(() async {
-                                              await ApiProvider
-                                                  .removeSalonFromFavourite(
-                                                  widget.token,
-                                                  snapshot
-                                                      .data[index].id,
-                                                  sharedPrefs.getInt(
-                                                      'user_id'),
-                                                  context);
-                                              await ApiProvider
-                                                  .getAllFavourits(
-                                                  widget.token,
-                                                  sharedPrefs.getInt(
-                                                      'user_id'),
-                                                  context);
-                                              Navigator.pushReplacement(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (BuildContext
-                                                      context) =>
-                                                      super.widget));
-                                            });
-                                          }
-                                        },
-                                      )
+                                              icon: Icon(
+                                                Icons.favorite,
+                                                size: 30,
+                                                color: QaeatColor.primary_color,
+                                              ),
+                                              onPressed: () {
+                                                if (widget.token ==
+                                                    StaticMethods
+                                                        .vistor_token) {
+                                                } else {
+                                                  setState(() async {
+                                                    await ApiProvider
+                                                        .removeSalonFromFavourite(
+                                                            widget.token,
+                                                            snapshot
+                                                                .data[index].id,
+                                                            sharedPrefs.getInt(
+                                                                'user_id'),
+                                                            context);
+                                                    await ApiProvider
+                                                        .getAllFavourits(
+                                                            widget.token,
+                                                            sharedPrefs.getInt(
+                                                                'user_id'),
+                                                            context);
+                                                    Navigator.pushReplacement(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                            builder: (BuildContext
+                                                                    context) =>
+                                                                super.widget));
+                                                  });
+                                                }
+                                              },
+                                            )
                                           : IconButton(
-                                        icon: Icon(
-                                          Icons.favorite_border,
-                                          size: 30,
-                                          color: MassaraColor.primary_color,
-                                        ),
-                                        onPressed: () {
-                                          if (widget.token ==
-                                              StaticMethods
-                                                  .vistor_token) {
-                                          } else {
-                                            setState(() async {
-                                              await ApiProvider
-                                                  .addSalonToFavourite(
-                                                  widget.token,
-                                                  snapshot
-                                                      .data[index].id,
-                                                  sharedPrefs.getInt(
-                                                      'user_id'),
-                                                  context);
-                                              await ApiProvider
-                                                  .getAllFavourits(
-                                                  widget.token,
-                                                  sharedPrefs.getInt(
-                                                      'user_id'),
-                                                  context);
-                                              Navigator.pushReplacement(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (BuildContext
-                                                      context) =>
-                                                      super.widget));
-                                            });
-                                          }
-                                        },
-                                      ),
+                                              icon: Icon(
+                                                Icons.favorite_border,
+                                                size: 30,
+                                                color: QaeatColor.primary_color,
+                                              ),
+                                              onPressed: () {
+                                                if (widget.token ==
+                                                    StaticMethods
+                                                        .vistor_token) {
+                                                } else {
+                                                  setState(() async {
+                                                    await ApiProvider
+                                                        .addSalonToFavourite(
+                                                            widget.token,
+                                                            snapshot
+                                                                .data[index].id,
+                                                            sharedPrefs.getInt(
+                                                                'user_id'),
+                                                            context);
+                                                    await ApiProvider
+                                                        .getAllFavourits(
+                                                            widget.token,
+                                                            sharedPrefs.getInt(
+                                                                'user_id'),
+                                                            context);
+                                                    Navigator.pushReplacement(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                            builder: (BuildContext
+                                                                    context) =>
+                                                                super.widget));
+                                                  });
+                                                }
+                                              },
+                                            ),
                                     ))
                               ],
                             )

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:Massara/Custom_Widgets/export_file.dart';
-import 'package:Massara/Model/customer_services_model.dart';
+import 'package:Qaeat/Custom_Widgets/export_file.dart';
+import 'package:Qaeat/Model/customer_services_model.dart';
 
 class CustomerServices extends StatefulWidget {
   final String token;
@@ -32,29 +32,29 @@ class CustomerServices_state extends State<CustomerServices> {
     // TODO: implement build
     return Scaffold(
         appBar: AppBar(
-          centerTitle: true,
-          title: Text(
-            'الدعم الفنى',
-            style: TextStyle(
-              fontFamily: 'Cairo',
-              color: Color(0xFFFFFFFF),
+          automaticallyImplyLeading: false,
+          title: Container(
+            alignment: Alignment.centerRight,
+            child: Text(
+              'الدعم الفنى',
+              style: TextStyle(
+                  fontFamily: 'Cairo', color: Colors.white, fontSize: 16),
             ),
           ),
-          backgroundColor: MassaraColor.primary_color,
+          actions: [
+            InkWell(
+              onTap: () {
+                Navigator.pushReplacement(
+                    context, MaterialPageRoute(builder: (context) => MorePage()));
+              },
+              child: Icon(Icons.arrow_forward_ios),
+            )
+          ],
+          backgroundColor: QaeatColor.primary_color,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(
               bottom: Radius.circular(10),
             ),
-          ),
-          leading: IconButton(
-            icon: Icon(
-              Icons.arrow_back_ios,
-              color: Color(0xFFFFFFFF),
-            ),
-            onPressed: () {
-              Navigator.pushReplacement(
-                  context, MaterialPageRoute(builder: (context) => MorePage()));
-            },
           ),
         ),
         body: FutureBuilder<CustomerServicesModel>(
@@ -75,7 +75,7 @@ class CustomerServices_state extends State<CustomerServices> {
                               children: <Widget>[
                                 Image(
                                   image: AssetImage('images/more/correct.png'),
-                                  color: MassaraColor.primary_color,
+                                  color: QaeatColor.primary_color,
                                 ),
                                 Padding(
                                   padding: EdgeInsets.only(top: 10),
@@ -242,7 +242,7 @@ class CustomerServices_state extends State<CustomerServices> {
                                       },
 
                                       child: new Text(
-                                        "اذهب الى الرئيسيه",
+                                        "الذهاب الى الصفحة الرئيسية",
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontFamily: 'Cairo',
@@ -253,7 +253,7 @@ class CustomerServices_state extends State<CustomerServices> {
                                         borderRadius:
                                             new BorderRadius.circular(5.0),
                                       ),
-                                      color: MassaraColor.primary_color,
+                                      color: QaeatColor.primary_color,
                                     ),
                                   ),
                                   SizedBox(
@@ -289,7 +289,7 @@ class CustomerServices_state extends State<CustomerServices> {
                                       child: new Text(
                                         "اعاده ارسال",
                                         style: TextStyle(
-                                            color: MassaraColor.primary_color,
+                                            color: QaeatColor.primary_color,
                                             fontFamily: 'Cairo',
                                             fontWeight: FontWeight.bold),
                                       ),

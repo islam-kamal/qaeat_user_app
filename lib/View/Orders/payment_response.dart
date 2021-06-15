@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:Massara/Custom_Widgets/export_file.dart';
+import 'package:Qaeat/Custom_Widgets/export_file.dart';
 
 class PaymentResponse extends StatefulWidget {
   final String token;
@@ -58,7 +58,7 @@ class PaymentResponseState extends State<PaymentResponse> {
           '',
           style: TextStyle(fontFamily: 'Cairo'),
         ),
-        backgroundColor: MassaraColor.primary_color,
+        backgroundColor: QaeatColor.primary_color,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
             bottom: Radius.circular(10),
@@ -84,7 +84,7 @@ class PaymentResponseState extends State<PaymentResponse> {
                 'توجد مشكلة تعوق عملية الدفع \n              رجاء كرر المحاولة  ',
                 style: TextStyle(
                     fontFamily: 'Cairo',
-                    color: MassaraColor.secondary_color,
+                    color: QaeatColor.secondary_color,
                     fontWeight: FontWeight.bold,
                     fontSize: 21),
               )
@@ -92,7 +92,7 @@ class PaymentResponseState extends State<PaymentResponse> {
                 'لقد تمت عملية الدفع بنجاح ',
                 style: TextStyle(
                     fontFamily: 'Cairo',
-                    color: MassaraColor.secondary_color,
+                    color: QaeatColor.secondary_color,
                     fontWeight: FontWeight.bold,
                     fontSize: 21),
               ),
@@ -112,7 +112,7 @@ class PaymentResponseState extends State<PaymentResponse> {
             'الفاتورة',
             style: TextStyle(fontFamily: 'Cairo'),
           ),
-          backgroundColor: MassaraColor.primary_color,
+          backgroundColor: QaeatColor.primary_color,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(
               bottom: Radius.circular(10),
@@ -138,7 +138,7 @@ class PaymentResponseState extends State<PaymentResponse> {
                   'توجد مشكلة تعوق عملية الدفع \n              رجاء كرر المحاولة  ',
                   style: TextStyle(
                       fontFamily: 'Cairo',
-                      color: MassaraColor.secondary_color,
+                      color: QaeatColor.secondary_color,
                       fontWeight: FontWeight.bold,
                       fontSize: 21),
                 ),
@@ -160,7 +160,7 @@ class PaymentResponseState extends State<PaymentResponse> {
                       child: new Text(
                         "أنهاء ",
                         style: TextStyle(
-                            color: MassaraColor.primary_color,
+                            color: QaeatColor.primary_color,
                             fontFamily: 'Cairo',
                             fontWeight: FontWeight.bold,
                             fontSize: 16),
@@ -205,7 +205,7 @@ class PaymentResponseState extends State<PaymentResponse> {
                           Text(
                             '${widget.city}',
                             style: TextStyle(
-                                color: MassaraColor.primary_color,
+                                color: QaeatColor.primary_color,
                                 fontFamily: 'Cairo',
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold),
@@ -234,7 +234,7 @@ class PaymentResponseState extends State<PaymentResponse> {
                           Text(
                             '${widget.bill_number}',
                             style: TextStyle(
-                                color: MassaraColor.primary_color,
+                                color: QaeatColor.primary_color,
                                 fontFamily: 'Cairo',
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold),
@@ -258,7 +258,7 @@ class PaymentResponseState extends State<PaymentResponse> {
                             textScaleFactor: 1,
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                              color: MassaraColor.primary_color,
+                              color: QaeatColor.primary_color,
                               fontFamily: 'Cairo',
                               fontSize: 16,
                               fontWeight: FontWeight.bold
@@ -288,7 +288,7 @@ class PaymentResponseState extends State<PaymentResponse> {
                                 textScaleFactor: 1,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                    color: MassaraColor.primary_color,
+                                    color: QaeatColor.primary_color,
                                     fontFamily: 'Cairo',
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold
@@ -317,7 +317,7 @@ class PaymentResponseState extends State<PaymentResponse> {
                                 textScaleFactor: 1,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                    color: MassaraColor.primary_color,
+                                    color: QaeatColor.primary_color,
                                     fontFamily: 'Cairo',
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold
@@ -346,7 +346,7 @@ class PaymentResponseState extends State<PaymentResponse> {
                                 textScaleFactor: 1,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                    color: MassaraColor.primary_color,
+                                    color: QaeatColor.primary_color,
                                     fontFamily: 'Cairo',
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold
@@ -396,7 +396,7 @@ class PaymentResponseState extends State<PaymentResponse> {
                       child: new Text(
                         "أنهاء ",
                         style: TextStyle(
-                            color: MassaraColor.primary_color,
+                            color: QaeatColor.primary_color,
                             fontFamily: 'Cairo',
                             fontWeight: FontWeight.bold,
                             fontSize: 16),

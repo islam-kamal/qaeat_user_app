@@ -1,4 +1,4 @@
-import 'package:Massara/Custom_Widgets/export_file.dart';
+import 'package:Qaeat/Custom_Widgets/export_file.dart';
 
 class NotificationModel{
   int id;
@@ -6,8 +6,8 @@ class NotificationModel{
   String title;
   String time;
   String message;
-  Salons salon;
-NotificationModel({this.id,this.sender_salon_id,this.title, this.time,this.message,this.salon});
+  Halls hall;
+NotificationModel({this.id,this.sender_salon_id,this.title, this.time,this.message,this.hall});
 
 factory NotificationModel.fromJson(Map<String, dynamic> json){
   return NotificationModel(
@@ -16,22 +16,22 @@ factory NotificationModel.fromJson(Map<String, dynamic> json){
     title: json['title'],
     time: json['time'],
     message: json['message'],
-    salon : Salons.fromJson(json['salon']),
+    hall : Halls.fromJson(json['salon']),
   );
 }
 
 
 }
 
-class Salons{
+class Halls{
   int id;
   String name;
 
-  Salons({this.id,this.name});
+  Halls({this.id,this.name});
 
-  factory Salons.fromJson(Map<String,dynamic> parsedJson){
+  factory Halls.fromJson(Map<String,dynamic> parsedJson){
     if (parsedJson == null) {} else {
-      return Salons(
+      return Halls(
         id: parsedJson['id'],
         name: parsedJson['name'],
 

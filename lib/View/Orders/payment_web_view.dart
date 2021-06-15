@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
-import 'package:Massara/Custom_Widgets/export_file.dart';
-import 'package:Massara/View/More/contact_us.dart';
+import 'package:Qaeat/Custom_Widgets/export_file.dart';
+import 'package:Qaeat/View/More/contact_us.dart';
 
 class PaymentWebView extends StatefulWidget {
   final String url;
@@ -77,7 +77,7 @@ class PaymentWebViewState extends State<PaymentWebView> {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: MassaraColor.primary_color,
+        backgroundColor: QaeatColor.primary_color,
       ),
       body: new WebviewScaffold(
         url: widget.url,

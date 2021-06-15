@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:Massara/Custom_Widgets/export_file.dart';
-import 'package:Massara/Model/favourite_model.dart';
-import 'package:Massara/View/Favourite/favourite_slider.dart';
+import 'package:Qaeat/Custom_Widgets/export_file.dart';
+import 'package:Qaeat/Model/favourite_model.dart';
+import 'package:Qaeat/View/Favourite/favourite_slider.dart';
 
 class FavouriteList extends StatefulWidget {
   final String token;
@@ -53,27 +53,32 @@ class FavouriteListState extends State<FavouriteList> {
             context, MaterialPageRoute(builder: (context) => MorePage()));
       },
       child: Scaffold(
+
         appBar: AppBar(
-          centerTitle: true,
-          title: Text(
-            'المفضله',
-            style: TextStyle(fontFamily: 'Cairo'),
+          automaticallyImplyLeading: false,
+          title: Container(
+            alignment: Alignment.centerRight,
+            child: Text(
+              'المفضله',
+              style: TextStyle(
+                  fontFamily: 'Cairo', color: Colors.white, fontSize: 16),
+            ),
           ),
-          backgroundColor: MassaraColor.primary_color,
+          actions: [
+            InkWell(
+              onTap: () {
+                Navigator.pushReplacement(
+                    context, MaterialPageRoute(builder: (context) => MorePage()));
+              },
+              child: Icon(Icons.arrow_forward_ios),
+            )
+          ],
+          backgroundColor: QaeatColor.primary_color,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(
               bottom: Radius.circular(10),
             ),
           ),
-          leading: IconButton(
-              icon: Icon(
-                Icons.arrow_back_ios,
-                color: Color(0xFFFFFFFF),
-              ),
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => MorePage()));
-              }),
         ),
         body: (favourits == null)
             ? VistorMessage()
@@ -91,14 +96,14 @@ class FavouriteListState extends State<FavouriteList> {
                                 itemCount: snapshot.data.length,
                                 itemBuilder: (BuildContext context, index) {
                                   List<String> galleries = new List<String>();
-                                  double rate = (snapshot.data[index].salons
+                                  double rate = (snapshot.data[index].halls
                                               .total_rate==
                                           null)
                                       ? 0.0
                                       : snapshot
-                                          .data[index].salons.total_rate.value
+                                          .data[index].halls.total_rate.value
                                           .toDouble();
-                                  snapshot.data[index].salons.gallery
+                                  snapshot.data[index].halls.gallery
                                       .forEach((element) {
                                     galleries.add(element.photo);
                                   });
@@ -146,7 +151,7 @@ class FavouriteListState extends State<FavouriteList> {
                                                                         right:
                                                                             20),
                                                                 child: Text(
-                                                                  '${snapshot.data[index].salons.name}',
+                                                                  '${snapshot.data[index].halls.name}',
                                                                   style: TextStyle(
                                                                       fontFamily:
                                                                           'Cairo',
@@ -211,15 +216,15 @@ class FavouriteListState extends State<FavouriteList> {
                                                                           side:
                                                                               BorderSide(
                                                                             color:
-                                                                                MassaraColor.primary_color,
+                                                                                QaeatColor.primary_color,
                                                                             width:
                                                                                 1.0,
                                                                           ),
                                                                         ),
-                                                                        color: MassaraColor.primary_color,
+                                                                        color: QaeatColor.primary_color,
                                                                         child:
                                                                             Text(
-                                                                          'اذهب الى الصالون',
+                                                                          'المزيد',
                                                                           style: TextStyle(
                                                                               color: Colors.white,
                                                                               fontSize: 14.0,
@@ -233,7 +238,7 @@ class FavouriteListState extends State<FavouriteList> {
                                                                               MaterialPageRoute(
                                                                                   builder: (context) => SalonicList(
                                                                                         token: widget.token,
-                                                                                        salon_id: snapshot.data[index].salons.id,
+                                                                                        hall_id: snapshot.data[index].halls.id,
                                                                                       )));
                                                                         },
                                                                       ),
@@ -266,7 +271,7 @@ class FavouriteListState extends State<FavouriteList> {
                                                             Expanded(
                                                               flex: 6,
                                                               child:  Text(
-                                                                '${snapshot.data[index].salons.address}',
+                                                                '${snapshot.data[index].halls.address}',
                                                                 style: TextStyle(
                                                                   color: Color(
                                                                       0xFF292929),
@@ -299,7 +304,7 @@ class FavouriteListState extends State<FavouriteList> {
                                                     icon: Icon(
                                                       Icons.favorite,
                                                       size: 30,
-                                                      color: MassaraColor.primary_color,
+                                                      color: QaeatColor.primary_color,
                                                     ),
                                                     onPressed: () {
                                                       (
@@ -309,7 +314,7 @@ class FavouriteListState extends State<FavouriteList> {
                                                               widget.token,
                                                               snapshot
                                                                   .data[index]
-                                                                  .salons
+                                                                  .halls
                                                                   .id,
                                                               widget.user_id,
                                                               context);
@@ -338,7 +343,7 @@ class FavouriteListState extends State<FavouriteList> {
                                 Icon(
                                   Icons.favorite,
                                   size: 80,
-                                  color: MassaraColor.secondary_color,
+                                  color: QaeatColor.secondary_color,
                                 ),
                                 SizedBox(
                                   height: 20,
@@ -347,7 +352,7 @@ class FavouriteListState extends State<FavouriteList> {
                                   'لا يوجد شئ فى المفضله',
                                   style: TextStyle(
                                       fontFamily: 'Cairo',
-                                      color: MassaraColor.secondary_color,
+                                      color: QaeatColor.primary_color,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 21),
                                 )

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:Massara/Custom_Widgets/export_file.dart';
+import 'package:Qaeat/Custom_Widgets/export_file.dart';
 
 
 class UserSignIn extends StatefulWidget {
@@ -48,6 +48,7 @@ class UserSignInState extends State<UserSignIn> {
 
   @override
   Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
     _progressDialog.style(
         message: 'جارى تحميل البيانات',
         borderRadius: 10.0,
@@ -64,470 +65,398 @@ class UserSignInState extends State<UserSignIn> {
     // TODO: implement build
     return WillPopScope(
         onWillPop: () async => false,
-        child: Material(
-            child: GestureDetector(
-          child: SafeArea(
-            child: SingleChildScrollView(
-              child: Stack(
-                alignment: Alignment.topCenter,
-                children: <Widget>[
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                    ),
-                    child: Image(
-                      image:
-                          AssetImage('images/background/backgroundassets.png'),
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height / 3,
-                      fit: BoxFit.none,
-                    ),
-                  ),
-                  Column(
-                    children: <Widget>[
-                      Directionality(
-                        textDirection: TextDirection.rtl,
-                        child: page_header(),
-                      ),
-                      Container(
-                        child: SafeArea(
-                            child: SingleChildScrollView(
-                                child: Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: Container(
-                                      padding: EdgeInsets.only(
-                                          top: MediaQuery.of(context)
-                                                  .size
-                                                  .width /
-                                              4),
-                                      child: Form(
-                                          key: _formSiginKey,
-                                          child: new Container(
-                                            padding: EdgeInsets.only(
-                                                right: 10, left: 5, top: 10),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: <Widget>[
-                                                Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: <Widget>[
-                                                    Padding(
-                                                      padding: EdgeInsets.only(
-                                                          top: 15,
-                                                          left: 10,
-                                                          right: 10),
-                                                      child: Text(
-                                                        'البريد الإلكتروني',
-                                                        style: style,
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding: EdgeInsets.only(
-                                                          left: 10,
-                                                          right: 10,
-                                                          top: 5),
-                                                      child: new Container(
-                                                        child: TextFormField(
-                                                          controller: _username,
-                                                          keyboardType:
-                                                              TextInputType
-                                                                  .emailAddress,
-                                                          decoration:
-                                                              InputDecoration(
-                                                            filled: true,
-                                                            fillColor: Color(
-                                                                0xFFF6F6F6),
-                                                            hintText:
-                                                                'example@Example.com',
-                                                            border: InputBorder
-                                                                .none,
-                                                            enabledBorder:
-                                                                OutlineInputBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          5.0),
-                                                              borderSide:
-                                                                  const BorderSide(
-                                                                color: Color(
-                                                                    0xFFF6F6F6),
-                                                                width: 1.0,
-                                                              ),
-                                                            ),
-                                                          ),
-                                                          validator: (value) {
-                                                            if (value.isEmpty) {
-                                                              return 'اسم المستخدم غير صحيح ';
-                                                            }
-                                                            return null;
-                                                          },
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: <Widget>[
-                                                    Padding(
-                                                      padding: EdgeInsets.only(
-                                                          left: 10, right: 10),
-                                                      child: Text(
-                                                        'الرقم السرى',
-                                                        style: style,
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding: EdgeInsets.only(
-                                                          top: 10,
-                                                          left: 10,
-                                                          right: 10,
-                                                          bottom: 10),
-                                                      child: new Container(
-                                                        child: TextFormField(
-                                                            keyboardType:
-                                                                TextInputType
-                                                                    .text,
-                                                            controller:
-                                                                _password,
-                                                            obscureText:
-                                                                !_passwordVisible, //This will obscure text dynamically
-                                                            decoration:
-                                                                InputDecoration(
-                                                              filled: true,
-                                                              fillColor: Color(
-                                                                  0xFFF6F6F6),
-                                                              border:
-                                                                  InputBorder
-                                                                      .none,
-                                                              hintText:
-                                                                  '***********',
-                                                              enabledBorder:
-                                                                  OutlineInputBorder(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            5.0),
-                                                                borderSide:
-                                                                    const BorderSide(
-                                                                  color: Color(
-                                                                      0xFFF6F6F6),
-                                                                  width: 1.0,
-                                                                ),
-                                                              ),
-                                                              // Here is key idea
-                                                              suffixIcon:
-                                                                  IconButton(
-                                                                icon: Icon(
-                                                                    // Based on passwordVisible state choose the icon
-                                                                    _passwordVisible
-                                                                        ? Icons
-                                                                            .visibility
-                                                                        : Icons
-                                                                            .visibility_off,
-                                                                    color: Colors
-                                                                        .black),
-                                                                onPressed: () {
-                                                                  // Update the state i.e. toogle the state of passwordVisible variable
-                                                                  setState(() {
-                                                                    _passwordVisible =
-                                                                        !_passwordVisible;
-                                                                  });
-                                                                },
-                                                              ),
-                                                            ),
-                                                            validator:
-                                                                pwdValidator),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-
-                                                // use Builder to solve Scaffold.of() called with a context that does not contain a Scaffold Exception
-
-                                                Padding(
-                                                  padding: EdgeInsets.only(
-                                                      top: 10,
-                                                      left: 10,
-                                                      right: 10,
-                                                      bottom: 5),
-                                                  child: Builder(
-                                                    builder: (ctx) =>
-                                                        new Container(
-                                                            padding:
-                                                                EdgeInsets.only(
-                                                                    top: 15.0),
-                                                            alignment: Alignment
-                                                                .center,
-                                                            child: ButtonTheme(
-                                                              minWidth: MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .width /
-                                                                  2,
-                                                              child:
-                                                                  RaisedButton(
-                                                                padding:
-                                                                    const EdgeInsets
-                                                                            .all(
-                                                                        5.0),
-                                                                shape:
-                                                                    RoundedRectangleBorder(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              5.0),
-                                                                  side:
-                                                                      BorderSide(
-                                                                    color: MassaraColor.primary_color,
-                                                                    width: 1.0,
-                                                                  ),
-                                                                ),
-                                                                color: MassaraColor.primary_color,
-                                                                child: Text(
-                                                                  'دخول',
-                                                                  style: TextStyle(
-                                                                      color: Colors
-                                                                          .white,
-                                                                      fontSize:
-                                                                          18.0,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold),
-                                                                ),
-                                                                onPressed:
-                                                                    () async {
-                                                                  deviceToken =
-                                                                      sharedPrefs
-                                                                          .getString(
-                                                                              'msgToken');
-                                                                  (
-                                                                      'devicetoken : ${deviceToken}');
-                                                                  if (_formSiginKey
-                                                                      .currentState
-                                                                      .validate()) {
-                                                                    await signIn(
-                                                                        _username
-                                                                            .text
-                                                                            .trim(),
-                                                                        _password
-                                                                            .text
-                                                                            .trim(),
-                                                                        deviceToken,
-                                                                        context);
-                                                                  }
-                                                                },
-                                                              ),
-                                                            )),
-                                                  ),
-                                                ),
-
-                                                Padding(
-                                                    padding: EdgeInsets.only(
-                                                        top: 10,
-                                                        left: 20,
-                                                        right: 20,
-                                                        bottom: 25),
-                                                    child: Column(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .center,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: <Widget>[
-                                                        Center(
-                                                          child: InkWell(
-                                                            child: Text(
-                                                              'هل نسيت كلمه السر؟',
-                                                              style: style,
-                                                            ),
-                                                            onTap: () {
-                                                              Navigator.push(
-                                                                  context,
-                                                                  MaterialPageRoute(
-                                                                      builder:
-                                                                          (context) =>
-                                                                              ResetPassword()));
-                                                            },
-                                                          ),
-                                                        ),
-                                                        Center(
-                                                          child: Row(
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .center,
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            children: <Widget>[
-                                                              Text(
-                                                                ' ليس لديك حساب؟  ',
-                                                                style: style,
-                                                              ),
-                                                              InkWell(
-                                                                child: Text(
-                                                                  'سجل الان ',
-                                                                  style: TextStyle(
-                                                                      color: Colors
-                                                                          .black,
-                                                                      fontFamily:
-                                                                          'Cairo',
-                                                                      fontSize:
-                                                                          16,
-                                                                      decoration:
-                                                                          TextDecoration
-                                                                              .underline),
-                                                                ),
-                                                                onTap: () {
-                                                                  Navigator.push(
-                                                                      context,
-                                                                      MaterialPageRoute(
-                                                                          builder: (context) =>
-                                                                              UserSignUp()));
-                                                                },
-                                                              )
-                                                            ],
-                                                          ),
-                                                        ),
-                                                        Center(
-                                                          child: Row(
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .center,
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            children: <Widget>[
-                                                              InkWell(
-                                                                child: Text(
-                                                                  'المتابعة كزائر ',
-                                                                  style:
-                                                                      TextStyle(
-                                                                    color: Colors
-                                                                        .black,
-                                                                    fontFamily:
-                                                                        'Cairo',
-                                                                    fontSize:
-                                                                        16,
-                                                                  ),
-                                                                ),
-                                                                onTap:
-                                                                    () async {
-                                                                  //we use here to getSalonsByName
-                                                                  StaticMethods
-                                                                          .search_salons_list =
-                                                                      ApiProvider.getAllSalons(
-                                                                          StaticMethods
-                                                                              .vistor_token,
-                                                                          context);
-
-                                                                  Navigator.push(
-                                                                      context,
-                                                                      MaterialPageRoute(
-                                                                          builder: (context) => HomePage(
-                                                                                token: StaticMethods.vistor_token,
-                                                                              )));
-                                                                },
-                                                              )
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    )),
-                                              ],
-                                            ),
-                                          )),
-                                    )))),
-                      ),
-                      Container(
-                        padding: EdgeInsets.only(bottom: 30),
-                      )
-                    ],
-                  )
-                ],
+        child: Scaffold(
+          appBar: AppBar(
+            automaticallyImplyLeading: false,
+            title: Container(
+              alignment: Alignment.centerRight,
+              child: Text(
+                'تسجيل الدخول',
+                style: TextStyle(fontFamily: 'Cairo',color: Colors.white,fontSize: 16),
+              ),
+            ),
+            backgroundColor: QaeatColor.primary_color,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+                bottom: Radius.circular(10),
               ),
             ),
           ),
-          onTap: () {
-    FocusScopeNode currentFocus = FocusScope.of(context);
-    if (!currentFocus.hasPrimaryFocus) {
-    currentFocus.unfocus();
-    }
-          },
-        )));
-  }
+          body:SafeArea(
+              child: SingleChildScrollView(
+                  child: Directionality(
+              textDirection: TextDirection.rtl,
+              child: Container(
+                padding: EdgeInsets.only(top:width * 0.1),
+                child: Form(
+                    key: _formSiginKey,
+                    child: new Container(
+                      padding: EdgeInsets.only(
+                          right: 10, left: 5, top: 10),
+                      child: Column(
+                        crossAxisAlignment:
+                        CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Column(
+                            crossAxisAlignment:
+                            CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Padding(
+                                padding: EdgeInsets.only(
+                                    top: 15,
+                                    left: 10,
+                                    right: 10),
+                                child: Text(
+                                  'البريد الإلكتروني',
+                                  style: style,
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(
+                                    left: 10,
+                                    right: 10,
+                                    top: 5),
+                                child: new Container(
+                                  child: TextFormField(
+                                    controller: _username,
+                                    keyboardType:
+                                    TextInputType
+                                        .emailAddress,
+                                    decoration:
+                                    InputDecoration(
+                                      filled: true,
+                                      fillColor: Color(
+                                          0xFFF6F6F6),
+                                      hintText:
+                                      'example@Example.com',
+                                      border: InputBorder
+                                          .none,
+                                      enabledBorder:
+                                      OutlineInputBorder(
+                                        borderRadius:
+                                        BorderRadius
+                                            .circular(
+                                            5.0),
+                                        borderSide:
+                                        const BorderSide(
+                                          color: Color(
+                                              0xFFF6F6F6),
+                                          width: 1.0,
+                                        ),
+                                      ),
+                                    ),
+                                    validator: (value) {
+                                      if (value.isEmpty) {
+                                        return 'اسم المستخدم غير صحيح ';
+                                      }
+                                      return null;
+                                    },
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Column(
+                            crossAxisAlignment:
+                            CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Padding(
+                                padding: EdgeInsets.only(
+                                    left: 10, right: 10),
+                                child: Text(
+                                  'الرقم السرى',
+                                  style: style,
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(
+                                    top: 10,
+                                    left: 10,
+                                    right: 10,
+                                    bottom: 10),
+                                child: new Container(
+                                  child: TextFormField(
+                                      keyboardType:
+                                      TextInputType
+                                          .text,
+                                      controller:
+                                      _password,
+                                      obscureText:
+                                      !_passwordVisible, //This will obscure text dynamically
+                                      decoration:
+                                      InputDecoration(
+                                        filled: true,
+                                        fillColor: Color(
+                                            0xFFF6F6F6),
+                                        border:
+                                        InputBorder
+                                            .none,
+                                        hintText:
+                                        '***********',
+                                        enabledBorder:
+                                        OutlineInputBorder(
+                                          borderRadius:
+                                          BorderRadius
+                                              .circular(
+                                              5.0),
+                                          borderSide:
+                                          const BorderSide(
+                                            color: Color(
+                                                0xFFF6F6F6),
+                                            width: 1.0,
+                                          ),
+                                        ),
+                                        // Here is key idea
+                                        suffixIcon:
+                                        IconButton(
+                                          icon: Icon(
+                                            // Based on passwordVisible state choose the icon
+                                              _passwordVisible
+                                                  ? Icons
+                                                  .visibility
+                                                  : Icons
+                                                  .visibility_off,
+                                              color: Colors
+                                                  .black),
+                                          onPressed: () {
+                                            // Update the state i.e. toogle the state of passwordVisible variable
+                                            setState(() {
+                                              _passwordVisible =
+                                              !_passwordVisible;
+                                            });
+                                          },
+                                        ),
+                                      ),
+                                      validator:
+                                      pwdValidator),
+                                ),
+                              ),
+                            ],
+                          ),
 
-  Widget page_header() {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      child: Column(
-        children: <Widget>[
-          Container(
-            alignment: Alignment.centerLeft,
-            padding: EdgeInsets.only(top: 10),
-            child: Column(
-              children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: Container(),
-                    ),
-                    Expanded(
-                        child: Center(
-                      child: Text(
-                        'أهلا بك !',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontFamily: 'Cairo',
-                            fontSize: 20),
+                          // use Builder to solve Scaffold.of() called with a context that does not contain a Scaffold Exception
+
+                          Padding(
+                            padding: EdgeInsets.only(
+                                top: 10,
+                                left: 10,
+                                right: 10,
+                                bottom: 5),
+                            child: Builder(
+                              builder: (ctx) =>
+                              new Container(
+                                  padding:
+                                  EdgeInsets.only(
+                                      top: 15.0),
+                                  alignment: Alignment
+                                      .center,
+                                  child: ButtonTheme(
+                                    minWidth: MediaQuery.of(
+                                        context)
+                                        .size
+                                        .width /
+                                        2,
+                                    child:
+                                    RaisedButton(
+                                      padding:
+                                      const EdgeInsets
+                                          .all(
+                                          5.0),
+                                      shape:
+                                      RoundedRectangleBorder(
+                                        borderRadius:
+                                        BorderRadius
+                                            .circular(
+                                            5.0),
+                                        side:
+                                        BorderSide(
+                                          color: QaeatColor.primary_color,
+                                          width: 1.0,
+                                        ),
+                                      ),
+                                      color: QaeatColor.primary_color,
+                                      child: Text(
+                                        'دخول',
+                                        style: TextStyle(
+                                            color: Colors
+                                                .white,
+                                            fontSize:
+                                            18.0,
+                                            fontWeight:
+                                            FontWeight
+                                                .bold),
+                                      ),
+                                      onPressed:
+                                          () async {
+                                        deviceToken =
+                                            sharedPrefs
+                                                .getString(
+                                                'msgToken');
+                                        (
+                                            'devicetoken : ${deviceToken}');
+                                        if (_formSiginKey
+                                            .currentState
+                                            .validate()) {
+                                          await signIn(
+                                              _username
+                                                  .text
+                                                  .trim(),
+                                              _password
+                                                  .text
+                                                  .trim(),
+                                              deviceToken,
+                                              context);
+                                        }
+                                      },
+                                    ),
+                                  )),
+                            ),
+                          ),
+
+                          Padding(
+                              padding: EdgeInsets.only(
+                                  top: 10,
+                                  left: 20,
+                                  right: 20,
+                                  bottom: 25),
+                              child: Column(
+                                crossAxisAlignment:
+                                CrossAxisAlignment
+                                    .center,
+                                mainAxisAlignment:
+                                MainAxisAlignment
+                                    .center,
+                                children: <Widget>[
+                                  Center(
+                                    child: InkWell(
+                                      child: Text(
+                                        'هل نسيت كلمه السر؟',
+                                        style: style,
+                                      ),
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder:
+                                                    (context) =>
+                                                    ResetPassword()));
+                                      },
+                                    ),
+                                  ),
+                                  Center(
+                                    child: Row(
+                                      crossAxisAlignment:
+                                      CrossAxisAlignment
+                                          .center,
+                                      mainAxisAlignment:
+                                      MainAxisAlignment
+                                          .center,
+                                      children: <Widget>[
+                                        Text(
+                                          ' ليس لديك حساب؟  ',
+                                          style: style,
+                                        ),
+                                        InkWell(
+                                          child: Text(
+                                            'سجل الان ',
+                                            style: TextStyle(
+                                                color: Colors
+                                                    .black,
+                                                fontFamily:
+                                                'Cairo',
+                                                fontSize:
+                                                16,
+                                                decoration:
+                                                TextDecoration
+                                                    .underline),
+                                          ),
+                                          onTap: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        UserSignUp()));
+                                          },
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  Center(
+                                    child: Row(
+                                      crossAxisAlignment:
+                                      CrossAxisAlignment
+                                          .center,
+                                      mainAxisAlignment:
+                                      MainAxisAlignment
+                                          .center,
+                                      children: <Widget>[
+                                        InkWell(
+                                          child: Text(
+                                            'المتابعة كزائر ',
+                                            style:
+                                            TextStyle(
+                                              color: Colors
+                                                  .black,
+                                              fontFamily:
+                                              'Cairo',
+                                              fontSize:
+                                              16,
+                                            ),
+                                          ),
+                                          onTap:
+                                              () async {
+                                            //we use here to getSalonsByName
+                                            StaticMethods
+                                                .search_salons_list =
+                                                ApiProvider.getAllSalons(
+                                                    StaticMethods
+                                                        .vistor_token,
+                                                    context);
+
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) => HomePage(
+                                                      token: StaticMethods.vistor_token,
+                                                    )));
+                                          },
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              )),
+                        ],
                       ),
                     )),
-                    Expanded(child: Container()),
-                  ],
-                ),
-                Container(
-                  alignment: Alignment.center,
-                  child: Text(
-                    'مرحبا بك مجددا معنا',
-                    style: TextStyle(
-                        color: Colors.white, fontFamily: 'Cairo', fontSize: 20),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
+              )))),
+        )
     );
   }
+
 
   signIn(String email, String password, String deviceToken,
       BuildContext context) async {
     _progressDialog.show();
-    ('signIn 1');
-    String signIn_Url = 'https://massaraapp.wothoq.co/api/users/login';
+    print('signIn 1');
+    String signIn_Url = 'https://qaat.wothoq.co/api/users/login';
     Dio dio = new Dio();
-    ('signIn 2');
-    ('sigin email : ${email}');
-    ('sigin password : ${password}');
-    ('sigin deviceToken : ${deviceToken}');
+    print('signIn 2');
+    print('sigin email : ${email}');
+    print('sigin password : ${password}');
+    print('sigin deviceToken : ${deviceToken}');
     try {
-      ('signIn 3');
+      print ('signIn 3');
       FormData _formData = FormData.fromMap({
         'email': '${email}',
         'password': '${password}',
         'deviceToken': '${deviceToken}',
       });
-      ('signIn 4');
+      print('signIn 4');
       final response = await dio.post(signIn_Url, data: _formData);
-      ('signIn response  : ${response}');
+      print('signIn response  : ${response}');
 
-      ('signIn 5');
+      print('signIn 5');
       if (response.data['status']) {
         ('signIn 6');
         sharedPrefs.setInt('user_id', response.data['user']['id']);
@@ -537,8 +466,8 @@ class UserSignInState extends State<UserSignIn> {
         sharedPrefs.setString(
             'user_access_token', response.data['user']['access_token']);
 
-        ('signIn 7');
-        ('user-id  ${response.data['user']['id']}');
+        print('signIn 7');
+        print('user-id  ${response.data['user']['id']}');
         //we use here to get nearest salons
         await ApiProvider.getNearestSalons(
             sharedPrefs.getString('user_access_token'), 1.235, 2.254, context);
@@ -552,7 +481,7 @@ class UserSignInState extends State<UserSignIn> {
             sharedPrefs.getString('user_access_token'),
             sharedPrefs.getInt('user_id'),
             context);
-        ('signIn 8');
+        print ('signIn 8');
         _progressDialog.hide();
 
         Navigator.pushReplacement(
@@ -566,14 +495,14 @@ class UserSignInState extends State<UserSignIn> {
                       name: sharedPrefs.getString('user_name'),
                     )));
 
-        ('signIn 9');
+        print('signIn 9');
       } else {
-        ('signIn 10');
+        print('signIn 10');
         _progressDialog.hide();
         errorDialog(context: context, text: response.data['errNum']);
       }
     } catch (e) {
-      ('signIn 11');
+      print('signIn 11');
       _progressDialog.hide();
       errorDialog(context: context, text: e.toString());
     }

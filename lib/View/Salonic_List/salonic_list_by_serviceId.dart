@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:Massara/Custom_Widgets/export_file.dart';
-import 'package:Massara/View/Home/Services/all_services.dart';
+import 'package:Qaeat/Custom_Widgets/export_file.dart';
+import 'package:Qaeat/View/Home/Services/all_services.dart';
 
 class SalonicListByServiceId extends StatefulWidget {
   final String token;
@@ -67,7 +67,7 @@ class SalonicListByServiceId_State extends State<SalonicListByServiceId> {
       },
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: MassaraColor.primary_color,
+          backgroundColor: QaeatColor.primary_color,
           title: Text('احجز الآن',
               style: TextStyle(
                 fontFamily: 'Cairo',
@@ -98,16 +98,20 @@ class SalonicListByServiceId_State extends State<SalonicListByServiceId> {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 if (snapshot.data.length != 0) {
+                  print("snap : ${snapshot.data[0].name}");
                   if (widget.token == StaticMethods.vistor_token) {
                     fav_salon_id = [];
                   } else {
+                    print("snap : 1");
                     savedStrList = sharedPrefs.getStringList('salon_list');
-                    fav_salon_id =
-                        savedStrList.map((i) => int.parse(i)).toList();
+                    print("snap savedStrList: ${savedStrList}");
+                    fav_salon_id =savedStrList ==null?[]: savedStrList.map((i) => int.parse(i)).toList();
+                    print("snap : 2");
                   }
                   return ListView.builder(
                     itemCount: snapshot.data.length,
                     itemBuilder: (BuildContext context, index) {
+                      print("snap : 3");
                       double rate = (snapshot.data[index].total_rate == null)
                           ? 0.0
                           : snapshot.data[index].total_rate.value.toDouble();
@@ -116,6 +120,7 @@ class SalonicListByServiceId_State extends State<SalonicListByServiceId> {
                           category = snapshot.data[index].services[i].category_id;
                         }
                       }
+                      print("snap : 4");
 
                       return Wrap(
                         children: [
@@ -202,12 +207,12 @@ class SalonicListByServiceId_State extends State<SalonicListByServiceId> {
                                                               .circular(
                                                               5.0),
                                                           side: BorderSide(
-                                                            color: MassaraColor.primary_color,
+                                                            color: QaeatColor.primary_color,
                                                             width: 1.0,
                                                           ),
                                                         ),
                                                         color:
-                                                        MassaraColor.primary_color,
+                                                        QaeatColor.primary_color,
                                                         child: Text(
                                                           'احجز الان',
                                                           style: TextStyle(
@@ -567,7 +572,7 @@ class SalonicListByServiceId_State extends State<SalonicListByServiceId> {
                                       icon: Icon(
                                         Icons.favorite,
                                         size: 30,
-                                        color: MassaraColor.primary_color,
+                                        color: QaeatColor.primary_color,
                                       ),
                                       onPressed: () {
                                         setState(() async {
@@ -597,7 +602,7 @@ class SalonicListByServiceId_State extends State<SalonicListByServiceId> {
                                       icon: Icon(
                                         Icons.favorite_border,
                                         size: 30,
-                                        color: MassaraColor.primary_color,
+                                        color: QaeatColor.primary_color,
                                       ),
                                       onPressed: () {
                                         setState(() async {
@@ -642,7 +647,7 @@ class SalonicListByServiceId_State extends State<SalonicListByServiceId> {
                           Icon(
                             Icons.work,
                             size: 80,
-                            color: MassaraColor.secondary_color,
+                            color: QaeatColor.secondary_color,
                           ),
                           SizedBox(
                             height: 20,
@@ -651,7 +656,7 @@ class SalonicListByServiceId_State extends State<SalonicListByServiceId> {
                             ' المراكز غير متوفرة فى الوقت الحالى ',
                             style: TextStyle(
                                 fontFamily: 'Cairo',
-                                color: MassaraColor.secondary_color,
+                                color: QaeatColor.secondary_color,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18),
                           )

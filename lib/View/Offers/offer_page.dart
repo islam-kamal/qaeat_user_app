@@ -1,5 +1,5 @@
-import 'package:Massara/Custom_Widgets/export_file.dart';
-import 'package:Massara/Model/offer_model.dart';
+import 'package:Qaeat/Custom_Widgets/export_file.dart';
+import 'package:Qaeat/Model/offer_model.dart';
 import 'package:flutter/material.dart';
 import 'package:rating_bar/rating_bar.dart';
 
@@ -58,7 +58,7 @@ class OfferPage_state extends State<OfferPage> {
               'العروض',
               style: TextStyle(fontFamily: 'Cairo',color: Colors.white),
             ),
-            backgroundColor: MassaraColor.primary_color,
+            backgroundColor: QaeatColor.primary_color,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(
                 bottom: Radius.circular(10),
@@ -78,12 +78,12 @@ class OfferPage_state extends State<OfferPage> {
                     return ListView.builder(
                         itemCount: snapshot.data.length,
                         itemBuilder: (BuildContext context, index) {
-                          double rate = (snapshot.data[index].salons
-                              .total_rate ==
+                          double rate = ( snapshot.data[index].hall
+                              .totalRate ==
                               null)
                               ? 0.0
-                              : snapshot
-                              .data[index].salons.total_rate.value
+                              : snapshot.data[index].hall
+                              .totalRate.value
                               .toDouble();
 
                           return Container(
@@ -126,39 +126,63 @@ class OfferPage_state extends State<OfferPage> {
                                                       context)
                                                       .size
                                                       .width /
-                                                      11),
+                                                      4),
                                               alignment:
-                                              Alignment.bottomCenter,
+                                              Alignment.bottomRight,
                                               child: Column(
                                                 crossAxisAlignment:
                                                 CrossAxisAlignment
                                                     .center,
                                                 children: <Widget>[
-                                                  Text(
-                                                    '${snapshot.data[index].salons.name}',
-                                                    style: TextStyle(
-                                                        color:
-                                                        Colors.white,
-                                                        fontFamily:
-                                                        'Cairo',
-                                                        fontWeight:
-                                                        FontWeight
-                                                            .bold),
-                                                  ),
-                                                  HelperWidgets
-                                                      .ratingbar_fun(
-                                                      5, rate, 15),
+                                           Padding(
+                                             padding: EdgeInsets.only(right:MediaQuery.of(
+                                                 context)
+                                                 .size
+                                                 .width /
+                                                 14),
+                                             child: Row(
+                                               crossAxisAlignment: CrossAxisAlignment.end,
+                                               mainAxisAlignment: MainAxisAlignment.end,
+                                               children: [
+                                                 HelperWidgets
+                                                     .ratingbar_fun(
+                                                     5, rate, 15),
+                                                 SizedBox(width:  MediaQuery.of(
+                                                     context)
+                                                     .size
+                                                     .width /
+                                                     14,),
+                                                 Text(
+                                                   '${snapshot.data[index].hall.name}',
+                                                   style: TextStyle(
+                                                       color:
+                                                       Colors.white,
+                                                       fontFamily:
+                                                       'Cairo',
+                                                       fontWeight:
+                                                       FontWeight
+                                                           .bold),
+                                                 ),
+
+                                               ],
+                                             ),
+                                           ),
                                                   Container(
+                                                    padding: EdgeInsets.only(right:MediaQuery.of(
+                                                        context)
+                                                        .size
+                                                        .width /
+                                                        14),
                                                     child: Row(
                                                       crossAxisAlignment:
                                                       CrossAxisAlignment
-                                                          .center,
+                                                          .end,
                                                       mainAxisAlignment:
                                                       MainAxisAlignment
-                                                          .center,
+                                                          .end,
                                                       children: <Widget>[
                                                         Text(
-                                                          '${snapshot.data[index].salons.address}',
+                                                          '${snapshot.data[index].hall.address}',
                                                           style:
                                                           TextStyle(
                                                             color: Colors
@@ -179,7 +203,7 @@ class OfferPage_state extends State<OfferPage> {
                                                       ],
                                                     ),
                                                   ),
-                                                  Padding(
+                                              /*    Padding(
                                                     padding:
                                                     EdgeInsets.only(
                                                       top: 5,
@@ -206,10 +230,10 @@ class OfferPage_state extends State<OfferPage> {
                                                                 borderRadius:
                                                                 BorderRadius.circular(5.0),
                                                               ),
-                                                              color: MassaraColor.primary_color,
+                                                              color: QaeatColor.primary_color,
                                                               child:
                                                               Text(
-                                                                'اذهب الى الصالون   ',
+                                                                'المزيد   ',
                                                                 style: TextStyle(
                                                                     color: Colors.white,
                                                                     fontFamily: 'Cairo',
@@ -224,13 +248,13 @@ class OfferPage_state extends State<OfferPage> {
                                                                     MaterialPageRoute(
                                                                         builder: (context) => SalonicList(
                                                                           token: widget.token,
-                                                                          salon_id: snapshot.data[index].salons.id,
+                                                                          hall_id: snapshot.data[index].hall.id,
                                                                         )));
                                                               },
                                                             ),
                                                           )),
                                                     ),
-                                                  ),
+                                                  ),*/
                                                 ],
                                               ),
                                             ),
@@ -254,7 +278,7 @@ class OfferPage_state extends State<OfferPage> {
                                                     left: 15),
                                                 decoration: BoxDecoration(
                                                     color:
-                                                    MassaraColor.primary_color,
+                                                    QaeatColor.primary_color,
                                                     borderRadius:
                                                     BorderRadius
                                                         .circular(5)),
@@ -297,7 +321,7 @@ class OfferPage_state extends State<OfferPage> {
                               MediaQuery.of(context).size.width / 2,
 
                               image: AssetImage(
-                                  'images/splash_screen/massara_logo.png'),
+                                  'images/splash_screen/Qaeat_logo.png'),
                             ),
                             SizedBox(
                               height: 20,
@@ -306,7 +330,7 @@ class OfferPage_state extends State<OfferPage> {
                               'لا يوجد عروض  حاليا ',
                               style: TextStyle(
                                   fontFamily: 'Cairo',
-                                  color: MassaraColor.secondary_color,
+                                  color: QaeatColor.primary_color,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 21),
                             )
@@ -325,7 +349,7 @@ class OfferPage_state extends State<OfferPage> {
                         children: <Widget>[
                           Image(
                             image: AssetImage(
-                                'images/splash_screen/massara_logo.png'),
+                                'images/splash_screen/Qaeat_logo.png'),
                             width:
                             MediaQuery.of(context).size.width / 2,
                             height:
@@ -338,7 +362,7 @@ class OfferPage_state extends State<OfferPage> {
                             'لا يوجد عروض  حاليا ',
                             style: TextStyle(
                                 fontFamily: 'Cairo',
-                                color: MassaraColor.secondary_color,
+                                color: QaeatColor.primary_color,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 21),
                           )

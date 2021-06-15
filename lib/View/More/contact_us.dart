@@ -1,6 +1,6 @@
 import 'package:email_launcher/email_launcher.dart';
 import 'package:flutter/material.dart';
-import 'package:Massara/Custom_Widgets/export_file.dart';
+import 'package:Qaeat/Custom_Widgets/export_file.dart';
 
 import 'more_page.dart';
 
@@ -44,7 +44,7 @@ class ContactUs_state extends State<ContactUs> {
             color: Color(0xFFFFFFFF),
           ),
         ),
-        backgroundColor: MassaraColor.primary_color,
+        backgroundColor: QaeatColor.primary_color,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
             bottom: Radius.circular(10),
@@ -159,13 +159,15 @@ class ContactUs_state extends State<ContactUs> {
                               SizedBox(
                                 height: 20,
                               ),
-                              Text(
-                                'لا تتوافر لينكات التواصل الاجتماعى فى الوقت الحالى',
-                                style: TextStyle(
-                                    fontFamily: 'Cairo',
-                                    color: MassaraColor.secondary_color,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 21),
+                              Center(
+                                child: Text(
+                                  'لا تتوافر لينكات التواصل الاجتماعى فى الوقت الحالى',
+                                  style: TextStyle(
+                                      fontFamily: 'Cairo',
+                                      color: QaeatColor.primary_color,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 17),
+                                ),
                               )
                             ],
                           ),

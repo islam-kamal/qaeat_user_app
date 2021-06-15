@@ -1,33 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:Massara/Custom_Widgets/export_file.dart';
-import 'package:Massara/Model/Booking/book_service_model.dart';
-import 'package:Massara/Model/Booking/mukap_artist_model.dart';
-import 'package:Massara/Model/Booking/service_type_model.dart';
-import 'package:Massara/Model/Search/SearchSalonModel.dart';
-import 'package:Massara/Model/Search/advanced_search_salon_model.dart';
-import 'package:Massara/Model/Search/filter_model.dart';
-import 'package:Massara/Model/Search/search_by_location_model.dart';
-import 'package:Massara/Model/card_model.dart';
-import 'package:Massara/Model/invoices_model.dart';
-import 'package:Massara/Model/customer_services_model.dart';
+import 'package:Qaeat/Custom_Widgets/export_file.dart';
+import 'package:Qaeat/Model/Booking/book_service_model.dart';
+import 'package:Qaeat/Model/Booking/mukap_artist_model.dart';
+import 'package:Qaeat/Model/Booking/service_type_model.dart';
+import 'package:Qaeat/Model/Search/SearchSalonModel.dart';
+import 'package:Qaeat/Model/Search/advanced_search_salon_model.dart';
+import 'package:Qaeat/Model/Search/filter_model.dart';
+import 'package:Qaeat/Model/Search/search_by_location_model.dart';
+import 'package:Qaeat/Model/card_model.dart';
+import 'package:Qaeat/Model/invoices_model.dart';
+import 'package:Qaeat/Model/customer_services_model.dart';
 
-import 'package:Massara/Model/order_model.dart';
+import 'package:Qaeat/Model/order_model.dart';
 
-import 'package:Massara/Model/favourite_model.dart';
-import 'package:Massara/Model/offer_model.dart';
-import 'package:Massara/Presenter/static_methods.dart';
-import 'package:Massara/View/More/mycards.dart';
-import 'package:Massara/View/Notifications/notification_model.dart';
-import 'package:Massara/View/Orders/payment_response.dart';
-import 'package:Massara/View/Orders/payment_web_view.dart';
+import 'package:Qaeat/Model/favourite_model.dart';
+import 'package:Qaeat/Model/offer_model.dart';
+import 'package:Qaeat/Presenter/static_methods.dart';
+import 'package:Qaeat/View/More/mycards.dart';
+import 'package:Qaeat/View/Notifications/notification_model.dart';
+import 'package:Qaeat/View/Orders/payment_response.dart';
+import 'package:Qaeat/View/Orders/payment_web_view.dart';
 
 class ApiProvider {
-  static final String APP_URL = 'https://massaraapp.wothoq.co/api/';
+  static final String APP_URL = 'https://qaat.wothoq.co';
 
 //.............................. as a user I want to sign out ..................................
   static sigOut(String token, BuildContext context) async {
-    String signOut_Url = APP_URL + 'users/logout';
+    String signOut_Url = APP_URL + '/api/users/logout';
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     Dio dio = new Dio();
     try {
@@ -45,10 +45,10 @@ class ApiProvider {
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => UserSignIn()));
       } else {
-        errorDialog(context: context, text: response.data['msg']);
+      //  errorDialog(context: context, text: response.data['msg']);
       }
     } catch (e) {
-      errorDialog(context: context, text: e.toString());
+    //  errorDialog(context: context, text: e.toString());
     }
   }
 
@@ -58,7 +58,7 @@ class ApiProvider {
 
   static Future<List<CategoryModel>> getsSalonCategoriesList(
       String token, BuildContext context) async {
-    String serviceList_Url = APP_URL + "admin/salons/get-InSalon-Category";
+    String serviceList_Url = APP_URL + "/api/admin/salons/get-InSalon-Category";
     Dio dio = new Dio();
     try {
       FormData _formData = FormData.fromMap({
@@ -79,16 +79,16 @@ class ApiProvider {
         });
         return templist;
       } else {
-        errorDialog(context: context, text: response.data['msg']);
+     //   errorDialog(context: context, text: response.data['msg']);
       }
     } catch (e) {
-      errorDialog(context: context, text: e.toString());
+     // errorDialog(context: context, text: e.toString());
     }
   }
 
   static Future<List<CategoryModel>> getHomeCategoriesList(
       String token, BuildContext context) async {
-    String serviceList_Url = APP_URL + "admin/salons/get-InHome-Category";
+    String serviceList_Url = APP_URL + "/api/admin/salons/get-InHome-Category";
     Dio dio = new Dio();
     try {
       FormData _formData = FormData.fromMap({
@@ -109,16 +109,16 @@ class ApiProvider {
         });
         return templist;
       } else {
-        errorDialog(context: context, text: response.data['msg']);
+       // errorDialog(context: context, text: response.data['msg']);
       }
     } catch (e) {
-      errorDialog(context: context, text: e.toString());
+     // errorDialog(context: context, text: e.toString());
     }
   }
 
   static Future<List<CategoryModel>> getAllCategoriesList(
       String token, BuildContext context) async {
-    String serviceList_Url = APP_URL + "admin/salons/get-all-category";
+    String serviceList_Url = APP_URL + "/api/admin/salons/get-all-category";
     Dio dio = new Dio();
     try {
       FormData _formData = FormData.fromMap({
@@ -139,16 +139,16 @@ class ApiProvider {
         });
         return templist;
       } else {
-        errorDialog(context: context, text: response.data['msg']);
+       // errorDialog(context: context, text: response.data['msg']);
       }
     } catch (e) {
-      errorDialog(context: context, text: e.toString());
+   //   errorDialog(context: context, text: e.toString());
     }
   }
 
   static Future<List<ServiceModel>> allServiceList(
       String token, BuildContext context) async {
-    String serviceList_Url = APP_URL + "admin/services/get-all-services";
+    String serviceList_Url = APP_URL + "/api/admin/services/get-all-services";
     Dio dio = new Dio();
     try {
       FormData _formData = FormData.fromMap({
@@ -162,16 +162,16 @@ class ApiProvider {
             .toList();
         return temp;
       } else {
-        errorDialog(context: context, text: response.data['msg']);
+       // errorDialog(context: context, text: response.data['msg']);
       }
     } catch (e) {
-      errorDialog(context: context, text: e.toString());
+     // errorDialog(context: context, text: e.toString());
     }
   }
 
 //--------------------------------------
   static Future<List<ServiceModel>> getAppointmentServiceList(String token, int home_service, BuildContext context) async {
-    String serviceList_Url = APP_URL + "services/servicesIconList";
+    String serviceList_Url = APP_URL + "/api/services/servicesIconList";
     Dio dio = new Dio();
     try {
       FormData _formData = FormData.fromMap({
@@ -196,15 +196,15 @@ class ApiProvider {
           return appointment_service;
         }
       } else {
-        errorDialog(context: context, text: response.data['msg']);
+    //    errorDialog(context: context, text: response.data['msg']);
       }
     } catch (e) {
-      errorDialog(context: context, text: e.toString());
+     // errorDialog(context: context, text: e.toString());
     }
   }
 
   static Future<List<ServiceModel>> getHomeServiceList(String token, int home_service, BuildContext context) async {
-    String serviceList_Url = APP_URL + "services/servicesIconList";
+    String serviceList_Url = APP_URL + "/api/services/servicesIconList";
     Dio dio = new Dio();
     try {
       FormData _formData = FormData.fromMap({
@@ -229,15 +229,15 @@ class ApiProvider {
           return appointment_service;
         }
       } else {
-        errorDialog(context: context, text: response.data['msg']);
+       // errorDialog(context: context, text: response.data['msg']);
       }
     } catch (e) {
-      errorDialog(context: context, text: e.toString());
+    //  errorDialog(context: context, text: e.toString());
     }
   }
 
   static Future<List<ServiceModel>> getAllServiceList(String token, int home_service, BuildContext context) async {
-    String serviceList_Url = APP_URL + "services/servicesIconList";
+    String serviceList_Url = APP_URL + "/api/services/servicesIconList";
     Dio dio = new Dio();
     try {
       FormData _formData = FormData.fromMap({
@@ -262,10 +262,10 @@ class ApiProvider {
           return appointment_service;
         }
       } else {
-        errorDialog(context: context, text: response.data['msg']);
+       // errorDialog(context: context, text: response.data['msg']);
       }
     } catch (e) {
-      errorDialog(context: context, text: e.toString());
+     // errorDialog(context: context, text: e.toString());
     }
   }
 
@@ -274,11 +274,12 @@ class ApiProvider {
   static Future<List<SalonDetailsModel>> getAllSalons(
       String token, BuildContext context) async {
     ('getAllSalons 1');
-    String SalonList_Url = APP_URL + 'admin/salons/get-salon-rate-list';
+    String SalonList_Url = APP_URL + '/api/admin/salons/get-salon-rate-list';
     Dio dio = new Dio();
     try {
       FormData _formData = FormData.fromMap({
         'token': '${token}',
+
       });
       ('getAllSalons 2');
       final response = await dio.post(SalonList_Url, data: _formData);
@@ -302,33 +303,37 @@ class ApiProvider {
       }
     } catch (e) {
       ('getAllSalons 8');
-      errorDialog(context: context, text: e.toString());
+     // errorDialog(context: context, text: e.toString());
     }
   }
 
   static Future<List<SalonDetailsModel>> getAllSalonsByService_id(
       String token, int service_id, BuildContext context) async {
-    (111111);
-    String SalonList_Url = APP_URL + 'admin/salons/get-salon-rate-list';
+    print(111111);
+    print(" token : $token");
+    print("service_id : ${service_id}");
+  //  String SalonList_Url = APP_URL + '/api/admin/services/AllSalonService';
+    String SalonList_Url = APP_URL + '/api/admin/salons/get-salon-rate-list';
     Dio dio = new Dio();
     try {
       FormData _formData = FormData.fromMap({
         'token': '${token}',
+        'id' : service_id
       });
-      (111112);
+      print(111112);
       final response = await dio.post(SalonList_Url, data: _formData);
       ('response : ${response}');
       if (response.data['status']) {
-        (111113);
+        print(111113);
         final jsonResponse = response.data['salons'];
-        (111114);
+        print(111114);
         List<SalonDetailsModel> temp = (jsonResponse as List)
             .map((itemWord) => SalonDetailsModel.fromJson(itemWord))
             .toList();
-        (111115);
+        print(111115);
         List<SalonDetailsModel> salonsListByService =
             new List<SalonDetailsModel>();
-        (111116);
+        print(111116);
         temp.forEach((obj) {
           List<int> salon_services_id = new List<int>();
           for (int i = 0; i < obj.services.length; i++) {
@@ -338,15 +343,16 @@ class ApiProvider {
             salonsListByService.add(obj);
           }
         });
-        (111117);
+        print(111117);
+        print("ssssss : ${salonsListByService[0].name}");
         return salonsListByService;
       } else {
-        (111118);
-        errorDialog(context: context, text: response.data['msg']);
+        print(111118);
+     //   errorDialog(context: context, text: response.data['msg']);
       }
     } catch (e) {
-      (111119);
-      errorDialog(context: context, text: e.toString());
+      print(111119);
+     // errorDialog(context: context, text: e.toString());
     }
   }
 
@@ -354,141 +360,153 @@ class ApiProvider {
 
   static Future<List<FavouriteModel>> getAllFavourits(
       String token, int user_id, BuildContext context) async {
-    ('getAllFavourits 1');
-    String Favourite_Url = APP_URL + 'admin/favorite/get-all-favorite';
+    print('getAllFavourits 1');
+    String Favourite_Url = APP_URL + '/api/admin/favorite/get-all-favorite';
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     Dio dio = new Dio();
-    ('getAllFavourits 2');
+    print('getAllFavourits 2');
+    print("user_id : ${user_id}");
     try {
       FormData _formData = FormData.fromMap({
         'token': '${token}',
         'user_id': '${user_id}',
       });
-      ('getAllFavourits 3');
+      print('getAllFavourits 3');
       final response = await dio.post(Favourite_Url, data: _formData);
       ('getAllFavourits response : ${response}');
       if (response.data['status']) {
-        ('getAllFavourits 4');
-        final jsonresponse = response.data['favorite_salons'];
+        print('getAllFavourits 4');
+        final jsonresponse = response.data['favorite_halls'];
+        print("jsonresponse : ${jsonresponse}");
         if (jsonresponse == null) {
-          ('getAllFavourits 5');
+          print('getAllFavourits 5');
           return null;
         } else {
-          ('getAllFavourits 6');
+          print ('getAllFavourits 6');
           List<FavouriteModel> temp = (jsonresponse as List)
               .map((i) => FavouriteModel.fromJson(i))
               .toList();
-          ('getAllFavourits 7');
+          print ('getAllFavourits 7');
           List<int> salon_ids_list = new List<int>();
           temp.forEach((i) {
-            salon_ids_list.add(i.salons.id);
+            salon_ids_list.add(i.halls.id);
           });
-          ('getAllFavourits 8');
+          print ('getAllFavourits 8');
           List<String> strList =
               salon_ids_list.map((i) => i.toString()).toList();
-          ('strList : ${strList}');
-          ('getAllFavourits 9');
+          print ('strList : ${strList}');
+          print('getAllFavourits 9');
           sharedPreferences.setStringList('salon_list', strList);
-          ('getAllFavourits 10');
+          print('getAllFavourits 10');
           return temp;
         }
       } else {
-        ('getAllFavourits 11');
-        errorDialog(context: context, text: response.data['msg']);
+        print('getAllFavourits 11');
+      //  errorDialog(context: context, text: response.data['msg']);
       }
     } catch (e) {
-      ('getAllFavourits 12');
-      errorDialog(context: context, text: e.toString());
+      print('getAllFavourits 12');
+      //errorDialog(context: context, text: e.toString());
     }
   }
 
   static Future<void> removeSalonFromFavourite(
-      String token, int salon_id, int user_id, BuildContext context) async {
-    String RemoveFromFavourite_Url = APP_URL + 'admin/favorite/destroy';
+      String token, int hall_id, int user_id, BuildContext context) async {
+    String RemoveFromFavourite_Url = APP_URL + '/api/admin/favorite/destroy';
     Dio dio = new Dio();
     try {
       FormData _formData = FormData.fromMap({
         'token': '${token}',
-        'salon_id': '${salon_id}',
+        'hall_id': '${hall_id}',
         'user_id': '${user_id}',
       });
       final response = await dio.post(RemoveFromFavourite_Url, data: _formData);
       if (response.data['status']) {
         StaticMethods.removeFavourite_status = true;
-        errorDialog(context: context, text: response.data['errNum']);
+        //errorDialog(context: context, text: response.data['errNum']);
       } else {
-        errorDialog(context: context, text: response.data['errNum'].toString());
+       // errorDialog(context: context, text: response.data['errNum'].toString());
       }
     } catch (e) {
-      errorDialog(context: context, text: e.toString());
+     // errorDialog(context: context, text: e.toString());
     }
   }
 
   static Future<void> addSalonToFavourite(
-      String token, int salon_id, int user_id, BuildContext context) async {
+      String token, int hall_id, int user_id, BuildContext context) async {
     String AddToFavourite_Url =
-        'https://massaraapp.wothoq.co/api/admin/favorite/store';
+        APP_URL + "/api/admin/favorite/store";
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     Dio dio = new Dio();
+    print("1");
     try {
+      print("token : ${token}");
+      print("hall_id : ${hall_id}");
+      print("user_id : ${user_id}");
       FormData _formData = FormData.fromMap({
         'token': '${token}',
-        'salon_id': '${salon_id}',
+        'hall_id': '${hall_id}',
         'user_id': '${user_id}',
       });
+      print("2");
       final response = await dio.post(AddToFavourite_Url, data: _formData);
+      print("fav res : ${response}");
       if (response.data['status']) {
+        print("3");
         sharedPreferences.setBool('favourite_status', response.data['status']);
-        errorDialog(context: context, text: 'تم اضافة الصالون الى المفضلة');
+        errorDialog(context: context, text: 'تم اضافة القاعة الى المفضلة');
       } else {
+        print("4");
         sharedPreferences.setBool('favourite_status', response.data['status']);
-        errorDialog(context: context, text: response.data['msg'].toString());
+       // errorDialog(context: context, text: response.data['msg'].toString());
       }
     } catch (e) {
-      errorDialog(context: context, text: e.toString());
+      print("5");
+     // errorDialog(context: context, text: e.toString());
     }
   }
 
 //------------------------- as a user I want to see list of offer ------------------------------------
   static Future<List<OfferModel>> getOfferList(
       String token, BuildContext context) async {
-    String OfferList_Url = APP_URL + 'admin/offers/getOfferList';
+    String OfferList_Url = APP_URL + '/api/admin/offers/getOfferList';
     Dio dio = new Dio();
     try {
       FormData _formData = FormData.fromMap({
-        'token': '${token}',
+        //'token': '${token}',
+        'token' : 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9zYWxvbmljLndvdGhvcS5jb1wvYXBpXC9hZG1pblwvbG9naW4iLCJpYXQiOjE2MDE3NDQyMTgsIm5iZiI6MTYwMTc0NDIxOCwianRpIjoiTHE5M0RPbWhzeHVabGdNWCIsInN1YiI6MSwicHJ2IjoiZGY4ODNkYjk3YmQwNWVmOGZmODUwODJkNjg2YzQ1ZTgzMmU1OTNhOSJ9.jepW-3WPmT7PzPKTV0lcH6I4v4ssDo3eTqFMsgllEkU',
       });
       final response = await dio.post(OfferList_Url, data: _formData);
-      ('offer response : ${response}');
+      print('offer response : ${response}');
 
       if (response.data['status'] == true) {
         final jsonresponse = response.data['offers'];
         if (jsonresponse == null) {
-          ('offer - 7');
+          print('offer - 7');
           return null;
         } else {
-          ('offer - 8');
+          print('offer - 8');
           List<OfferModel> temp = (jsonresponse as List)
               .map((i) => OfferModel.fromJson(i))
               .toList();
-          ('offer temp : ${temp}');
-          ('offer - 9');
+          print('offer temp : ${temp}');
+          print('offer - 9');
           return temp;
         }
       } else {
-        ('offer - 10');
+        print('offer - 10');
       //  errorDialog(context: context, text: response.data['msg']);
       }
     } catch (e) {
-      ('offer - 11');
-      errorDialog(context: context, text: e.toString());
+      print('offer - 11');
+      //errorDialog(context: context, text: e.toString());
     }
   }
 
 // ------------------------ as a user I want to see list of Social Media contact .......................
   static Future<List<SocialModel>> getSocialLinks(
       String token, BuildContext context) async {
-    String OfferList_Url = APP_URL + 'admin/salons/get-app-social';
+    String OfferList_Url = APP_URL + '/api/admin/salons/get-app-social';
     Dio dio = new Dio();
     try {
       FormData _formData = FormData.fromMap({
@@ -502,10 +520,10 @@ class ApiProvider {
 
         return temp;
       } else {
-        errorDialog(context: context, text: response.data['msg']);
+       // errorDialog(context: context, text: response.data['msg']);
       }
     } catch (e) {
-      errorDialog(context: context, text: e.toString());
+    //  errorDialog(context: context, text: e.toString());
     }
   }
 
@@ -519,7 +537,7 @@ class ApiProvider {
       int user_id,
       BuildContext context) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    String SendTicket_Url = 'https://massaraapp.wothoq.co/api/admin/tickets/store';
+    String SendTicket_Url = APP_URL+'/api/admin/tickets/store';
     Dio dio = new Dio();
     try {
       FormData _formData = FormData.fromMap({
@@ -545,16 +563,16 @@ class ApiProvider {
                       ticket_details: response.data['ticket']['details'],
                     )));
       } else {
-        errorDialog(context: context, text: response.data['msg'].toString());
+       // errorDialog(context: context, text: response.data['msg'].toString());
       }
     } catch (e) {
-      errorDialog(context: context, text: e.toString());
+     // errorDialog(context: context, text: e.toString());
     }
   }
 
   static Future<CustomerServicesModel> getSupportTicket(
       String token, int user_id, BuildContext context) async {
-    String Catogery_Url = APP_URL + 'admin/tickets/get-support-tickets';
+    String Catogery_Url = APP_URL + '/api/admin/tickets/get-support-tickets';
     Dio dio = new Dio();
     try {
       FormData _formData = FormData.fromMap({
@@ -572,98 +590,47 @@ class ApiProvider {
           return temp;
         }
       } else {
-        errorDialog(context: context, text: response.data['msg']);
+      //  errorDialog(context: context, text: response.data['msg']);
       }
     } catch (e) {
-      errorDialog(context: context, text: e.toString());
+      //errorDialog(context: context, text: e.toString());
     }
   }
 
   //........................... as a user I want to booking a salonic ....................................
 
-  static Future<List<ServiceTypeModel>> getAllCategories(
-      String token, int salon_id, BuildContext context) async {
-    String Catogery_Url = APP_URL + 'admin/salons/get-salon-categories';
-    Dio dio = new Dio();
-    try {
-      FormData _formData = FormData.fromMap({
-        'token': '${token}',
-        'salon_id': '${salon_id}',
-      });
-      final response = await dio.post(Catogery_Url, data: _formData);
-      if (response.data['status']) {
-        final jsonresponse = response.data['salon-categories'];
-        List<ServiceTypeModel> temp = (jsonresponse as List)
-            .map((f) => ServiceTypeModel.fromJson(f))
-            .toList();
-        return temp;
-      } else {
-        errorDialog(context: context, text: response.data['msg']);
-      }
-    } catch (e) {
-
-      errorDialog(context: context, text: e.toString());
-    }
-  }
 
   static Future<List<BookServiceModel>> getBookService(
       String token,
-      int salon_id,
-      int category_id,
-      int home_service,
+      int hall_id,
       BuildContext context) async {
-    ('service-salon-id : ${salon_id}');
-    ('service-category_id : ${category_id}');
-    ('service-home_service: ${home_service}');
-    String BookService_Url = APP_URL + 'admin/services/All-service-by-type';
+    print('service-salon-id : ${hall_id}');
+
+    String BookService_Url = APP_URL + '/api/admin/services/AllSalonService';
     Dio dio = new Dio();
     try {
       FormData _formData = FormData.fromMap({
         'token': '${token}',
-        'salon_id': '${salon_id}',
-        'category_id': '${category_id}',
-        'home_service': '${home_service}'
+        'hall_id': '${hall_id}',
       });
       final response = await dio.post(BookService_Url, data: _formData);
-      ('service response : ${response}');
+      print ('service response : ${response}');
       if (response.data['status']) {
-        final jsonresponse = response.data['services'];
+        final jsonresponse = response.data['salon-services'];
         List<BookServiceModel> temp = (jsonresponse as List)
             .map((f) => BookServiceModel.fromJson(f))
             .toList();
+        print ('service temp : ${temp}');
         return temp;
+
       } else {
         return null;
       }
     } catch (e) {
-      errorDialog(context: context, text: e.toString());
+    //  errorDialog(context: context, text: e.toString());
     }
   }
 
-  static Future<List<MukapArtistModel>> getMukapArtistByService(
-      String token, int salon_id, int service_id, BuildContext context) async {
-    String Catogery_Url = APP_URL + 'admin/services/get-service-employee';
-    Dio dio = new Dio();
-    try {
-      FormData _formData = FormData.fromMap({
-        'token': '${token}',
-        'salon_id': '${salon_id}',
-        'service_id': '${service_id}',
-      });
-      final response = await dio.post(Catogery_Url, data: _formData);
-      if (response.data['status']) {
-        final jsonresponse = response.data['employee'];
-        List<MukapArtistModel> temp = (jsonresponse as List)
-            .map((f) => MukapArtistModel.fromJson(f))
-            .toList();
-        return temp;
-      } else {
-        errorDialog(context: context, text: response.data['msg']);
-      }
-    } catch (e) {
-      errorDialog(context: context, text: e.toString());
-    }
-  }
 
   static Future<void> bookSalonFunc(
       String token,
@@ -686,24 +653,17 @@ class ApiProvider {
     ('address122 : ${address}');
     ('------ time ------ : ${time}');
     SharedPreferences sharedPrefs = await SharedPreferences.getInstance();
-    final String BookSalon_Url = APP_URL + 'admin/orders/store';
+    final String BookSalon_Url = APP_URL + '/api/admin/orders/store';
     Dio dio = new Dio();
     try {
       FormData _formData = FormData.fromMap({
         'token': '${token}',
-        'salon_id': '${salon_id}',
-        'employee_id': '${employee_id}',
-        'type': '${type}',
+        "hall_id" : '${salon_id}',
         'payment': '${payment}',
         'date': '${date}',
         'time': '${time}',
         'user_id': '${user_id}',
-        'services': '${json.encode(services)}', //[services]
-        'person_num': '${json.encode(people)}',
-        'category_id': '${category_id}',
-        'Longitude':'${lat}',
-        'Latitude':'${long}',
-        'address':'${address}',
+        "services" : '${json.encode(services)}',
       });
       ('booking 1');
       final response = await dio.post(BookSalon_Url, data: _formData);
@@ -737,7 +697,7 @@ class ApiProvider {
     } catch (e) {
       Navigator.pop(context);
       progressDialog.hide();
-      errorDialog(context: context, text: e.toString());
+     // errorDialog(context: context, text: e.toString());
     }
   }
 
@@ -745,36 +705,43 @@ class ApiProvider {
 
   static Future<List<OrderModel>> getReservationList(
       String token, int user_id, BuildContext context) async {
-    String ReservationList_Url = APP_URL + 'admin/orders/bookingHistory';
+    String ReservationList_Url = APP_URL + '/api/admin/orders/bookingHistory';
     Dio dio = new Dio();
+    print("bookingHistory 1");
     try {
       FormData _formData = FormData.fromMap({
         'token': '${token}',
         'user_id': '${user_id}',
       });
+      print("bookingHistory 2");
       final response = await dio.post(ReservationList_Url, data: _formData);
+      print("bookingHistory response : ${response}");
       if (response.data['status']) {
+        print("bookingHistory 3");
         final jsonresponse = response.data['orders'];
         if (jsonresponse == null) {
+          print("bookingHistory 4");
           return null;
         } else {
           List<OrderModel> temp = (jsonresponse as List)
               .map((f) => OrderModel.fromJson(f))
               .toList();
+          print("bookingHistory 5");
           return temp;
         }
       } else {
-        errorDialog(context: context, text: response.data['msg']);
+        print("bookingHistory 6");
+      //  errorDialog(context: context, text: response.data['msg']);
       }
     } catch (e) {
-
-      errorDialog(context: context, text: e.toString());
+      print("bookingHistory 7");
+     // errorDialog(context: context, text: e.toString());
     }
   }
 
   static Future<void> senRateForSalon(String token, int salon_id, int user_id,
       int value, String comment, BuildContext context) async {
-    String SalonRate_Url = APP_URL + 'admin/rate/store';
+    String SalonRate_Url = APP_URL + '/api/admin/rate/store';
     Dio dio = new Dio();
     try {
       FormData _formData = FormData.fromMap({
@@ -788,17 +755,17 @@ class ApiProvider {
       if (response.data['status']) {
         errorDialog(context: context, text: 'تم التقييم بنجاح');
       } else {
-        errorDialog(context: context, text: response.data['msg']);
+       // errorDialog(context: context, text: response.data['msg']);
       }
     } catch (e) {
 
-      errorDialog(context: context, text: e.toString());
+     // errorDialog(context: context, text: e.toString());
     }
   }
 
   static Future<void> senRateForEmployee(String token, int employee_id,
       int user_id, int value, String comment, BuildContext context) async {
-    String SalonRate_Url = APP_URL + 'admin/employeeRate/store';
+    String SalonRate_Url = APP_URL + '/api/admin/employeeRate/store';
     Dio dio = new Dio();
     try {
       FormData _formData = FormData.fromMap({
@@ -812,11 +779,11 @@ class ApiProvider {
       if (response.data['status']) {
         errorDialog(context: context, text: 'تم التقييم بنجاح');
       } else {
-        errorDialog(context: context, text: response.data['msg']);
+      //  errorDialog(context: context, text: response.data['msg']);
       }
     } catch (e) {
 
-      errorDialog(context: context, text: e.toString());
+    //  errorDialog(context: context, text: e.toString());
     }
   }
 
@@ -824,7 +791,7 @@ class ApiProvider {
 
   static Future<List<CityModel>> getAllCities(
       String token, BuildContext context) async {
-    String City_Url = APP_URL + 'admin/cities/getAllCities';
+    String City_Url = APP_URL + '/api/admin/cities/getAllCities';
     Dio dio = new Dio();
     try {
       FormData _formData = FormData.fromMap({'token': '${token}'});
@@ -835,19 +802,18 @@ class ApiProvider {
             (jsonresponse as List).map((f) => CityModel.fromJson(f)).toList();
         return temp;
       } else {
-        errorDialog(context: context, text: response.data['msg']);
+    //    errorDialog(context: context, text: response.data['msg']);
       }
     } catch (e) {
 
-      errorDialog(context: context, text: e.toString());
+     // errorDialog(context: context, text: e.toString());
     }
   }
 
   static Future<List<FilterModel>> getSalonsByAdvanceSearch(String token,
       int city_id, int service_id, int rate_value, BuildContext context) async {
     SharedPreferences sharedPrefs = await SharedPreferences.getInstance();
-    String AdvanceSearch_Url =
-        'https://massaraapp.wothoq.co/api/admin/search/salon-advanced-search';
+    String AdvanceSearch_Url = APP_URL+'/api/admin/search/salon-advanced-search';
     Dio dio = new Dio();
     try {
       FormData _formData = FormData.fromMap({
@@ -878,13 +844,13 @@ class ApiProvider {
             });
       }
     } catch (e) {
-      errorDialog(context: context, text: e.toString());
+     // errorDialog(context: context, text: e.toString());
     }
   }
 
   static Future<List<SearchByLocationModel>> getNearestSalons(String token,
       double Longitude, double Latitude, BuildContext context) async {
-    String NearestSalons_Url = APP_URL + 'admin/search/salon-place';
+    String NearestSalons_Url = APP_URL + '/api/admin/search/salon-place';
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     Dio dio = new Dio();
     try {
@@ -895,24 +861,24 @@ class ApiProvider {
       });
       final response = await dio.post(NearestSalons_Url, data: _formData);
       if (response.data['status']) {
-        final jsonresponse = response.data['salons'];
+        final jsonresponse = response.data['halls'];
         List<SearchByLocationModel> temp = (jsonresponse as List)
             .map((f) => SearchByLocationModel.fromJson(f))
             .toList();
 
         return temp;
       } else {
-        errorDialog(context: context, text: response.data['msg']);
+    //    errorDialog(context: context, text: response.data['msg']);
       }
     } catch (e) {
-      errorDialog(context: context, text: e.toString());
+    //  errorDialog(context: context, text: e.toString());
     }
   }
 
   //i don't use it because i use getAllSalons methods
   static Future<List<SalonModel>> getSalonsByName(
       String token, String name, BuildContext context) async {
-    String SalonsByName_Url = APP_URL + 'admin/search/salon-name';
+    String SalonsByName_Url = APP_URL + '/api/admin/search/salon-name';
     Dio dio = new Dio();
     try {
       FormData _formData =
@@ -925,11 +891,11 @@ class ApiProvider {
 
         return temp;
       } else {
-        errorDialog(context: context, text: response.data['msg']);
+      //  errorDialog(context: context, text: response.data['msg']);
       }
     } catch (e) {
 
-      errorDialog(context: context, text: e.toString());
+     // errorDialog(context: context, text: e.toString());
     }
   }
 
@@ -937,35 +903,46 @@ class ApiProvider {
 
   static Future<List<OrderModel>> getOrdersList(
       String token, int user_id, BuildContext context) async {
-    String Order_Url = APP_URL + 'admin/orders/user-cart';
+    print('############################################################################');
+    print("token : $token");
+    print("user_id : ${user_id}");
+    String Order_Url = APP_URL + '/api/admin/orders/user-cart';
     Dio dio = new Dio();
     try {
       FormData _formData = FormData.fromMap({
         'token': '${token}',
         'user_id': '${user_id}',
       });
+      print("1");
       final response = await dio.post(Order_Url, data: _formData);
+      print("response : $response");
       if (response.data['status']) {
+        print("2");
         final jsonresponse = response.data['orders'];
         if (jsonresponse == null) {
+          print("3");
           return null;
         } else {
+          print("4");
           List<OrderModel> temp = (jsonresponse as List)
               .map((f) => OrderModel.fromJson(f))
               .toList();
+          print("temp : $temp");
           return temp;
         }
       } else {
-        errorDialog(context: context, text: response.data['msg']);
+        print("5");
+      //  errorDialog(context: context, text: response.data['msg']);
       }
     } catch (e) {
-      errorDialog(context: context, text: e.toString());
+      print("6");
+    //  errorDialog(context: context, text: e.toString());
     }
   }
 
   static Future<void> cancelOrder(String token, int user_id, int order_id,
       status, BuildContext context) async {
-    String CancelOrder_Url = APP_URL + 'admin/orders/change-order-status';
+    String CancelOrder_Url = APP_URL + '/api/admin/orders/change-order-status';
     Dio dio = new Dio();
     try {
       FormData _formData = FormData.fromMap({
@@ -985,18 +962,18 @@ class ApiProvider {
                       user_id: user_id,
                     )));
       } else {
-        errorDialog(context: context, text: response.data['msg'].toString());
+      //  errorDialog(context: context, text: response.data['msg'].toString());
       }
     } catch (e) {
 
-      errorDialog(context: context, text: e.toString());
+     // errorDialog(context: context, text: e.toString());
     }
   }
 
 //--------------------- as a user I want to see list of notification -----------------
   static Future<List<NotificationModel>> getUserNotifications(
       String token, int user_id, BuildContext context) async {
-    String Notifications_Url = APP_URL + 'users/get-user-notifications';
+    String Notifications_Url = APP_URL + '/api/users/get-user-notifications';
     Dio dio = new Dio();
     try {
       FormData _formData = FormData.fromMap({
@@ -1004,34 +981,34 @@ class ApiProvider {
         'user_id': '${user_id}',
       });
       final response = await dio.post(Notifications_Url, data: _formData);
-      ('notification-response : ${response}');
+      print('notification-response : ${response}');
       if (response.data['status']) {
         final jsonresponse = response.data['notifications'];
-        ('-jsonresponse : ${jsonresponse}');
+        print('-jsonresponse : ${jsonresponse}');
 
         if (jsonresponse == null) {
           return null;
         } else {
-          ('not----------------');
+          print('not----------------');
           List<NotificationModel> temp = (jsonresponse as List)
               .map((f) => NotificationModel.fromJson(f))
               .toList();
-          ('-temp : ${temp}');
+          print('-temp : ${temp}');
           return temp;
         }
       } else {
 
-        errorDialog(context: context, text: response.data['msg']);
+       // errorDialog(context: context, text: response.data['msg']);
       }
     } catch (e) {
-      ('notification ------------ error');
-      errorDialog(context: context, text: e.toString());
+      print('notification ------------ error');
+    //  errorDialog(context: context, text: e.toString());
     }
   }
 
   static Future<void> deleteNotification(
       String token, int notification_id, BuildContext context) async {
-    String deleteNotification_Url = APP_URL + 'users/delete-user-notifications';
+    String deleteNotification_Url = APP_URL + '/api/users/delete-user-notifications';
     Dio dio = new Dio();
     try {
       FormData _formData = FormData.fromMap({
@@ -1040,13 +1017,13 @@ class ApiProvider {
       });
       final response = await dio.post(deleteNotification_Url, data: _formData);
       if (response.data['status']) {
-        errorDialog(context: context, text: response.data['msg']);
+       // errorDialog(context: context, text: response.data['msg']);
       } else {
-        errorDialog(context: context, text: response.data['msg'].toString());
+      //  errorDialog(context: context, text: response.data['msg'].toString());
       }
     } catch (e) {
 
-      errorDialog(context: context, text: e.toString());
+    //  errorDialog(context: context, text: e.toString());
     }
   }
 
@@ -1054,7 +1031,7 @@ class ApiProvider {
 
   static Future<void> makeOnlinePayment(
       String token, double amount, int order_id, BuildContext context) async {
-    String OnlinePayment_Url = APP_URL + 'admin/payments/get-payment-id';
+    String OnlinePayment_Url = APP_URL + '/api/admin/payments/get-payment-id';
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     Dio dio = new Dio();
     try {
@@ -1074,18 +1051,18 @@ class ApiProvider {
                       order_id: order_id,
                     )));
       } else {
-        errorDialog(context: context, text: response.data['msg'].toString());
+       // errorDialog(context: context, text: response.data['msg'].toString());
       }
     } catch (e) {
       ('makeOnlinePayment error');
-      errorDialog(context: context, text: e.toString());
+     // errorDialog(context: context, text: e.toString());
     }
   }
 
   static Future<void> getPaymentResponse(String token, String url, int user_id,
       int order_id, BuildContext context) async {
     ('1');
-    String OnlinePayment_Url = APP_URL + 'admin/payments/response';
+    String OnlinePayment_Url = APP_URL + '/api/admin/payments/response';
     Dio dio = new Dio();
     try {
       FormData _formData = FormData.fromMap({
@@ -1132,7 +1109,7 @@ class ApiProvider {
                     token: token, status: 0, user_id: user_id)));
       }
     } catch (e) {
-      errorDialog(context: context, text: e.toString());
+     // errorDialog(context: context, text: e.toString());
     }
   }
 
@@ -1142,7 +1119,7 @@ class ApiProvider {
 
   static Future<List<InvoicesModel>> getUserInvoices(
       String token, int user_id, BuildContext context) async {
-    String Invoices_Url = APP_URL + 'admin/payments/get-user-invoices';
+    String Invoices_Url = APP_URL + '/api/admin/payments/get-user-invoices';
     Dio dio = new Dio();
     try {
       FormData _formData = FormData.fromMap({
@@ -1164,12 +1141,12 @@ class ApiProvider {
         if(response.data['msg']=='عفوا لا توجد فواتير'){
 
         }else{
-          errorDialog(context: context, text: response.data['msg']);
+      //    errorDialog(context: context, text: response.data['msg']);
         }
       }
     } catch (e) {
       ('getUserInvoices 9');
-      errorDialog(context: context, text: e.toString());
+     // errorDialog(context: context, text: e.toString());
     }
   }
 
@@ -1179,7 +1156,7 @@ class ApiProvider {
   static addCreditCard(String token, String holder_name, String number, String exp_month,
       String exp_year, int user_id, BuildContext context) async {
     ('1');
-    String card_Url = ApiProvider.APP_URL + 'admin/cards/store';
+    String card_Url = ApiProvider.APP_URL + '/api/admin/cards/store';
     Dio dio = new Dio();
     ('2');
     try {
@@ -1213,7 +1190,7 @@ class ApiProvider {
         );
         ('4');
       } else {
-        errorDialog(context: context, text: response.data['msg'],);
+     //   errorDialog(context: context, text: response.data['msg'],);
         ('5');
       }
     } catch (e) {
@@ -1225,7 +1202,7 @@ class ApiProvider {
 // get all credit cards
   static Future<List<CardModel>> getUserCards(
       String token, int user_id, BuildContext context) async {
-    String allCards_Url = APP_URL + 'admin/cards/get-all-cards';
+    String allCards_Url = APP_URL + '/api/admin/cards/get-all-cards';
     Dio dio = new Dio();
     try {
       FormData _formData = FormData.fromMap({
@@ -1248,19 +1225,19 @@ class ApiProvider {
         if(response.data['msg']=='عفوا لا توجد بطاقات'){
 
         }else{
-          errorDialog(context: context, text: response.data['msg']);
+       //   errorDialog(context: context, text: response.data['msg']);
         }
 
       }
     } catch (e) {
-      errorDialog(context: context, text: e.toString());
+     // errorDialog(context: context, text: e.toString());
     }
   }
 
 //delete Credit Card
   static Future<void> deleteCreditCard(
       String token, int card_id,int user_id, BuildContext context) async {
-    String deleteCard_Url = APP_URL + 'admin/cards/destroy';
+    String deleteCard_Url = APP_URL + '/api/admin/cards/destroy';
     Dio dio = new Dio();
     try {
       FormData _formData = FormData.fromMap({
@@ -1298,7 +1275,7 @@ class ApiProvider {
       }
     } catch (e) {
 
-      errorDialog(context: context, text: e.toString());
+    //  errorDialog(context: context, text: e.toString());
     }
   }
 
@@ -1309,7 +1286,7 @@ class ApiProvider {
       String token, String holder_name, String number, String exp_month,
       String exp_year, int user_id,int card_id, BuildContext context) async {
 
-    String updateCard_Url = 'https://massaraapp.wothoq.co/api/admin/cards/update';
+    String updateCard_Url = APP_URL + '/api/admin/cards/update';
     Dio dio = new Dio();
     try {
       FormData _formData = FormData.fromMap({
@@ -1340,12 +1317,13 @@ class ApiProvider {
             });
 
       } else {
-        errorDialog(context: context, text: response.data['msg'],);
+      //  errorDialog(context: context, text: response.data['msg'],);
 
         ('profile 6');
       }
     } catch (e) {
       ('profile 7');
-      errorDialog(context: context, text: e.toString());    }
+ //     errorDialog(context: context, text: e.toString());
+           }
   }
 }

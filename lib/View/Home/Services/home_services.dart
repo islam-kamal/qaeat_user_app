@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:Massara/Custom_Widgets/export_file.dart';
+import 'package:Qaeat/Custom_Widgets/export_file.dart';
 
 class HomeServices extends StatefulWidget {
   final String token;
@@ -124,7 +124,7 @@ class HomeServicesState extends State<HomeServices> {
                         Icon(
                           Icons.work,
                           size: 80,
-                          color: MassaraColor.secondary_color,
+                          color: QaeatColor.secondary_color,
                         ),
                         SizedBox(
                           height: 20,
@@ -133,7 +133,7 @@ class HomeServicesState extends State<HomeServices> {
                           'لا توجد خدمات  فى الوقت الحالى  ',
                           style: TextStyle(
                               fontFamily: 'Cairo',
-                              color: MassaraColor.secondary_color,
+                              color: QaeatColor.secondary_color,
                               fontWeight: FontWeight.bold,
                               fontSize: 18),
                         )
@@ -154,7 +154,7 @@ class HomeServicesState extends State<HomeServices> {
                       Icon(
                         Icons.work,
                         size: 80,
-                        color: MassaraColor.secondary_color,
+                        color: QaeatColor.secondary_color,
                       ),
                       SizedBox(
                         height: 20,
@@ -163,7 +163,7 @@ class HomeServicesState extends State<HomeServices> {
                         'لا توجد خدمات  فى الوقت الحالى  ',
                         style: TextStyle(
                             fontFamily: 'Cairo',
-                            color: MassaraColor.secondary_color,
+                            color: QaeatColor.secondary_color,
                             fontWeight: FontWeight.bold,
                             fontSize: 18),
                       )
@@ -190,7 +190,7 @@ class HomeServicesState extends State<HomeServices> {
         },
         child: Scaffold(
           appBar: AppBar(
-            backgroundColor: MassaraColor.primary_color,
+            backgroundColor: QaeatColor.primary_color,
             title: Text('الخدمات',
                 style: TextStyle(
                   fontFamily: 'Cairo',
@@ -226,7 +226,7 @@ class HomeServicesState extends State<HomeServices> {
                         Icon(
                           Icons.work,
                           size: 80,
-                          color: MassaraColor.secondary_color,
+                          color: QaeatColor.secondary_color,
                         ),
                         SizedBox(
                           height: 20,
@@ -235,7 +235,7 @@ class HomeServicesState extends State<HomeServices> {
                           'لا توجد خدمات  فى الوقت الحالى  ',
                           style: TextStyle(
                               fontFamily: 'Cairo',
-                              color: MassaraColor.secondary_color,
+                              color: QaeatColor.secondary_color,
                               fontWeight: FontWeight.bold,
                               fontSize: 18),
                         )
@@ -323,7 +323,7 @@ class HomeServicesState extends State<HomeServices> {
                                       Icon(
                                         Icons.work,
                                         size: 80,
-                                        color: MassaraColor.secondary_color,
+                                        color: QaeatColor.secondary_color,
                                       ),
                                       SizedBox(
                                         height: 20,
@@ -332,7 +332,7 @@ class HomeServicesState extends State<HomeServices> {
                                         'لا توجد خدمات  فى الوقت الحالى  ',
                                         style: TextStyle(
                                             fontFamily: 'Cairo',
-                                            color: MassaraColor.secondary_color,
+                                            color: QaeatColor.secondary_color,
                                             fontWeight: FontWeight.bold,
                                             fontSize: 18),
                                       )
@@ -353,7 +353,7 @@ class HomeServicesState extends State<HomeServices> {
                                     Icon(
                                       Icons.work,
                                       size: 80,
-                                      color: MassaraColor.secondary_color,
+                                      color: QaeatColor.secondary_color,
                                     ),
                                     SizedBox(
                                       height: 20,
@@ -362,7 +362,7 @@ class HomeServicesState extends State<HomeServices> {
                                       'لا توجد خدمات  فى الوقت الحالى  ',
                                       style: TextStyle(
                                           fontFamily: 'Cairo',
-                                          color: MassaraColor.secondary_color,
+                                          color: QaeatColor.secondary_color,
                                           fontWeight: FontWeight.bold,
                                           fontSize: 18),
                                     )

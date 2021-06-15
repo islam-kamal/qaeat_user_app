@@ -1,34 +1,34 @@
 class FavouriteModel {
   int id;
   int user_id;
-  int salon_id;
-  Salons salons;
+  int hall_id;
+  Halls halls;
 
-  FavouriteModel({this.id,this.user_id,this.salon_id,this.salons});
+  FavouriteModel({this.id,this.user_id,this.hall_id,this.halls});
   factory FavouriteModel.fromJson(Map<String,dynamic> json){
     return FavouriteModel(
       id: json['id'],
       user_id: json['user_id'],
-      salon_id: json['salon_id'],
-      salons: Salons.fromJson(json['salons']),
+      hall_id: json['hall_id'],
+      halls: Halls.fromJson(json['halls']),
     );
   }
 
 }
 
-class Salons{
+class Halls{
   int id;
   String name;
   String address;
   TotalRate total_rate;
   City city;
   List<Gallery> gallery;
-  Salons({this.id,this.name,this.address,this.total_rate,this.city,this.gallery});
+  Halls({this.id,this.name,this.address,this.total_rate,this.city,this.gallery});
 
-  factory Salons.fromJson(Map<String,dynamic> parsedJson){
+  factory Halls.fromJson(Map<String,dynamic> parsedJson){
     var list =parsedJson['gallery'] as List;
     List<Gallery> galleryList =list.map((i)=>Gallery.fromJson(i)).toList();
-    return Salons(
+    return Halls(
       id: parsedJson['id'],
       name: parsedJson['name'],
       address: parsedJson['address'],

@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:Massara/Custom_Widgets/export_file.dart';
-import 'package:Massara/Model/Search/advanced_search_salon_model.dart';
-import 'package:Massara/Model/Search/filter_model.dart';
-import 'package:Massara/View/Advanced_Search/advanced_search_class.dart';
-import 'package:Massara/View/Advanced_Search/city_expansion_panel.dart';
-import 'package:Massara/View/Advanced_Search/service_expamsion_panel.dart';
-import 'package:Massara/View/Helper/helper_widgets.dart';
-import 'package:Massara/View/Reservation/reserve_now.dart';
+import 'package:Qaeat/Custom_Widgets/export_file.dart';
+import 'package:Qaeat/Model/Search/advanced_search_salon_model.dart';
+import 'package:Qaeat/Model/Search/filter_model.dart';
+import 'package:Qaeat/View/Advanced_Search/advanced_search_class.dart';
+import 'package:Qaeat/View/Advanced_Search/city_expansion_panel.dart';
+import 'package:Qaeat/View/Advanced_Search/service_expamsion_panel.dart';
+import 'package:Qaeat/View/Helper/helper_widgets.dart';
+import 'package:Qaeat/View/Reservation/reserve_now.dart';
 
 class AdvancedSearchPage extends StatefulWidget {
   final String token;
@@ -79,7 +79,7 @@ class AdvancedSearchPage_State extends State<AdvancedSearchPage> {
               bottom: Radius.circular(10),
             ),
           ),
-          backgroundColor:  MassaraColor.primary_color,
+          backgroundColor:  QaeatColor.primary_color,
           elevation: 5.0,
           bottom: PreferredSize(
               child: Container(), preferredSize: Size.fromHeight(15.0)),
@@ -202,12 +202,12 @@ class AdvancedSearchPage_State extends State<AdvancedSearchPage> {
                                                                         side:
                                                                         BorderSide(
                                                                           color:
-                                                                          MassaraColor.primary_color,
+                                                                          QaeatColor.primary_color,
                                                                           width:
                                                                           1.0,
                                                                         ),
                                                                       ),
-                                                                      color: MassaraColor.primary_color,
+                                                                      color: QaeatColor.primary_color,
                                                                       child:
                                                                       Text(
                                                                         'احجز الان',
@@ -535,7 +535,7 @@ class AdvancedSearchPage_State extends State<AdvancedSearchPage> {
                                                     icon: Icon(
                                                       Icons.favorite,
                                                       size: 30,
-                                                      color: MassaraColor.primary_color,
+                                                      color: QaeatColor.primary_color,
                                                     ),
                                                     onPressed: () {
                                                       setState(
@@ -572,7 +572,7 @@ class AdvancedSearchPage_State extends State<AdvancedSearchPage> {
                                                       Icons
                                                           .favorite_border,
                                                       size: 30,
-                                                      color: MassaraColor.primary_color,
+                                                      color: QaeatColor.primary_color,
                                                     ),
                                                     onPressed: () {
                                                       setState(() {
@@ -719,12 +719,12 @@ class AdvancedSearchPage_State extends State<AdvancedSearchPage> {
                                                                         BorderRadius.circular(5.0),
                                                                         side:
                                                                         BorderSide(
-                                                                          color: MassaraColor.primary_color,
+                                                                          color: QaeatColor.primary_color,
                                                                           width: 1.0,
                                                                         ),
                                                                       ),
                                                                       color:
-                                                                      MassaraColor.primary_color,
+                                                                      QaeatColor.primary_color,
                                                                       child:
                                                                       Text(
                                                                         'احجز الان',
@@ -1025,7 +1025,7 @@ class AdvancedSearchPage_State extends State<AdvancedSearchPage> {
                                                     icon: Icon(
                                                       Icons.favorite,
                                                       size: 30,
-                                                      color: MassaraColor.primary_color,
+                                                      color: QaeatColor.primary_color,
                                                     ),
                                                     onPressed: () {
                                                       setState(
@@ -1060,7 +1060,7 @@ class AdvancedSearchPage_State extends State<AdvancedSearchPage> {
                                                       Icons
                                                           .favorite_border,
                                                       size: 30,
-                                                      color: MassaraColor.primary_color,
+                                                      color: QaeatColor.primary_color,
                                                     ),
                                                     onPressed: () {
                                                       setState(
@@ -1106,7 +1106,7 @@ class AdvancedSearchPage_State extends State<AdvancedSearchPage> {
                                 'لا يوجد نتائج بحث',
                                 style: TextStyle(
                                     fontFamily: 'Cairo',
-                                    color: MassaraColor.secondary_color,
+                                    color: QaeatColor.primary_color,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 21),
                               ),
@@ -1122,10 +1122,10 @@ class AdvancedSearchPage_State extends State<AdvancedSearchPage> {
                                 children: <Widget>[
                                   Image(
                                     image: AssetImage(
-                                        'images/splash_screen/massara_logo.png'),
+                                        'images/splash_screen/Qaeat_logo.png'),
                                     width:
                                     MediaQuery.of(context).size.width / 2,
-                                    color: MassaraColor.primary_color,
+                                    color: QaeatColor.primary_color,
                                   ),
                                   SizedBox(
                                     height: 20,
@@ -1134,7 +1134,7 @@ class AdvancedSearchPage_State extends State<AdvancedSearchPage> {
                                     'لا يوجد مراكز متاحة حاليا',
                                     style: TextStyle(
                                         fontFamily: 'Cairo',
-                                        color: MassaraColor.secondary_color,
+                                        color: QaeatColor.primary_color,
                                         fontWeight: FontWeight.bold,
                                         fontSize: 21),
                                   )
@@ -1340,12 +1340,12 @@ class AdvancedSearchPage_State extends State<AdvancedSearchPage> {
                                                                           5.0),
                                                                       side:
                                                                       BorderSide(
-                                                                        color: MassaraColor.primary_color,
+                                                                        color: QaeatColor.primary_color,
                                                                         width:
                                                                         1.0,
                                                                       ),
                                                                     ),
-                                                                    color: MassaraColor.primary_color,
+                                                                    color: QaeatColor.primary_color,
                                                                     child: Text(
                                                                       'احجز الان',
                                                                       style: TextStyle(
@@ -1676,7 +1676,7 @@ class AdvancedSearchPage_State extends State<AdvancedSearchPage> {
                                                     Icons.favorite,
                                                     size: 30,
                                                     color:
-                                                    MassaraColor.primary_color,
+                                                    QaeatColor.primary_color,
                                                   ),
                                                   onPressed: () {
                                                     setState(() async {
@@ -1713,7 +1713,7 @@ class AdvancedSearchPage_State extends State<AdvancedSearchPage> {
                                                     Icons.favorite_border,
                                                     size: 30,
                                                     color:
-                                                    MassaraColor.primary_color,
+                                                    QaeatColor.primary_color,
                                                   ),
                                                   onPressed: () {
                                                     setState(() async {
@@ -1761,7 +1761,7 @@ class AdvancedSearchPage_State extends State<AdvancedSearchPage> {
                                     'لا يوجد نتائج بحث',
                                     style: TextStyle(
                                         fontFamily: 'Cairo',
-                                        color: MassaraColor.secondary_color,
+                                        color: QaeatColor.primary_color,
                                         fontWeight: FontWeight.bold,
                                         fontSize: 21),
                                   ),
@@ -1779,10 +1779,10 @@ class AdvancedSearchPage_State extends State<AdvancedSearchPage> {
                                 children: <Widget>[
                                   Image(
                                     image: AssetImage(
-                                        'images/splash_screen/massara_logo.png'),
+                                        'images/splash_screen/Qaeat_logo.png'),
                                     width:
                                     MediaQuery.of(context).size.width / 2,
-                                    color: MassaraColor.primary_color,
+                                    color: QaeatColor.primary_color,
                                   ),
                                   SizedBox(
                                     height: 20,
@@ -1791,7 +1791,7 @@ class AdvancedSearchPage_State extends State<AdvancedSearchPage> {
                                     'لا يوجد مراكز متاحة حاليا',
                                     style: TextStyle(
                                         fontFamily: 'Cairo',
-                                        color: MassaraColor.secondary_color,
+                                        color: QaeatColor.primary_color,
                                         fontWeight: FontWeight.bold,
                                         fontSize: 21),
                                   )

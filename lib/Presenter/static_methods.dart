@@ -1,8 +1,8 @@
-import 'package:Massara/Custom_Widgets/export_file.dart';
-import 'package:Massara/Model/Booking/book_service_model.dart';
-import 'package:Massara/Model/Search/SearchSalonModel.dart';
-import 'package:Massara/Model/Search/search_by_location_model.dart';
-import 'package:Massara/Model/Booking/service_type_model.dart';
+import 'package:Qaeat/Custom_Widgets/export_file.dart';
+import 'package:Qaeat/Model/Booking/book_service_model.dart';
+import 'package:Qaeat/Model/Search/SearchSalonModel.dart';
+import 'package:Qaeat/Model/Search/search_by_location_model.dart';
+import 'package:Qaeat/Model/Booking/service_type_model.dart';
 import '../Model/Booking/mukap_artist_model.dart';
 
 class StaticMethods{

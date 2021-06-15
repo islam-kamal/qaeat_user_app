@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
-import 'package:Massara/Custom_Widgets/export_file.dart';
-import 'package:Massara/Model/Search/search_by_location_model.dart';
+import 'package:Qaeat/Custom_Widgets/export_file.dart';
+import 'package:Qaeat/Model/Search/search_by_location_model.dart';
 
 class NearestSalonic extends StatefulWidget {
   final String token;
@@ -81,7 +81,7 @@ class NearestSalonic_State extends State<NearestSalonic> {
               bottom: Radius.circular(10),
             ),
           ),
-          backgroundColor:  MassaraColor.primary_color,
+          backgroundColor:  QaeatColor.primary_color,
           elevation: 5.0,
           bottom: PreferredSize(
               child: Container(), preferredSize: Size.fromHeight(15.0)),
@@ -105,7 +105,7 @@ class NearestSalonic_State extends State<NearestSalonic> {
                       markers: Set<Marker>.of(_markers),
                       initialCameraPosition: CameraPosition(
                         target: _center,
-                        zoom: 11.0,
+                        zoom: 4.0,
                       ),
                     ),
                   ),
@@ -114,7 +114,7 @@ class NearestSalonic_State extends State<NearestSalonic> {
             }
             return Center(
               child: CircularProgressIndicator(
-                valueColor: new AlwaysStoppedAnimation<Color>(MassaraColor.primary_color),
+                valueColor: new AlwaysStoppedAnimation<Color>(QaeatColor.secondary_color),
               ),
             );
           },
@@ -269,13 +269,13 @@ class NearestSalonic_State extends State<NearestSalonic> {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5.0),
                               side: BorderSide(
-                                color: MassaraColor.primary_color,
+                                color: QaeatColor.primary_color,
                                 width: 1.0,
                               ),
                             ),
-                            color: MassaraColor.primary_color,
+                            color: QaeatColor.primary_color,
                             child: Text(
-                              'اذهب الى الصالون',
+                              'المزيد',
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 14.0,
@@ -288,7 +288,7 @@ class NearestSalonic_State extends State<NearestSalonic> {
                                   MaterialPageRoute(
                                       builder: (context) => SalonicList(
                                             token: widget.token,
-                                            salon_id: f.id,
+                                            hall_id: f.id,
                                             route: 1,
                                           )));
                             },

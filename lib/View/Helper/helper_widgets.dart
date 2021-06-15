@@ -2,9 +2,9 @@ import 'package:carousel_pro/carousel_pro.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:rating_bar/rating_bar.dart';
-import 'package:Massara/Custom_Widgets/export_file.dart';
+import 'package:Qaeat/Custom_Widgets/export_file.dart';
 import 'package:grouped_buttons/grouped_buttons.dart';
-import 'package:Massara/Model/offer_model.dart';
+import 'package:Qaeat/Model/offer_model.dart';
 
 class HelperWidgets extends State {
   SharedPreferences sharedPrefs;
@@ -62,7 +62,7 @@ class HelperWidgets extends State {
         showIndicator: true,
         dotPosition: DotPosition.bottomCenter,
         dotBgColor: Colors.white,
-        dotIncreasedColor: MassaraColor.primary_color,
+        dotIncreasedColor: QaeatColor.primary_color,
       ),
     );
 
@@ -95,7 +95,7 @@ class HelperWidgets extends State {
                     icon: Icon(
                       Icons.favorite_border,
                       size: 25,
-                      color: MassaraColor.primary_color,
+                      color: QaeatColor.primary_color,
                     ),
                     onPressed: () {},
                   )))
@@ -177,7 +177,7 @@ class HelperWidgets extends State {
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.BOTTOM,
         timeInSecForIosWeb: 2,
-        backgroundColor: MassaraColor.primary_color,
+        backgroundColor: QaeatColor.primary_color,
         textColor: Colors.white,
         fontSize: 16.0);
   }

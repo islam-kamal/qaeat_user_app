@@ -1,5 +1,5 @@
-import 'package:Massara/Custom_Widgets/export_file.dart';
-import 'package:Massara/Model/offer_model.dart';
+import 'package:Qaeat/Custom_Widgets/export_file.dart';
+import 'package:Qaeat/Model/offer_model.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
@@ -50,72 +50,135 @@ class OfferSliderState extends State<OfferSlider> {
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
               if (snapshot.hasData) {
+                print("offers : ${snapshot.data[0].banner}");
                 return CarouselSlider.builder(
                   itemCount:
                   (snapshot.data.length > 4) ? 4 : snapshot.data.length,
                   options: CarouselOptions(
                     autoPlay: true,
                     enlargeCenterPage: true,
-                    viewportFraction: 0.9,
-                    aspectRatio: 2.0,
+                    viewportFraction: 1.0,
+                    aspectRatio: 1.5,
                     initialPage: 0,
                   ),
                   itemBuilder: (BuildContext context, index) {
                     double rate =
-                    (snapshot.data[index].salons.total_rate == null)
+                    (snapshot.data[index].hall.totalRate == null)
                         ? 0.0
-                        : snapshot.data[index].salons.total_rate.value
+                        : snapshot.data[index].hall.totalRate.value
                         .toDouble();
                     return Wrap(
                       children: [
                         Container(
-                          //  padding: EdgeInsets.all(10),
-                          // height: MediaQuery.of(context).size.width / 1.4,
                             child: Card(
-                              clipBehavior: Clip.hardEdge,
+                              clipBehavior: Clip.antiAlias,
                               child: Stack(
                                 children: <Widget>[
                                   Image.network(
                                     '${snapshot.data[index].banner}',
-                                    height: MediaQuery.of(context).size.width / 1.7,
                                     width:MediaQuery.of(context).size.width ,
-                                    //   image: AssetImage('images/offer/sa.jpg'),
-                                    fit: BoxFit.none,
+                                    height: MediaQuery.of(context).size.height /2,
+                                    fit: BoxFit.fill,
                                   ),
                                   Stack(
                                     children: <Widget>[
                                       Image(
-                                        height: MediaQuery.of(context).size.width / 1.7,
+                                        height: MediaQuery.of(context).size.height /2,
                                         width:MediaQuery.of(context).size.width ,
                                         image: AssetImage('images/offer/sa1.png'),
                                         fit: BoxFit.cover,
                                       ),
                                       Stack(
+
                                         children: <Widget>[
                                           Container(
                                               padding: EdgeInsets.only(
                                                   top: MediaQuery.of(context)
                                                       .size
                                                       .width /
-                                                      16),
-                                              alignment: Alignment.bottomCenter,
-                                              child: Wrap(
+                                                      3),
+                                              child: Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Column(
-                                                    crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                    children: <Widget>[
-                                                      Text(
-                                                        '${snapshot.data[index].salons.name}',
-                                                        style: TextStyle(
-                                                            color: Colors.white,
-                                                            fontFamily: 'Cairo',
-                                                            fontWeight: FontWeight.bold),
-                                                      ),
-                                                      HelperWidgets.ratingbar_fun(
-                                                          5, rate, 15),
+                                                  Container(
+                                                    padding: EdgeInsets.only(
+                                                        left: MediaQuery.of(context)
+                                                            .size
+                                                            .width /
+                                                            15),
+                                                    child: Builder(
+                                                      builder: (ctx) => new Container(
+                                                          padding: EdgeInsets.only(
+                                                            top: 5.0,
+                                                            right: 10,
+                                                            left: 10,
+                                                          ),
+                                                          alignment: Alignment.center,
+                                                          child: ButtonTheme(
+                                                            child: RaisedButton(
+                                                              shape:
+                                                              RoundedRectangleBorder(
+                                                                borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                    5.0),
+                                                              ),
+                                                              color: QaeatColor.primary_color,
+                                                              child: Text(
+                                                                'المزيد  ',
+                                                                style: TextStyle(
+                                                                    color:
+                                                                    Colors.white,
+                                                                    fontFamily:
+                                                                    'Cairo',
+                                                                    fontWeight:
+                                                                    FontWeight
+                                                                        .normal),
+                                                                textAlign:
+                                                                TextAlign.center,
+                                                              ),
+                                                              onPressed: () {
+                                                                Navigator
+                                                                    .pushReplacement(
+                                                                    context,
+                                                                    MaterialPageRoute(
+                                                                        builder: (context) => OfferPage(
+                                                                          token: widget.token,
+                                                                        )
+                                                                          /*  SalonicList(
+                                                                              token: (sharedPrefs.getString('user_access_token') == null)
+                                                                                  ? StaticMethods.vistor_token
+                                                                                  : sharedPrefs.getString('user_access_token'),
+                                                                              hall_id:
+                                                                              snapshot.data[index].hall.id,
+                                                                            )*/));
+                                                              },
+                                                            ),
+                                                          )),
+                                                    ),
+                                                  ),
+                                                      Spacer(),
+                                                  Container(
+                                                      padding: EdgeInsets.only(
+                                                          right: MediaQuery.of(context)
+                                                              .size
+                                                              .width /
+                                                              15),
+                                                      child:Column(
+                                                        crossAxisAlignment:
+                                                        CrossAxisAlignment.center,
+                                                        children: <Widget>[
+                                                          Text(
+                                                            '${ snapshot.data[index].hall.name}',
+                                                            style: TextStyle(
+                                                                color: Colors.white,
+                                                                fontFamily: 'Cairo',
+                                                                fontWeight: FontWeight.bold),
+                                                          ),
+                                                          HelperWidgets.ratingbar_fun(
+                                                              5, rate, 15),
 
-                                                      Container(
+                                                          /*  Container(
                                                         child: Wrap(
                                                           children: <Widget>[
                                                             Text(
@@ -136,70 +199,20 @@ class OfferSliderState extends State<OfferSlider> {
 
                                                           ],
                                                         ),
-                                                      ),
+                                                      ),*/
+
+                                                        ],
+                                                      )),
 
 
-
-                                                      Padding(
-                                                        padding: EdgeInsets.only(
-                                                            top: 3,
-                                                            bottom: 10
-                                                        ),
-                                                        child: Builder(
-                                                          builder: (ctx) => new Container(
-                                                              padding: EdgeInsets.only(
-                                                                top: 5.0,
-                                                                right: 10,
-                                                                left: 10,
-                                                              ),
-                                                              alignment: Alignment.center,
-                                                              child: ButtonTheme(
-                                                                child: RaisedButton(
-                                                                  shape:
-                                                                  RoundedRectangleBorder(
-                                                                    borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                        5.0),
-                                                                  ),
-                                                                  color: MassaraColor.primary_color,
-                                                                  child: Text(
-                                                                    'اذهب الى الصالون   ',
-                                                                    style: TextStyle(
-                                                                        color:
-                                                                        Colors.white,
-                                                                        fontFamily:
-                                                                        'Cairo',
-                                                                        fontWeight:
-                                                                        FontWeight
-                                                                            .normal),
-                                                                    textAlign:
-                                                                    TextAlign.center,
-                                                                  ),
-                                                                  onPressed: () {
-                                                                    Navigator
-                                                                        .pushReplacement(
-                                                                        context,
-                                                                        MaterialPageRoute(
-                                                                            builder: (context) =>
-                                                                                SalonicList(
-                                                                                  token: (sharedPrefs.getString('user_access_token') == null)
-                                                                                      ? StaticMethods.vistor_token
-                                                                                      : sharedPrefs.getString('user_access_token'),
-                                                                                  salon_id:
-                                                                                  snapshot.data[index].salon_id,
-                                                                                )));
-                                                                  },
-                                                                ),
-                                                              )),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
                                                 ],
                                               )
+
+
+
                                           ),
-                                          Container(
+
+                                        /*  Container(
                                               height: MediaQuery.of(context)
                                                   .size
                                                   .width /
@@ -215,7 +228,7 @@ class OfferSliderState extends State<OfferSlider> {
                                                   left: 10),
                                               margin: EdgeInsets.only(left: 15),
                                               decoration: BoxDecoration(
-                                                  color:MassaraColor.primary_color,
+                                                  color:QaeatColor.primary_color,
                                                   borderRadius:
                                                   BorderRadius.circular(5)),
                                               child: Column(
@@ -233,14 +246,19 @@ class OfferSliderState extends State<OfferSlider> {
                                                         color: Colors.white),
                                                   ),
                                                 ],
-                                              ))
+                                              ))*/
                                         ],
                                       )
                                     ],
                                   )
                                 ],
                               ),
-                            ))
+                            ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius
+                                .circular(30)
+                          ),
+                        )
                       ],
                     );
                   },
@@ -256,7 +274,7 @@ class OfferSliderState extends State<OfferSlider> {
                       width:
                       MediaQuery.of(context).size.width ,
                       image: AssetImage(
-                          'images/splash_screen/massara_logo.png'),
+                          'images/splash_screen/Qaeat_logo.png'),
                       fit: BoxFit.fill,
                     ),
 
@@ -266,7 +284,10 @@ class OfferSliderState extends State<OfferSlider> {
               }
             }
             return Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(
+                backgroundColor: Colors.white,
+                strokeWidth: 0,
+              ),
             );
           },
         ),

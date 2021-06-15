@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:Massara/Custom_Widgets/export_file.dart';
+import 'package:Qaeat/Custom_Widgets/export_file.dart';
 class ResetPassword3 extends StatefulWidget {
   final String email;
   ResetPassword3({this.email});
@@ -56,259 +56,260 @@ class ResetPassword3State extends State<ResetPassword3> {
             color: Colors.black, fontSize: 19.0, fontWeight: FontWeight.w600)
     );
     // TODO: implement build
-    return Material(
-      child: Stack(
-        children: <Widget>[
-          Container(
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-              color: Colors.white,
-            ),
-            child: Image(
-              image: AssetImage('images/background/backgroundassets.png'),
-              width: MediaQuery.of(context).size.width ,
-              fit: BoxFit.none,
+    return Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          title: Container(
+            alignment: Alignment.centerRight,
+            child: Text(
+              'اعادة تعين كلمة المرور',
+              style: TextStyle(
+                  fontFamily: 'Cairo', color: Colors.white, fontSize: 16),
             ),
           ),
-          Column(
-            children: <Widget>[
-              Directionality(
+          actions: [
+            InkWell(
+              onTap: () {
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => ResetPassword2()));
+              },
+              child: Icon(Icons.arrow_forward_ios),
+            )
+          ],
+          backgroundColor: QaeatColor.primary_color,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(10),
+            ),
+          ),
+        ),
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Directionality(
                 textDirection: TextDirection.rtl,
-                child: page_header(),
-              ),
-              Container(
-                height: MediaQuery.of(context).size.height / 1.2,
-                child: SafeArea(
-                    child: SingleChildScrollView(
-                        child: Directionality(
-                            textDirection: TextDirection.rtl,
-                            child: Container(
-                              padding: EdgeInsets.only(top:  MediaQuery.of(context).size.width/4),
-                              child: Form(
-                                  key: _formSiginKey,
-                                  child: new Container(
+                child: Container(
+                  child: Form(
+                      key: _formSiginKey,
+                      child: new Container(
+                        padding: EdgeInsets.only(
+                            right: 10, left: 5, top: 10),
+                        child: Column(
+                          crossAxisAlignment:
+                          CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Column(
+                              crossAxisAlignment:
+                              CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Padding(
                                     padding: EdgeInsets.only(
-                                        right: 10, left: 5, top: 10),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        Column(
-                                          crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                          children: <Widget>[
-                                            Padding(
-                                              padding: EdgeInsets.only(
-                                                  top: 30,
-                                                  left: 10,
-                                                  right: 10,
-                                                  bottom: 10),
-                                              child: Text('قم بكتابه كلمه السر الجديده لك',
-                                                style: TextStyle(fontFamily: 'Cairo',fontWeight: FontWeight.normal,fontSize: 18,color: Color(0xFF535353)),)
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.only(
-                                                  left: 10, right: 10),
-                                              child: Text(
-                                                'الرقم السرى',
-                                                style: style,
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.only(
-                                                  top: 10,
-                                                  left: 10,
-                                                  right: 10,
-                                                  bottom: 10),
-                                              child: new Container(
-                                                child: TextFormField(
-                                                    keyboardType:
-                                                    TextInputType.text,
-                                                    controller: _password,
-                                                    obscureText:
-                                                    !_passwordVisible, //This will obscure text dynamically
-                                                    decoration: InputDecoration(
-                                                      filled: true,
-                                                      fillColor: Color(0xFFF6F6F6 ),
-                                                      hintText:
-                                                      '*********',
-                                                      border: InputBorder.none,
-                                                      enabledBorder:
-                                                      OutlineInputBorder(
-                                                        borderRadius:
-                                                        BorderRadius.circular(
-                                                            5.0),
-                                                        borderSide:
-                                                        const BorderSide(
-                                                          color:Color(0xFFF6F6F6 ),
-                                                          width: 1.0,
-                                                        ),
-                                                      ),
-                                                      // Here is key idea
-                                                      suffixIcon: IconButton(
-                                                        icon: Icon(
-                                                          // Based on passwordVisible state choose the icon
-                                                          _passwordVisible
-                                                              ? Icons.visibility
-                                                              : Icons
-                                                              .visibility_off,
-                                                          color: Colors.black
-                                                        ),
-                                                        onPressed: () {
-                                                          // Update the state i.e. toogle the state of passwordVisible variable
-                                                          setState(() {
-                                                            _passwordVisible =
-                                                            !_passwordVisible;
-                                                          });
-                                                        },
-                                                      ),
-                                                    ),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        Column(
-                                          crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                          children: <Widget>[
-                                            Padding(
-                                              padding: EdgeInsets.only(
-                                                  left: 10, right: 10),
-                                              child: Text(
-                                                'اعاده كتابه كلمه السر',
-                                                style: style,
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.only(
-                                                  top: 10,
-                                                  left: 10,
-                                                  right: 10,
-                                                  bottom: 10),
-                                              child: new Container(
-                                                child: TextFormField(
-                                                    keyboardType:
-                                                    TextInputType.text,
-                                                    controller: _confirm_password,
-                                                    obscureText:
-                                                    !_confirmpasswordVisible, //This will obscure text dynamically
-                                                    decoration: InputDecoration(
-                                                      filled: true,
-                                                      fillColor: Color(0xFFF6F6F6 ),
-                                                      hintText:
-                                                      '*********',
-                                                      border: InputBorder.none,
-                                                      enabledBorder:
-                                                      OutlineInputBorder(
-                                                        borderRadius:
-                                                        BorderRadius.circular(
-                                                            5.0),
-                                                        borderSide:
-                                                        const BorderSide(
-                                                          color: Color(0xFFF6F6F6 ),
-                                                          width: 1.0,
-                                                        ),
-                                                      ),
-                                                      // Here is key idea
-                                                      suffixIcon: IconButton(
-                                                        icon: Icon(
-                                                          // Based on passwordVisible state choose the icon
-                                                            _confirmpasswordVisible
-                                                              ? Icons.visibility
-                                                              : Icons
-                                                              .visibility_off,
-                                                          color: Colors.black
-                                                        ),
-                                                        onPressed: () {
-                                                          // Update the state i.e. toogle the state of passwordVisible variable
-                                                          setState(() {
-                                                            _confirmpasswordVisible =
-                                                            !_confirmpasswordVisible;
-                                                          });
-                                                        },
-                                                      ),
-                                                    ),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        valid_code?Padding(
-                                          padding: EdgeInsets.only(
-                                              top: 5,
-                                              left: 10,
-                                              right: 10,
-                                              bottom: 10),
-                                          child: Text(
-                                            '${error_message}',
-                                            style: TextStyle(color: Colors.red,fontWeight: FontWeight.normal,fontFamily: 'Cairo',fontSize: 14),
-                                          ),
-                                        ):Container(),
-                                        // use Builder to solve Scaffold.of() called with a context that does not contain a Scaffold Exception
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              top: 5,
-                                              left: 10,
-                                              right: 10,
-                                              bottom: 5),
-                                          child: Builder(
-                                            builder: (ctx) => new Container(
-                                                padding:
-                                                EdgeInsets.only(top: 15.0),
-                                                alignment: Alignment.center,
-                                                child: ButtonTheme(
-                                                  minWidth:
-                                                  MediaQuery.of(context)
-                                                      .size
-                                                      .width/2,
-                                                  child: RaisedButton(
-                                                    padding:
-                                                    const EdgeInsets.all(
-                                                        5.0),
-                                                    shape:
-                                                    RoundedRectangleBorder(
-                                                      borderRadius:
-                                                      BorderRadius.circular(
-                                                          5.0),
-                                                      side: BorderSide(
-                                                        color:  MassaraColor.primary_color ,
-                                                        width: 1.0,
-                                                      ),
-                                                    ),
-                                                    color: MassaraColor.primary_color,
-                                                    child: Text(
-                                                      'تغيير',
-                                                      style: TextStyle(
-                                                          color: Colors.white,
-                                                          fontSize: 18.0,
-                                                          fontWeight:
-                                                          FontWeight.bold),
-                                                    ),
-                                                    onPressed: () {
-                                                      if (_formSiginKey.currentState.validate()) {
-                                                        setState(() {
-                                                          valid_code=false;
-                                                        });
-                                                          resetPassword(widget.email,_password.text.trim(),
-                                                              _confirm_password.text.trim() );
-
-                                                        }
-                                                    },
-                                                  ),
-                                                )),
+                                        top: 30,
+                                        left: 10,
+                                        right: 10,
+                                        bottom: 10),
+                                    child: Text('قم بكتابه كلمه السر الجديده لك',
+                                      style: TextStyle(fontFamily: 'Cairo',fontWeight: FontWeight.normal,fontSize: 18,color: Color(0xFF535353)),)
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      left: 10, right: 10),
+                                  child: Text(
+                                    'الرقم السرى',
+                                    style: style,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      top: 10,
+                                      left: 10,
+                                      right: 10,
+                                      bottom: 10),
+                                  child: new Container(
+                                    child: TextFormField(
+                                      keyboardType:
+                                      TextInputType.text,
+                                      controller: _password,
+                                      obscureText:
+                                      !_passwordVisible, //This will obscure text dynamically
+                                      decoration: InputDecoration(
+                                        filled: true,
+                                        fillColor: Color(0xFFF6F6F6 ),
+                                        hintText:
+                                        '*********',
+                                        border: InputBorder.none,
+                                        enabledBorder:
+                                        OutlineInputBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(
+                                              5.0),
+                                          borderSide:
+                                          const BorderSide(
+                                            color:Color(0xFFF6F6F6 ),
+                                            width: 1.0,
                                           ),
                                         ),
-
-                                      ],
+                                        // Here is key idea
+                                        suffixIcon: IconButton(
+                                          icon: Icon(
+                                            // Based on passwordVisible state choose the icon
+                                              _passwordVisible
+                                                  ? Icons.visibility
+                                                  : Icons
+                                                  .visibility_off,
+                                              color: Colors.black
+                                          ),
+                                          onPressed: () {
+                                            // Update the state i.e. toogle the state of passwordVisible variable
+                                            setState(() {
+                                              _passwordVisible =
+                                              !_passwordVisible;
+                                            });
+                                          },
+                                        ),
+                                      ),
                                     ),
-                                  )),
-                            )))),
-              )
-            ],
-          )
-        ],
-      ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Column(
+                              crossAxisAlignment:
+                              CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      left: 10, right: 10),
+                                  child: Text(
+                                    'اعاده كتابه كلمه السر',
+                                    style: style,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      top: 10,
+                                      left: 10,
+                                      right: 10,
+                                      bottom: 10),
+                                  child: new Container(
+                                    child: TextFormField(
+                                      keyboardType:
+                                      TextInputType.text,
+                                      controller: _confirm_password,
+                                      obscureText:
+                                      !_confirmpasswordVisible, //This will obscure text dynamically
+                                      decoration: InputDecoration(
+                                        filled: true,
+                                        fillColor: Color(0xFFF6F6F6 ),
+                                        hintText:
+                                        '*********',
+                                        border: InputBorder.none,
+                                        enabledBorder:
+                                        OutlineInputBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(
+                                              5.0),
+                                          borderSide:
+                                          const BorderSide(
+                                            color: Color(0xFFF6F6F6 ),
+                                            width: 1.0,
+                                          ),
+                                        ),
+                                        // Here is key idea
+                                        suffixIcon: IconButton(
+                                          icon: Icon(
+                                            // Based on passwordVisible state choose the icon
+                                              _confirmpasswordVisible
+                                                  ? Icons.visibility
+                                                  : Icons
+                                                  .visibility_off,
+                                              color: Colors.black
+                                          ),
+                                          onPressed: () {
+                                            // Update the state i.e. toogle the state of passwordVisible variable
+                                            setState(() {
+                                              _confirmpasswordVisible =
+                                              !_confirmpasswordVisible;
+                                            });
+                                          },
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            valid_code?Padding(
+                              padding: EdgeInsets.only(
+                                  top: 5,
+                                  left: 10,
+                                  right: 10,
+                                  bottom: 10),
+                              child: Text(
+                                '${error_message}',
+                                style: TextStyle(color: Colors.red,fontWeight: FontWeight.normal,fontFamily: 'Cairo',fontSize: 14),
+                              ),
+                            ):Container(),
+                            // use Builder to solve Scaffold.of() called with a context that does not contain a Scaffold Exception
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  top: 5,
+                                  left: 10,
+                                  right: 10,
+                                  bottom: 5),
+                              child: Builder(
+                                builder: (ctx) => new Container(
+                                    padding:
+                                    EdgeInsets.only(top: 15.0),
+                                    alignment: Alignment.center,
+                                    child: ButtonTheme(
+                                      minWidth:
+                                      MediaQuery.of(context)
+                                          .size
+                                          .width/2,
+                                      child: RaisedButton(
+                                        padding:
+                                        const EdgeInsets.all(
+                                            5.0),
+                                        shape:
+                                        RoundedRectangleBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(
+                                              5.0),
+                                          side: BorderSide(
+                                            color:  QaeatColor.primary_color ,
+                                            width: 1.0,
+                                          ),
+                                        ),
+                                        color: QaeatColor.primary_color,
+                                        child: Text(
+                                          'تغيير',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 18.0,
+                                              fontWeight:
+                                              FontWeight.bold),
+                                        ),
+                                        onPressed: () {
+                                          if (_formSiginKey.currentState.validate()) {
+                                            setState(() {
+                                              valid_code=false;
+                                            });
+                                            resetPassword(widget.email,_password.text.trim(),
+                                                _confirm_password.text.trim() );
+
+                                          }
+                                        },
+                                      ),
+                                    )),
+                              ),
+                            ),
+
+                          ],
+                        ),
+                      )),
+                )),
+          ),
+        )
     );
   }
 
@@ -316,7 +317,7 @@ class ResetPassword3State extends State<ResetPassword3> {
   resetPassword(String email, String password, String password_confirmation)async{
 
     _progressDialog.show();
-    String ResetPassword_Url=ApiProvider.APP_URL + 'users/resetPassword';
+    String ResetPassword_Url=ApiProvider.APP_URL + '/api/users/resetPassword';
     Dio dio =new Dio();
     try{
       FormData _formData =FormData.fromMap({

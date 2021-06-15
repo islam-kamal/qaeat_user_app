@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:Massara/Custom_Widgets/export_file.dart';
+import 'package:Qaeat/Custom_Widgets/export_file.dart';
 
 class SendButton extends StatefulWidget {
   final GlobalKey<FormState> formKey;
@@ -51,11 +51,11 @@ class SendButtonState extends State<SendButton> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5.0),
                   side: BorderSide(
-                    color: MassaraColor.primary_color,
+                    color: QaeatColor.primary_color,
                     width: 1.0,
                   ),
                 ),
-                color: MassaraColor.primary_color,
+                color: QaeatColor.primary_color,
                 child: Text(
                   'ارسال',
                   style: TextStyle(

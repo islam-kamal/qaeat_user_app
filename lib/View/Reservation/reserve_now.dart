@@ -3,14 +3,13 @@ import 'package:geocoder/geocoder.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:grouped_buttons/grouped_buttons.dart';
 import 'package:intl/intl.dart' as intl;
-import 'package:Massara/Custom_Widgets/export_file.dart';
-import 'package:Massara/Model/Search/filter_model.dart';
-import 'package:Massara/Presenter/static_methods.dart';
-import 'package:Massara/View/Home/Search/search_result.dart';
+import 'package:Qaeat/Custom_Widgets/export_file.dart';
+import 'package:Qaeat/Model/Search/filter_model.dart';
+import 'package:Qaeat/Presenter/static_methods.dart';
+import 'package:Qaeat/View/Home/Search/search_result.dart';
 
 import 'Booking Departments/bookService_panel_list.dart';
 import 'Booking Departments/mukap_artist_panel_list.dart';
-import 'Booking Departments/serviceType_panel_list.dart';
 
 class RerservationNow extends StatefulWidget {
 
@@ -73,6 +72,12 @@ class RerservationNow_State extends State<RerservationNow> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    StaticMethods.bookServiceList =
+        ApiProvider.getBookService(
+            widget.token,
+            widget.salon_id,
+            context);
+
     progressDialog = new ProgressDialog(context);
     ('item : ${widget.item}');
     numberOfUsers = new TextEditingController();
@@ -145,7 +150,7 @@ class RerservationNow_State extends State<RerservationNow> {
                           token: (widget.token == StaticMethods.vistor_token)
                               ? StaticMethods.vistor_token
                               : widget.token,
-                          salon_id: widget.salon_id,
+                          hall_id: widget.salon_id,
                         )));
             break;
           case 2:
@@ -225,7 +230,7 @@ class RerservationNow_State extends State<RerservationNow> {
             'احجز الان',
             style: TextStyle(fontFamily: 'Cairo'),
           ),
-          backgroundColor: MassaraColor.primary_color,
+          backgroundColor: QaeatColor.primary_color,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(
               bottom: Radius.circular(10),
@@ -249,7 +254,7 @@ class RerservationNow_State extends State<RerservationNow> {
                                           StaticMethods.vistor_token)
                                       ? StaticMethods.vistor_token
                                       : widget.token,
-                                  salon_id: widget.salon_id,
+                                  hall_id: widget.salon_id,
                                 )));
                     break;
                   case 2:
@@ -432,7 +437,7 @@ class RerservationNow_State extends State<RerservationNow> {
                                   )),
                             ],
                           ),
-                          Column(
+                         /* Column(
                             children: <Widget>[
                               Container(
                                 alignment: Alignment.centerRight,
@@ -452,7 +457,7 @@ class RerservationNow_State extends State<RerservationNow> {
                                 home_service: widget.home_services,
                               ),
                             ],
-                          ),
+                          ),*/
                           Column(
                             children: <Widget>[
                               Container(
@@ -471,70 +476,8 @@ class RerservationNow_State extends State<RerservationNow> {
                                   salon_id: widget.salon_id),
                             ],
                           ),
-                          Column(
-                            children: <Widget>[
-                              Container(
-                                alignment: Alignment.centerRight,
-                                padding: EdgeInsets.only(
-                                    right: 10, left: 10, top: 10),
-                                child: Text(
-                                  'اختيار خبيره التجميل',
-                                  style: TextStyle(
-                                      fontFamily: 'Cairo',
-                                      fontWeight: FontWeight.bold,
-                                      color: Color(0xFF262626)),
-                                ),
-                              ),
-                              MukapArtistPanelList(
-                                  token: widget.token,
-                                  salon_id: widget.salon_id),
-                            ],
-                          ),
                           TimePicker(),
                           Date_Picker(),
-                          Column(
-                            children: <Widget>[
-                              Container(
-                                alignment: Alignment.centerRight,
-                                padding: EdgeInsets.only(
-                                    right: 10, left: 10, top: 10),
-                                child: Text(
-                                  'مكان الخدمه',
-                                  style: TextStyle(
-                                      fontFamily: 'Cairo',
-                                      fontWeight: FontWeight.bold,
-                                      color: Color(0xFF262626)),
-                                ),
-                              ),
-                              RadioButtonGroup(
-                                orientation:
-                                    GroupedButtonsOrientation.HORIZONTAL,
-                                margin: const EdgeInsets.only(right: 10.0),
-                                onSelected: (String selected) => setState(() {
-                                  _picked_location = selected;
-                                  (
-                                      '_picked_location: ${_picked_location}');
-                                }),
-                                labelStyle: TextStyle(fontFamily: 'Cairo'),
-                                labels: service_location,
-                                picked: _picked_location,
-                                activeColor: Colors.black,
-                                itemBuilder: (Radio rb, Text txt, int i) {
-                                  return Row(
-                                    children: <Widget>[
-                                      rb,
-                                      txt,
-                                      SizedBox(
-                                        width:
-                                            MediaQuery.of(context).size.width /
-                                                7,
-                                      )
-                                    ],
-                                  );
-                                },
-                              )
-                            ],
-                          ),
                           Column(
                             children: <Widget>[
                               Container(
@@ -579,48 +522,6 @@ class RerservationNow_State extends State<RerservationNow> {
                           ),
 
 
-                          _picked_location=='في البيت'? Column(
-                            children: [
-                              Container(
-                                padding:
-                                EdgeInsets.only(right: 10, left: 10, bottom: 10),
-                                alignment: Alignment.centerRight,
-                                child: Text(
-                                  'موقعي على الخريطة',
-                                  style: TextStyle(
-                                      color: Color(0xFF292929),
-                                      fontFamily: 'Cairo',
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                              Container(
-                                height: MediaQuery.of(context).size.width/2,
-                                width: MediaQuery.of(context).size.width,
-                                child:  GoogleMap(
-                                    myLocationButtonEnabled: true,
-                                    myLocationEnabled: true,
-                                    mapType: MapType.hybrid,
-                                    initialCameraPosition: CameraPosition(
-                                      target: LatLng(24.774265	,46.738586),
-                                      zoom: 4,
-                                    ),
-                                    markers: Set<Marker>.of(markers.values),
-                                    onTap: (latLng) async{
-                                      sharedPrefs.setString('home_lat', latLng.latitude.toString());
-                                      sharedPrefs.setString('home_lang', latLng.longitude.toString());
-                                      ('${latLng.latitude}, ${latLng.longitude}');
-                                      final coordinates = new Coordinates(
-                                          latLng.latitude, latLng.longitude);
-                                      var addresses = await Geocoder.local.findAddressesFromCoordinates(
-                                          coordinates);
-                                      var first = addresses.first;
-                                      sharedPrefs.setString('home-address', first.addressLine);
-                                      _add(latLng,first.addressLine);
-                                    }
-                              )
-                              )
-                            ],
-                          ):Container(),
 
                           new Container(
                               padding: EdgeInsets.only(top: 20.0, bottom: 10),
@@ -633,11 +534,11 @@ class RerservationNow_State extends State<RerservationNow> {
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(5.0),
                                     side: BorderSide(
-                                      color: MassaraColor.primary_color,
+                                      color: QaeatColor.primary_color,
                                       width: 1.0,
                                     ),
                                   ),
-                                  color: MassaraColor.primary_color,
+                                  color: QaeatColor.primary_color,
                                   child: Text(
                                     'احجز الان',
                                     style: TextStyle(

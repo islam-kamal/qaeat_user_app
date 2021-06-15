@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
-class MassaraColor{
-  static const primary_color = Color(0xFF6A80BF);
-  static const secondary_color = Color(0xFF4C5B82 );
+class QaeatColor{
+  static const primary_color = Color(0xFFFE6F8F);
+  static const secondary_color = Color(0xFFFAFAFA );
+  static const black_color = Color(0xFF373737);
 }

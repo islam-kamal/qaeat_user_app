@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:Massara/Custom_Widgets/custom_textfield.dart';
-import 'package:Massara/Custom_Widgets/export_file.dart';
-import 'package:Massara/Model/card_model.dart';
-import 'package:Massara/Model/order_model.dart';
+import 'package:Qaeat/Custom_Widgets/custom_textfield.dart';
+import 'package:Qaeat/Custom_Widgets/export_file.dart';
+import 'package:Qaeat/Model/card_model.dart';
+import 'package:Qaeat/Model/order_model.dart';
 
 class MyCards extends StatefulWidget {
   final String token;
@@ -63,16 +63,25 @@ class MyCards_State extends State<MyCards> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          centerTitle: true,
           automaticallyImplyLeading: false,
-          title: Text(
-            'بطاقاتى',
-            style: TextStyle(
-              fontFamily: 'Cairo',
-              color: Color(0xFFFFFFFF),
+          title: Container(
+            alignment: Alignment.centerRight,
+            child: Text(
+              'بطاقاتي',
+              style: TextStyle(
+                  fontFamily: 'Cairo', color: Colors.white, fontSize: 16),
             ),
           ),
-          backgroundColor: MassaraColor.primary_color,
+          actions: [
+            InkWell(
+              onTap: () {
+                Navigator.pushReplacement(
+                    context, MaterialPageRoute(builder: (context) => MorePage()));
+              },
+              child: Icon(Icons.arrow_forward_ios),
+            )
+          ],
+          backgroundColor: QaeatColor.primary_color,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(
               bottom: Radius.circular(10),
@@ -80,7 +89,7 @@ class MyCards_State extends State<MyCards> {
           ),
         ),
         floatingActionButton:(widget.token == StaticMethods.vistor_token)? null:FloatingActionButton(
-          backgroundColor: MassaraColor.primary_color,
+          backgroundColor: QaeatColor.primary_color,
           child: Icon(
             Icons.add,
             size: 25,
@@ -172,7 +181,7 @@ class MyCards_State extends State<MyCards> {
                                                                   '${snapshot.data[index].number}',
                                                               hintStyle:
                                                                   TextStyle(
-                                                                color: MassaraColor
+                                                                color: QaeatColor
                                                                     .primary_color,
                                                                 fontFamily:
                                                                     'Cairo',
@@ -264,7 +273,7 @@ class MyCards_State extends State<MyCards> {
                                                                   hintText:
                                                                       ' ${snapshot.data[index].expMonth}',
                                                                   hintStyle: TextStyle(
-                                                                      color: MassaraColor
+                                                                      color: QaeatColor
                                                                           .primary_color,
                                                                       fontFamily:
                                                                           'Cairo',
@@ -320,7 +329,7 @@ class MyCards_State extends State<MyCards> {
                                                                       ' ${snapshot.data[index].expYear}',
                                                                   hintStyle:
                                                                       TextStyle(
-                                                                    color: MassaraColor
+                                                                    color: QaeatColor
                                                                         .primary_color,
                                                                     fontFamily:
                                                                         'Cairo',
@@ -409,7 +418,7 @@ class MyCards_State extends State<MyCards> {
                                                                   ' ${snapshot.data[index].holderName}',
                                                               hintStyle:
                                                                   TextStyle(
-                                                                color: MassaraColor
+                                                                color: QaeatColor
                                                                     .primary_color,
                                                                 fontFamily:
                                                                     'Cairo',
@@ -477,7 +486,7 @@ class MyCards_State extends State<MyCards> {
                                                           child: new Text(
                                                             "تعديل ",
                                                             style: TextStyle(
-                                                                color: MassaraColor
+                                                                color: QaeatColor
                                                                     .primary_color,
                                                                 fontFamily:
                                                                     'Cairo',
@@ -527,7 +536,7 @@ class MyCards_State extends State<MyCards> {
                                                           child: new Text(
                                                             "حذف ",
                                                             style: TextStyle(
-                                                                color: MassaraColor
+                                                                color: QaeatColor
                                                                     .primary_color,
                                                                 fontFamily:
                                                                     'Cairo',
@@ -576,7 +585,7 @@ class MyCards_State extends State<MyCards> {
                                             MediaQuery.of(context).size.height /
                                                 4,
                                         image: AssetImage(
-                                            'images/splash_screen/massara_logo.png'),
+                                            'images/splash_screen/Qaeat_logo.png'),
                                       ),
                                       SizedBox(
                                         height: 20,
@@ -585,7 +594,7 @@ class MyCards_State extends State<MyCards> {
                                         'لا يوجد بطاقات ائتمانية  حاليا ',
                                         style: TextStyle(
                                             fontFamily: 'Cairo',
-                                            color: MassaraColor.secondary_color,
+                                            color: QaeatColor.primary_color,
                                             fontWeight: FontWeight.bold,
                                             fontSize: 21),
                                       )
@@ -609,7 +618,7 @@ class MyCards_State extends State<MyCards> {
                                           MediaQuery.of(context).size.height /
                                               4,
                                       image: AssetImage(
-                                          'images/splash_screen/massara_logo.png'),
+                                          'images/splash_screen/Qaeat_logo.png'),
                                     ),
                                     SizedBox(
                                       height: 20,
@@ -618,7 +627,7 @@ class MyCards_State extends State<MyCards> {
                                       'لا يوجد  بطاقات ائتمانية  حاليا ',
                                       style: TextStyle(
                                           fontFamily: 'Cairo',
-                                          color: MassaraColor.secondary_color,
+                                          color: QaeatColor.primary_color,
                                           fontWeight: FontWeight.bold,
                                           fontSize: 21),
                                     )
@@ -928,7 +937,7 @@ class MyCards_State extends State<MyCards> {
                                         borderRadius:
                                             new BorderRadius.circular(5.0),
                                       ),
-                                      color: MassaraColor.primary_color,
+                                      color: QaeatColor.primary_color,
                                     ),
                                   ),
                                 )
@@ -1152,7 +1161,7 @@ class MyCards_State extends State<MyCards> {
                                         borderRadius:
                                             new BorderRadius.circular(5.0),
                                       ),
-                                      color: MassaraColor.primary_color,
+                                      color: QaeatColor.primary_color,
                                     ),
                                   ),
                                 )

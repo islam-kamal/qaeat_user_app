@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:Massara/Custom_Widgets/export_file.dart';
+import 'package:Qaeat/Custom_Widgets/export_file.dart';
 
 void errorDialog({BuildContext context, String text, Function function}) {
   showDialog(
@@ -19,7 +19,7 @@ void errorDialog({BuildContext context, String text, Function function}) {
                   Text(
                     text ?? "",
                     style: TextStyle(
-                        color: MassaraColor.primary_color,
+                        color: QaeatColor.primary_color,
                         fontFamily: "Cairo",
                         fontSize: 18),
                   )
@@ -34,7 +34,7 @@ void errorDialog({BuildContext context, String text, Function function}) {
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
                   fontFamily: "Cairo",
-                  color: MassaraColor.primary_color,
+                  color: QaeatColor.primary_color,
                 ),
               ),
               onPressed: function ?? () => Navigator.pop(context),

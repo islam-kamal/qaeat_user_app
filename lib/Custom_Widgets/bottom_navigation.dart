@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:Massara/Custom_Widgets/export_file.dart';
+import 'package:Qaeat/Custom_Widgets/export_file.dart';
 
 class BottomNavigation extends StatefulWidget {
   int index;
@@ -94,18 +94,18 @@ class BottomNavigation_State extends State<BottomNavigation> {
         BottomNavigationBarItem(
           icon: Icon(
             Icons.more_horiz,
-            color: MassaraColor.secondary_color,
+            color: QaeatColor.secondary_color,
           ),
           title: Text("المزيد", style: style),
           activeIcon: Icon(
             Icons.more_horiz,
-            color: MassaraColor.primary_color,
+            color: QaeatColor.primary_color,
           )
         ),
         BottomNavigationBarItem(
           icon: Image(
             image: AssetImage('images/home/shopping-cart.png'),
-            color: MassaraColor.secondary_color,
+            color: QaeatColor.black_color,
           ),
           title: Text(
             "طلباتى",
@@ -113,13 +113,13 @@ class BottomNavigation_State extends State<BottomNavigation> {
           ),
           activeIcon:  Image(
             image: AssetImage('images/home/shopping-cart.png'),
-            color: MassaraColor.primary_color,
+            color: QaeatColor.primary_color,
           ),
         ),
         BottomNavigationBarItem(
           icon: Image(
             image: AssetImage('images/home/notification.png'),
-            color: MassaraColor.secondary_color,
+            color: QaeatColor.black_color,
           ),
           title: Text(
             "الاشعارات",
@@ -127,13 +127,13 @@ class BottomNavigation_State extends State<BottomNavigation> {
           ),
           activeIcon: Image(
             image: AssetImage('images/home/notification.png'),
-            color: MassaraColor.primary_color,
+            color: QaeatColor.primary_color,
           ),
         ),
         BottomNavigationBarItem(
           icon: Image(
             image: AssetImage('images/home/bell.png'),
-            color: MassaraColor.secondary_color,
+            color: QaeatColor.black_color,
           ),
           title: Text(
             "العروض",
@@ -141,13 +141,13 @@ class BottomNavigation_State extends State<BottomNavigation> {
           ),
           activeIcon: Image(
             image: AssetImage('images/home/bell.png'),
-            color: MassaraColor.primary_color,
+            color: QaeatColor.primary_color,
           ),
         ),
         BottomNavigationBarItem(
           icon: Image(
             image: AssetImage('images/home/home.png'),
-            color: MassaraColor.secondary_color,
+            color: QaeatColor.black_color,
           ),
           title: Text(
             "الرئيسية",
@@ -155,7 +155,7 @@ class BottomNavigation_State extends State<BottomNavigation> {
           ),
           activeIcon: Image(
             image: AssetImage('images/home/home.png'),
-            color: MassaraColor.primary_color,
+            color: QaeatColor.primary_color,
           ),
         ),
       ],

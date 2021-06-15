@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:Massara/Custom_Widgets/export_file.dart';
-import 'package:Massara/View/More/invoices.dart';
-import 'package:Massara/View/More/mycards.dart';
+import 'package:Qaeat/Custom_Widgets/export_file.dart';
+import 'package:Qaeat/View/More/invoices.dart';
+import 'package:Qaeat/View/More/mycards.dart';
 
 import 'contact_us.dart';
 import 'customer_service_complain.dart';
@@ -53,7 +53,7 @@ class MorePageState extends State<MorePage> {
               'المزيد',
               style: TextStyle(fontFamily: 'Cairo'),
             ),
-            backgroundColor: MassaraColor.primary_color,
+            backgroundColor: QaeatColor.primary_color,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(
                 bottom: Radius.circular(10),
@@ -238,8 +238,7 @@ class MorePageState extends State<MorePage> {
                               break;
                             case 8:
                               ('logout : ${sharedPrefs.getString('user_access_token')}');
-                              if (sharedPrefs.getString('user_access_token') ==
-                                  null) {
+                              if (sharedPrefs.getString('user_access_token') == null) {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(

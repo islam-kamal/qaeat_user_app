@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:Massara/Custom_Widgets/custom_textfield.dart';
-import 'package:Massara/Custom_Widgets/export_file.dart';
-import 'package:Massara/Model/Booking/book_service_model.dart';
-import 'package:Massara/Presenter/static_methods.dart';
+import 'package:Qaeat/Custom_Widgets/custom_textfield.dart';
+import 'package:Qaeat/Custom_Widgets/export_file.dart';
+import 'package:Qaeat/Model/Booking/book_service_model.dart';
+import 'package:Qaeat/Presenter/static_methods.dart';
 
 import 'mukap_artist_panel_list.dart';
 
@@ -46,6 +46,7 @@ class BookServiceExpansionPanel_State extends State<BookServiceExpansionPanel> {
   void initState() {
     // TODO: implement initState
     super.initState();
+
     _data = generateItems(1);
     picked_services = List<int>();
     number_of_users = List<int>();
@@ -83,7 +84,126 @@ class BookServiceExpansionPanel_State extends State<BookServiceExpansionPanel> {
               },
               body: Container(
                 height: MediaQuery.of(context).size.width / 3,
-                child: (StaticMethods.bookServiceList == null)
+                child: FutureBuilder<List<BookServiceModel>>(
+                  future: StaticMethods.bookServiceList,
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState ==
+                        ConnectionState.done) {
+                      if (snapshot.hasData) {
+                        if (snapshot.data.length != 0) {
+                          return ListView.builder(
+                            scrollDirection: Axis.vertical,
+                            shrinkWrap: true,
+                            itemCount: snapshot.data.length,
+                            itemBuilder:
+                                (BuildContext context, int index) {
+                              if (snapshot.data.length != 0) {
+                                return Container(
+                                    padding: EdgeInsets.only(
+                                        right: 10, left: 10),
+                                    child: Column(
+                                      children: <Widget>[
+                                        CheckboxListTile(
+                                          title: Text(
+                                            '${snapshot.data[index].name} \t \t \t ${snapshot.data[index].price} ريال ',
+                                          ),
+                                          value: bookServiceChecked
+                                              .contains(snapshot
+                                              .data[index].id),
+                                          onChanged: (val) {
+                                            if (val) {
+                                              setState(() {
+                                           //     numberOfUsersPop();
+                                                (
+                                                    'number_of_users : ${number_of_users}');
+                                                bookServiceChecked.add(
+                                                    snapshot
+                                                        .data[index].id);
+                                                List<String> serviceList =
+                                                bookServiceChecked
+                                                    .map((i) =>
+                                                    i.toString())
+                                                    .toList();
+                                                sharedPrefs.setStringList(
+                                                    'book_service_id',
+                                                    serviceList);
+
+                                                (
+                                                    'ischecked : ${bookServiceChecked}');
+                                                // item.isExpanded =false;
+                                                item.isExpanded = false;
+                                                ('3333333');
+
+                                                header_item.add(snapshot
+                                                    .data[index].name);
+                                                (
+                                                    'header_item : ${header_item}');
+                                                item.headerValue =
+                                                    header_item.last;
+                                                ('44444444444');
+                                              });
+                                            } else {
+                                              setState(() {
+                                                //   check = val;
+                                                bookServiceChecked.remove(
+                                                    snapshot
+                                                        .data[index].id);
+                                                List<String> serviceList =
+                                                bookServiceChecked
+                                                    .map((i) =>
+                                                    i.toString())
+                                                    .toList();
+                                                sharedPrefs.setStringList(
+                                                    'book_service_id',
+                                                    serviceList);
+
+                                                number_of_users
+                                                    .remove(users_number);
+                                                List<String>
+                                                users_numberList =
+                                                number_of_users
+                                                    .map((i) =>
+                                                    i.toString())
+                                                    .toList();
+                                                sharedPrefs.setStringList(
+                                                    'book_users_number',
+                                                    users_numberList);
+                                                (
+                                                    'number_of_users : ${number_of_users}');
+                                              });
+                                            }
+                                          },
+                                        ),
+                                        Divider(
+                                          color: Color(0xFFDADADA),
+                                        )
+                                      ],
+                                    ));
+                              } else {
+                                return Container();
+                              }
+                            },
+                          );
+                        } else {
+                          return Container(
+                            child:
+                            Text('لم تضيف القاعة أي خدمات حتى الآن'),
+                          );
+                        }
+                      } else {
+                        return Container(
+                          child: Text('لم تضيف القاعة أي خدمات حتى الآن'),
+                        );
+                      }
+                    }
+
+                    // By default, show a loading spinner.
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  },
+                ),
+                /*(StaticMethods.bookServiceList == null)
                     ? Container(
                         child: Text('يرجاء اختيار القسم أولاً'),
                       )
@@ -217,7 +337,7 @@ class BookServiceExpansionPanel_State extends State<BookServiceExpansionPanel> {
                             child: CircularProgressIndicator(),
                           );
                         },
-                      ),
+                      ),*/
               ),
               isExpanded: item.isExpanded,
             );
@@ -278,14 +398,6 @@ class BookServiceExpansionPanel_State extends State<BookServiceExpansionPanel> {
                                                 (
                                                     'ischecked : ${bookServiceChecked}');
                                                 // item.isExpanded =false;
-                                                StaticMethods.mukapArtistList =
-                                                    ApiProvider
-                                                        .getMukapArtistByService(
-                                                            widget.token,
-                                                            widget.salon_id,
-                                                            snapshot
-                                                                .data[index].id,
-                                                            context);
                                               });
                                             } else {
                                               setState(() {
@@ -476,11 +588,11 @@ class BookServiceExpansionPanel_State extends State<BookServiceExpansionPanel> {
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(5.0),
                                     side: BorderSide(
-                                      color: MassaraColor.primary_color,
+                                      color: QaeatColor.primary_color,
                                       width: 1.0,
                                     ),
                                   ),
-                                  color: MassaraColor.primary_color,
+                                  color: QaeatColor.primary_color,
                                   child: Text(
                                     'تاكيد',
                                     style: TextStyle(

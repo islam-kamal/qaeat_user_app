@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:Massara/Custom_Widgets/export_file.dart';
-import 'package:Massara/View/User_Sign/user_sigin.dart';
+import 'package:Qaeat/Custom_Widgets/export_file.dart';
+import 'package:Qaeat/View/User_Sign/user_sigin.dart';
 
 class VistorMessage extends StatefulWidget {
   @override
@@ -20,7 +20,7 @@ class VistorMessageStatus extends State<VistorMessage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Image(
-            image: AssetImage('images/splash_screen/massara_logo.png'),
+            image: AssetImage('images/splash_screen/Qaeat_logo.png'),
             fit: BoxFit.fill,
             width: MediaQuery.of(context).size.width / 2,
             height: MediaQuery.of(context).size.width / 2,
@@ -36,7 +36,7 @@ class VistorMessageStatus extends State<VistorMessage> {
             ),
           ),
           RaisedButton(
-            color: MassaraColor.primary_color,
+            color: QaeatColor.primary_color,
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),

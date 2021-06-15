@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:Massara/Custom_Widgets/export_file.dart';
+import 'package:Qaeat/Custom_Widgets/export_file.dart';
 
 class SearchResult extends StatefulWidget {
   final String token;
@@ -54,7 +54,7 @@ class SearchResultState extends State<SearchResult> {
         },
         child: Scaffold(
             appBar: AppBar(
-              backgroundColor: MassaraColor.primary_color,
+              backgroundColor: QaeatColor.primary_color,
               automaticallyImplyLeading: false,
               leading: IconButton(
                 icon: Icon(
@@ -151,11 +151,11 @@ class SearchResultState extends State<SearchResult> {
                                                           5.0),
                                                       side: BorderSide(
                                                         color:
-                                                        MassaraColor.primary_color,
+                                                        QaeatColor.primary_color,
                                                         width: 1.0,
                                                       ),
                                                     ),
-                                                    color: MassaraColor.primary_color,
+                                                    color: QaeatColor.primary_color,
                                                     child: Text(
                                                       'احجز الان',
                                                       style: TextStyle(
@@ -483,7 +483,7 @@ class SearchResultState extends State<SearchResult> {
                                   icon: Icon(
                                     Icons.favorite,
                                     size: 30,
-                                    color: MassaraColor.primary_color,
+                                    color: QaeatColor.primary_color,
                                   ),
                                   onPressed: () async {
                                     setState(() async {
@@ -511,7 +511,7 @@ class SearchResultState extends State<SearchResult> {
                                   icon: Icon(
                                     Icons.favorite_border,
                                     size: 30,
-                                    color: MassaraColor.primary_color,
+                                    color: QaeatColor.primary_color,
                                   ),
                                   onPressed: () {
                                     setState(() async {

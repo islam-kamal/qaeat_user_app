@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:Massara/Custom_Widgets/custom_textfield.dart';
-import 'package:Massara/Custom_Widgets/export_file.dart';
+import 'package:Qaeat/Custom_Widgets/custom_textfield.dart';
+import 'package:Qaeat/Custom_Widgets/export_file.dart';
 
 class EditUser extends StatefulWidget {
   final String shared_name, shared_email, shared_mobile, shared_token;
@@ -76,30 +76,32 @@ class EditUserState extends State<EditUser> {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        title: Center(
-          child: Text("تعديل الملف الشخصى",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20)),
+        automaticallyImplyLeading: false,
+        title: Container(
+          alignment: Alignment.centerRight,
+          child: Text(
+            "تعديل الملف الشخصى",
+            style: TextStyle(
+                fontFamily: 'Cairo', color: Colors.white, fontSize: 16),
+          ),
         ),
+        actions: [
+          InkWell(
+            onTap: () {
+              Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (context) => MorePage()));
+            },
+            child: Icon(Icons.arrow_forward_ios),
+          )
+        ],
+        backgroundColor: QaeatColor.primary_color,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
             bottom: Radius.circular(10),
           ),
         ),
-        backgroundColor:  MassaraColor.primary_color,
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back_ios,
-            color: Color(0xFFFFFFFF),
-          ),
-          onPressed: () {
-            Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (context) => MorePage()));
-          },
-        ),
       ),
+
       body: (widget.shared_token == null)
           ? VistorMessage()
           : SafeArea(
@@ -293,11 +295,11 @@ class EditUserState extends State<EditUser> {
                                                 borderRadius:
                                                     BorderRadius.circular(5.0),
                                                 side: BorderSide(
-                                                  color: MassaraColor.primary_color,
+                                                  color: QaeatColor.primary_color,
                                                   width: 1.0,
                                                 ),
                                               ),
-                                              color: MassaraColor.primary_color,
+                                              color: QaeatColor.primary_color,
                                               child: Text(
                                                 'حفظ',
                                                 style: TextStyle(
@@ -499,11 +501,11 @@ class EditUserState extends State<EditUser> {
                                                       BorderRadius.circular(
                                                           5.0),
                                                   side: BorderSide(
-                                                    color: MassaraColor.primary_color,
+                                                    color: QaeatColor.primary_color,
                                                     width: 1.0,
                                                   ),
                                                 ),
-                                                color: MassaraColor.primary_color,
+                                                color: QaeatColor.primary_color,
                                                 child: Text(
                                                   'حفظ ',
                                                   style: TextStyle(
@@ -569,7 +571,7 @@ class EditUserState extends State<EditUser> {
     ('password_confirmation : ${update_password_confirmation}');
     ('profile 1');
     await _progressDialog.show();
-    String updateProfile_Url = 'https://massaraapp.wothoq.co/api/users/update';
+    String updateProfile_Url = 'https://qaat.wothoq.co/api/admin/update';
     Dio dio = new Dio();
     ('profile 2');
     try {

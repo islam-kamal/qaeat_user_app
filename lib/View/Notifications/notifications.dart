@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:Massara/Custom_Widgets/export_file.dart';
-import 'package:Massara/View/Notifications/notification_model.dart';
+import 'package:Qaeat/Custom_Widgets/export_file.dart';
+import 'package:Qaeat/View/Notifications/notification_model.dart';
 
 class Notifications extends StatefulWidget {
   final String token;
@@ -52,7 +52,7 @@ class Notifications_state extends State<Notifications> {
               'الاشعارات',
               style: TextStyle(fontFamily: 'Cairo'),
             ),
-            backgroundColor: MassaraColor.primary_color,
+            backgroundColor: QaeatColor.primary_color,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(
                 bottom: Radius.circular(10),
@@ -105,7 +105,7 @@ class Notifications_state extends State<Notifications> {
                                                       MainAxisAlignment.center,
                                                   children: <Widget>[
                                                     Text(
-                                                      '${(snapshot.data[index].salon == null) ? ' ' : snapshot.data[index].salon.name}',
+                                                      '${(snapshot.data[index].hall == null) ? ' ' : snapshot.data[index].hall.name}',
                                                       style: TextStyle(
                                                           fontFamily: 'Cairo',
                                                           fontSize: 14),
@@ -216,7 +216,7 @@ class Notifications_state extends State<Notifications> {
                                     Image(
                                       image: AssetImage(
                                           'images/notifications/notification.png'),
-                                      color: MassaraColor.primary_color,
+                                      color: QaeatColor.primary_color,
                                     ),
                                     SizedBox(
                                       height: 20,
@@ -225,7 +225,7 @@ class Notifications_state extends State<Notifications> {
                                       'لا يوجد اشعارات',
                                       style: TextStyle(
                                           fontFamily: 'Cairo',
-                                          color: MassaraColor.secondary_color,
+                                          color: QaeatColor.primary_color,
                                           fontWeight: FontWeight.bold,
                                           fontSize: 21),
                                     )
@@ -245,7 +245,7 @@ class Notifications_state extends State<Notifications> {
                                   Image(
                                     image: AssetImage(
                                         'images/notifications/notification.png'),
-                                    color: MassaraColor.primary_color,
+                                    color: QaeatColor.primary_color,
                                   ),
                                   SizedBox(
                                     height: 20,
@@ -254,7 +254,7 @@ class Notifications_state extends State<Notifications> {
                                     'لا يوجد اشعارات',
                                     style: TextStyle(
                                         fontFamily: 'Cairo',
-                                        color: MassaraColor.secondary_color,
+                                        color: QaeatColor.primary_color,
                                         fontWeight: FontWeight.bold,
                                         fontSize: 21),
                                   )

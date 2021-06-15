@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:Massara/Custom_Widgets/export_file.dart';
+import 'package:Qaeat/Custom_Widgets/export_file.dart';
 import 'customer_services.dart';
 
 class CustomerServiceComplain extends StatefulWidget {
@@ -63,29 +63,29 @@ class CustomerServiceComplain_state extends State<CustomerServiceComplain> {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          'الدعم الفنى',
-          style: TextStyle(
-            fontFamily: 'Cairo',
-            color: Color(0xFFFFFFFF),
+        automaticallyImplyLeading: false,
+        title: Container(
+          alignment: Alignment.centerRight,
+          child: Text(
+            'الدعم الفنى',
+            style: TextStyle(
+                fontFamily: 'Cairo', color: Colors.white, fontSize: 16),
           ),
         ),
-        backgroundColor: MassaraColor.primary_color,
+        actions: [
+          InkWell(
+            onTap: () {
+              Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (context) => MorePage()));
+            },
+            child: Icon(Icons.arrow_forward_ios),
+          )
+        ],
+        backgroundColor: QaeatColor.primary_color,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
             bottom: Radius.circular(10),
           ),
-        ),
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back_ios,
-            color: Color(0xFFFFFFFF),
-          ),
-          onPressed: () {
-            Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (context) => MorePage()));
-          },
         ),
       ),
       body: (widget.token == StaticMethods.vistor_token)
@@ -317,11 +317,11 @@ class CustomerServiceComplain_state extends State<CustomerServiceComplain> {
                                             borderRadius:
                                                 BorderRadius.circular(5.0),
                                             side: BorderSide(
-                                              color: MassaraColor.primary_color,
+                                              color: QaeatColor.primary_color,
                                               width: 1.0,
                                             ),
                                           ),
-                                          color: MassaraColor.primary_color,
+                                          color: QaeatColor.primary_color,
                                           child: Text(
                                             'ارسال',
                                             style: TextStyle(

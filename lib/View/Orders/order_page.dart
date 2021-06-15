@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:Massara/Custom_Widgets/export_file.dart';
-import 'package:Massara/Model/order_model.dart';
+import 'package:Qaeat/Custom_Widgets/export_file.dart';
+import 'package:Qaeat/Model/order_model.dart';
 
 class OrdersPage extends StatefulWidget {
   final String token;
@@ -70,7 +70,7 @@ class OrdersPage_State extends State<OrdersPage> {
               'طلباتى',
               style: TextStyle(fontFamily: 'Cairo'),
             ),
-            backgroundColor: MassaraColor.primary_color,
+            backgroundColor: QaeatColor.primary_color,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(
                 bottom: Radius.circular(10),
@@ -95,10 +95,10 @@ class OrdersPage_State extends State<OrdersPage> {
                                 shrinkWrap: true,
                                 itemBuilder: (context, index) {
                                   latitude = double.parse(
-                                      snapshot.data[index].salon.Latitude);
+                                      snapshot.data[index].hall.latitude);
                                   longitude = double.parse(
-                                      snapshot.data[index].salon.Longitude);
-                                  salon_name = snapshot.data[index].salon.name;
+                                      snapshot.data[index].hall.longitude);
+                                  salon_name = snapshot.data[index].hall.name;
 
                                   return Card(
                                     shape: OutlineInputBorder(
@@ -126,7 +126,7 @@ class OrdersPage_State extends State<OrdersPage> {
                                                                 .width /
                                                             6,
                                                     child: Image.network(
-                                                      '${snapshot.data[index].salon.logo}',
+                                                      '${snapshot.data[index].hall.logo}',
                                                       fit: BoxFit.cover,
                                                       alignment:
                                                           Alignment.topCenter,
@@ -146,7 +146,7 @@ class OrdersPage_State extends State<OrdersPage> {
                                                               .center,
                                                       children: <Widget>[
                                                         Text(
-                                                          '${snapshot.data[index].salon.name}',
+                                                          '${snapshot.data[index].hall.name}',
                                                           style: TextStyle(
                                                               fontFamily:
                                                                   'Cairo',
@@ -204,7 +204,7 @@ class OrdersPage_State extends State<OrdersPage> {
                                                     width: 10,
                                                   ),
                                                   Text(
-                                                    '${snapshot.data[index].salon.address}',
+                                                    '${snapshot.data[index].hall.address}',
                                                     style: TextStyle(
                                                       color: Color(0xFF403E3E),
                                                       fontFamily: 'Cairo',
@@ -265,12 +265,12 @@ class OrdersPage_State extends State<OrdersPage> {
                                                 ),
                                               ),
                                               // container contain more details data
-                                              Container(
+                                            Container(
                                                 padding:
                                                     EdgeInsets.only(top: 10),
                                                 child: Column(
                                                   children: <Widget>[
-                                                    (snapshot.data[index].employee == null
+                                                /*    (snapshot.data[index].employee == null
                                                        || snapshot.data[index].employee.name=='')
                                                         ? Container()
                                                         : Padding(
@@ -347,7 +347,7 @@ class OrdersPage_State extends State<OrdersPage> {
                                                                 ),
                                                               ],
                                                             ),
-                                                          ),
+                                                          ),*/
                                                     Padding(
                                                       padding: EdgeInsets.only(
                                                           top: 10),
@@ -410,7 +410,7 @@ class OrdersPage_State extends State<OrdersPage> {
                                                                           ),),
                                                                         ),
                                                                       ),
-                                                                      Expanded(
+                                                                /*      Expanded(
                                                                         flex: 1,
                                                                         child: Container(
                                                                           child: Text(' عدد الاشخاص', style:
@@ -421,7 +421,7 @@ class OrdersPage_State extends State<OrdersPage> {
                                                                             'Cairo',
                                                                           ),),
                                                                         ),
-                                                                      )
+                                                                      )*/
                                                                     ],
                                                                   ),
                                                                   ListView.builder(
@@ -495,7 +495,7 @@ class OrdersPage_State extends State<OrdersPage> {
                                                                                         ],
                                                                                       )
                                                                                   ),
-                                                                                  Expanded(
+                                                                            /*      Expanded(
                                                                                     flex: 1,
                                                                                     child: Container(
                                                                                       //   width: MediaQuery.of(context).size.width / 3,
@@ -514,7 +514,7 @@ class OrdersPage_State extends State<OrdersPage> {
                                                                                             fontWeight: FontWeight.bold),
                                                                                       ),
                                                                                     ),
-                                                                                  ),
+                                                                                  ),*/
                                                                                 ],
                                                                               )
                                                                           ),
@@ -528,7 +528,7 @@ class OrdersPage_State extends State<OrdersPage> {
                                                         ],
                                                       ),
                                                     ),
-                                                    Padding(
+                                                 /*   Padding(
                                                       padding: EdgeInsets.only(
                                                           top: 10, bottom: 5),
                                                       child: Row(
@@ -595,7 +595,7 @@ class OrdersPage_State extends State<OrdersPage> {
                                                           ),
                                                         ],
                                                       ),
-                                                    ),
+                                                    ),*/
                                                     Divider(),
                                                     Padding(
                                                       padding: EdgeInsets.only(
@@ -628,7 +628,7 @@ class OrdersPage_State extends State<OrdersPage> {
                                                                   Alignment
                                                                       .center,
                                                               child: Text(
-                                                                '${snapshot.data[index].total_cost}  ريال',
+                                                                '${snapshot.data[index].totalCost}  ريال',
                                                                 style: TextStyle(
                                                                     fontFamily:
                                                                         'Cairo',
@@ -665,7 +665,7 @@ class OrdersPage_State extends State<OrdersPage> {
                                                             width: 10,
                                                           ),
                                                           Text(
-                                                            'الصالون على الخريطه',
+                                                            'القاعة على الخريطه',
                                                             style: TextStyle(
                                                                 color: Color(
                                                                     0xFF292929),
@@ -739,7 +739,7 @@ class OrdersPage_State extends State<OrdersPage> {
                                                                     0xFF707070),
                                                               ),
                                                             ),
-                                                            color:MassaraColor.primary_color,
+                                                            color:QaeatColor.primary_color,
                                                           ),
                                                         )
                                                             : Column(
@@ -751,10 +751,10 @@ class OrdersPage_State extends State<OrdersPage> {
                                                                 height: MediaQuery.of(context).size.width/7,
                                                                 child: new RaisedButton(
                                                                   onPressed:()  {
-                                                                    ApiProvider.makeOnlinePayment(widget.token,
-                                                                        snapshot.data[index].total_cost.toDouble(),
+                                                               /*     ApiProvider.makeOnlinePayment(widget.token,
+                                                                        snapshot.data[index].totalCost.toDouble(),
                                                                         snapshot.data[index].id,
-                                                                        context);
+                                                                        context);*/
 
                                                                   },
 
@@ -772,7 +772,7 @@ class OrdersPage_State extends State<OrdersPage> {
                                                                     borderRadius: new BorderRadius.circular(5.0),
 
                                                                   ),
-                                                                  color: MassaraColor.primary_color,
+                                                                  color: QaeatColor.primary_color,
                                                                 ),
                                                               ),
                                                             ),
@@ -830,7 +830,7 @@ class OrdersPage_State extends State<OrdersPage> {
                                                                         0xFF707070),
                                                                   ),
                                                                 ),
-                                                                color: MassaraColor.primary_color,
+                                                                color: QaeatColor.primary_color,
                                                               ),
                                                             )
                                                       )
@@ -858,7 +858,7 @@ class OrdersPage_State extends State<OrdersPage> {
                                   children: <Widget>[
                                     Image(
                                       image: AssetImage(
-                                          'images/splash_screen/massara_logo.png'),
+                                          'images/splash_screen/Qaeat_logo.png'),
                                     ),
                                     SizedBox(
                                       height: 20,
@@ -867,7 +867,7 @@ class OrdersPage_State extends State<OrdersPage> {
                                       'لا يوجد طلبات حاليا',
                                       style: TextStyle(
                                           fontFamily: 'Cairo',
-                                          color: MassaraColor.secondary_color,
+                                          color: QaeatColor.primary_color,
                                           fontWeight: FontWeight.bold,
                                           fontSize: 21),
                                     )
@@ -890,7 +890,7 @@ class OrdersPage_State extends State<OrdersPage> {
                                     height:
                                         MediaQuery.of(context).size.width / 2,
                                     image: AssetImage(
-                                        'images/splash_screen/massara_logo.png'),
+                                        'images/splash_screen/Qaeat_logo.png'),
                                   ),
                                   SizedBox(
                                     height: 20,
@@ -899,7 +899,7 @@ class OrdersPage_State extends State<OrdersPage> {
                                     'لا يوجد طلبات حاليا',
                                     style: TextStyle(
                                         fontFamily: 'Cairo',
-                                        color: MassaraColor.secondary_color,
+                                        color: QaeatColor.primary_color,
                                         fontWeight: FontWeight.bold,
                                         fontSize: 21),
                                   )

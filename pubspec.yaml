@@ -1,4 +1,4 @@
-name: Massara
+name: Qaeat
 description: A new Flutter application.
 
 # The following defines the version and build number for your application.
@@ -11,7 +11,7 @@ description: A new Flutter application.
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version:  1.0.1+5
+version:  1.0.1+1
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
@@ -67,7 +67,8 @@ flutter:
     - images/user_sign/salonic.png
     - images/background/background2.jpg
     - images/background/Path1.png
-    - images/splash_screen/massara_logo.png
+    - images/splash_screen/Qaeat_logo.png
+    - images/splash_screen/qaeat_splash.png
     - images/background/backgroundassets.png
     - images/filter.png
     - images/home/bell.png
@@ -105,8 +106,8 @@ flutter:
     - images/reservation/money.png
     - images/mastercard.png
     - images/favourite/favourite.png
-    - images/splash_screen/massara_logo.png
-    - images/splash_screen/massara_logo.png
+    - images/splash_screen/Qaeat_logo.png
+    - images/splash_screen/Qaeat_logo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

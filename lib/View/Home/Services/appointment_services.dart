@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:Massara/Custom_Widgets/export_file.dart';
+import 'package:Qaeat/Custom_Widgets/export_file.dart';
 
 class AppointmentService extends StatefulWidget {
   final String token;
@@ -123,16 +123,16 @@ class AppointmentServiceState extends State<AppointmentService> {
                       Icon(
                         Icons.work,
                         size: 80,
-                        color: MassaraColor.secondary_color,
+                        color: QaeatColor.secondary_color,
                       ),
                       SizedBox(
                         height: 20,
                       ),
                       Text(
-                        'لا توجد خدمات فى الصالون فى الوقت الحالى  ',
+                        'لا توجد خدمات فى القاعة فى الوقت الحالى  ',
                         style: TextStyle(
                             fontFamily: 'Cairo',
-                            color: MassaraColor.secondary_color,
+                            color: QaeatColor.secondary_color,
                             fontWeight: FontWeight.bold,
                             fontSize: 18),
                       )
@@ -159,7 +159,7 @@ class AppointmentServiceState extends State<AppointmentService> {
         },
         child: Scaffold(
           appBar: AppBar(
-            backgroundColor: MassaraColor.primary_color,
+            backgroundColor: QaeatColor.primary_color,
             title: Text('الخدمات',
                 style: TextStyle(
                   fontFamily: 'Cairo',
@@ -195,7 +195,7 @@ class AppointmentServiceState extends State<AppointmentService> {
                         Icon(
                           Icons.work,
                           size: 80,
-                          color: MassaraColor.secondary_color,
+                          color: QaeatColor.secondary_color,
                         ),
                         SizedBox(
                           height: 20,
@@ -204,7 +204,7 @@ class AppointmentServiceState extends State<AppointmentService> {
                           'لا توجد خدمات  فى الوقت الحالى  ',
                           style: TextStyle(
                               fontFamily: 'Cairo',
-                              color: MassaraColor.secondary_color,
+                              color: QaeatColor.secondary_color,
                               fontWeight: FontWeight.bold,
                               fontSize: 18),
                         )
@@ -291,16 +291,16 @@ class AppointmentServiceState extends State<AppointmentService> {
                                     Icon(
                                       Icons.work,
                                       size: 80,
-                                      color: MassaraColor.secondary_color,
+                                      color: QaeatColor.secondary_color,
                                     ),
                                     SizedBox(
                                       height: 20,
                                     ),
                                     Text(
-                                      'لا توجد خدمات فى الصالون فى الوقت الحالى  ',
+                                      'لا توجد خدمات فى القاعة فى الوقت الحالى  ',
                                       style: TextStyle(
                                           fontFamily: 'Cairo',
-                                          color: MassaraColor.secondary_color,
+                                          color: QaeatColor.secondary_color,
                                           fontWeight: FontWeight.bold,
                                           fontSize: 18),
                                     )

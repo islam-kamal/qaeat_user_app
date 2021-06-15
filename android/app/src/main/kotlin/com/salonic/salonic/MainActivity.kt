@@ -1,4 +1,4 @@
-package com.wothoq.qaeat
+package com.wothoq.qaeatuser
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

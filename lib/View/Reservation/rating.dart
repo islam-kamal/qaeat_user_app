@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rating_bar/rating_bar.dart';
-import 'package:Massara/Custom_Widgets/export_file.dart';
+import 'package:Qaeat/Custom_Widgets/export_file.dart';
 
 class Rating extends StatefulWidget {
   final String token;
@@ -67,11 +67,114 @@ class RatingState extends State<Rating> {
                         Container(
                           alignment: Alignment.center,
                           child: Text(
-                            'نشكرك على حسن تعاونك معنا يمكنك \n          تقييم الصالون والخبير ايضا',
+                            'نشكرك على حسن تعاونك معنا يمكنك \n                تقييم القاعةا',
                             style: TextStyle(fontFamily: 'Cairo'),
                           ),
                         ),
-                        Padding(
+                        SizedBox(
+                          height: width * 0.1,
+                        ),
+                        Container(
+                          child: Column(
+                            children: <Widget>[
+                              Container(
+                                padding: EdgeInsets.only(top: 10),
+                                alignment: Alignment.center,
+                                child: RatingBar(
+                                  onRatingChanged: (rate) {
+                                    setState(() {
+                                      salon_rate = rate;
+                                    });
+                                    ('salon_rate : ${salon_rate}');
+                                  },
+                                  initialRating: salon_rate,
+                                  maxRating: 5,
+                                  isHalfAllowed: true,
+                                  halfFilledIcon: Icons.star_half,
+                                  filledIcon: Icons.star,
+                                  emptyIcon: Icons.star_border,
+                                  size: 30,
+                                  filledColor: (salon_rate >= 1)
+                                      ? Colors.yellow.shade700
+                                      : Colors.yellow.shade700,
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.all(10),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius:
+                                      BorderRadius.circular(5),
+                                      border: Border.all(
+                                          color: Color(0xFFC2C0C0))),
+                                  child: TextField(
+                                    controller: salon_comment,
+                                    decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                        filled: true,
+                                        fillColor: Colors.white,
+                                        hintText: 'اكتب تعليقك هنا ',
+                                        hintStyle: TextStyle(
+                                            fontFamily: 'Cairo',
+                                            color: QaeatColor.secondary_color,
+                                            fontSize: 12)),
+                                    maxLines: 4,
+                                    keyboardType: TextInputType.multiline,
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding:
+                                EdgeInsets.only(right: 20, top: 10),
+                                child: new Container(
+                                  alignment: Alignment.centerRight,
+                                  child: ButtonTheme(
+                                    minWidth: MediaQuery.of(context)
+                                        .size
+                                        .width /
+                                        3,
+                                    child: RaisedButton(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(5.0),
+                                        side: BorderSide(
+                                          color: QaeatColor.primary_color,
+                                          width: 1.0,
+                                        ),
+                                      ),
+                                      color: QaeatColor.primary_color,
+                                      child: Text(
+                                        'تقييم',
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontFamily: 'Cairo',
+                                            fontWeight:
+                                            FontWeight.normal),
+                                      ),
+                                      onPressed: () {
+                                        int value = salon_rate.toInt();
+                                        String comment = (salon_comment
+                                            .text
+                                            .trim() ==
+                                            null)
+                                            ? ''
+                                            : salon_comment.text.trim();
+                                        ApiProvider.senRateForSalon(
+                                            widget.token,
+                                            widget.salon_id,
+                                            widget.user_id,
+                                            value,
+                                            comment,
+                                            context);
+                                      },
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        )
+                    /*    Padding(
                           padding: EdgeInsets.all(10),
                           child: Container(
                             decoration: BoxDecoration(
@@ -92,7 +195,7 @@ class RatingState extends State<Rating> {
                                                   color: Color(0xFFF6F6F6))),
                                     ),
                                     child: Text(
-                                      'تقييم الصالون',
+                                      'تقييم القاعة',
                                       style: rating_border == 1
                                           ? TextStyle(
                                               fontFamily: 'Cairo',
@@ -143,8 +246,10 @@ class RatingState extends State<Rating> {
                               ],
                             ),
                           ),
-                        ),
-                        rating_border == 1
+                        ),*/
+
+
+                /*        rating_border == 1
                             ? Container(
                                 child: Column(
                                   children: <Widget>[
@@ -187,7 +292,7 @@ class RatingState extends State<Rating> {
                                               hintText: 'اكتب تعليقك هنا ',
                                               hintStyle: TextStyle(
                                                   fontFamily: 'Cairo',
-                                                  color: MassaraColor.secondary_color,
+                                                  color: QaeatColor.secondary_color,
                                                   fontSize: 12)),
                                           maxLines: 4,
                                           keyboardType: TextInputType.multiline,
@@ -209,11 +314,11 @@ class RatingState extends State<Rating> {
                                               borderRadius:
                                                   BorderRadius.circular(5.0),
                                               side: BorderSide(
-                                                color: MassaraColor.primary_color,
+                                                color: QaeatColor.primary_color,
                                                 width: 1.0,
                                               ),
                                             ),
-                                            color: MassaraColor.primary_color,
+                                            color: QaeatColor.primary_color,
                                             child: Text(
                                               'تقييم',
                                               style: TextStyle(
@@ -290,7 +395,7 @@ class RatingState extends State<Rating> {
                                                   hintText: 'اكتب تعليقك هنا ',
                                                   hintStyle: TextStyle(
                                                       fontFamily: 'Cairo',
-                                                      color: MassaraColor.secondary_color,
+                                                      color: QaeatColor.secondary_color,
                                                       fontSize: 12)),
                                               keyboardType:
                                                   TextInputType.multiline,
@@ -314,11 +419,11 @@ class RatingState extends State<Rating> {
                                                       BorderRadius.circular(
                                                           5.0),
                                                   side: BorderSide(
-                                                    color: MassaraColor.primary_color,
+                                                    color: QaeatColor.primary_color,
                                                     width: 1.0,
                                                   ),
                                                 ),
-                                                color: MassaraColor.primary_color,
+                                                color: QaeatColor.primary_color,
                                                 child: Text(
                                                   'تقييم',
                                                   style: TextStyle(
@@ -357,7 +462,7 @@ class RatingState extends State<Rating> {
                                     ),
                                   );
                                 },
-                              )
+                              )*/
                       ],
                     ),
                   ),

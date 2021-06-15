@@ -5,11 +5,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:rating_bar/rating_bar.dart';
-import 'package:Massara/Custom_Widgets/export_file.dart';
-import 'package:Massara/Model/Search/filter_model.dart';
-import 'package:Massara/View/Advanced_Search/city_expansion_panel.dart';
-import 'package:Massara/View/Advanced_Search/service_expamsion_panel.dart';
-import 'package:Massara/View/Home/Search/search_result.dart';
+import 'package:Qaeat/Custom_Widgets/export_file.dart';
+import 'package:Qaeat/Model/Search/filter_model.dart';
+import 'package:Qaeat/View/Advanced_Search/city_expansion_panel.dart';
+import 'package:Qaeat/View/Advanced_Search/service_expamsion_panel.dart';
+import 'package:Qaeat/View/Home/Search/search_result.dart';
 import 'package:search_widget/search_widget.dart';
 
 class AdvancedSearchClass extends StatefulWidget {
@@ -85,7 +85,7 @@ class _HomePageState extends State<AdvancedSearchClass> {
             } else {}
           }
           return CircularProgressIndicator(
-            valueColor: new AlwaysStoppedAnimation<Color>(MassaraColor.primary_color),
+            valueColor: new AlwaysStoppedAnimation<Color>(QaeatColor.secondary_color),
           );
         },
       ),
@@ -119,7 +119,7 @@ class MyTextField extends StatelessWidget {
                   controller: controller,
                   focusNode: focusNode,
                   decoration: InputDecoration(
-                    hintText: "بحث بـ اسم الصالون",
+                    hintText: "بحث بـ اسم القاعة",
                     hintStyle: TextStyle(
                       color: Color(0xFFBBBBBB),
                     ),
@@ -329,11 +329,11 @@ class MyTextField extends StatelessWidget {
                                     });
                                     ('filter 3');
                                   },
-                                  color: MassaraColor.primary_color,
+                                  color: QaeatColor.primary_color,
                                   shape: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(5),
                                       borderSide: BorderSide(
-                                        color: MassaraColor.primary_color,
+                                        color: QaeatColor.primary_color,
                                       )),
                                   child: Container(
                                     width:
@@ -373,14 +373,14 @@ class NoItemsFound extends StatelessWidget {
         Icon(
           Icons.shop,
           size: 24,
-          color: MassaraColor.primary_color,
+          color: QaeatColor.primary_color,
         ),
         const SizedBox(width: 10),
         Text(
           "لا يوجد صالون بهذا الاسم ",
           style: TextStyle(
             fontSize: 16,
-            color: Colors.grey[900].withOpacity(0.7),
+            color: QaeatColor.primary_color.withOpacity(0.7),
           ),
         ),
       ],
