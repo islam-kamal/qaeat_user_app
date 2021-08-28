@@ -89,14 +89,8 @@ class ContactUs_state extends State<ContactUs> {
                                         padding: EdgeInsets.all(10),
                                         child: Image.network(
                                           '${snapshot.data[index].logo}',
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width /
-                                              14,
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .width /
-                                              14,
+                                          width: MediaQuery.of(context).size.width / 14,
+                                          height: MediaQuery.of(context).size.width / 14,
                                           fit: BoxFit.fill,
                                         ),
                                       ),

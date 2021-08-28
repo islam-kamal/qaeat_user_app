@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:Qaeat/Custom_Widgets/export_file.dart';
 
 class SalonSlider extends StatefulWidget {
-  List<Gallery> salonPictures;
-  SalonSlider({this.salonPictures});
+  List<Gallery> hallPictures;
+  SalonSlider({this.hallPictures});
   @override
   State<StatefulWidget> createState() {
-    ('salonSlider :${salonPictures}');
+    ('salonSlider :${hallPictures}');
     // TODO: implement createState
     return SalonSliderState();
   }
@@ -17,7 +17,7 @@ class SalonSliderState extends State<SalonSlider> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return CarouselSlider.builder(
-      itemCount: widget.salonPictures.length,
+      itemCount: widget.hallPictures.length,
       options: CarouselOptions(
         autoPlay: true,
         enlargeCenterPage: true,
@@ -26,7 +26,7 @@ class SalonSliderState extends State<SalonSlider> {
         initialPage: 0,
       ),
       itemBuilder: (BuildContext context, index) {
-        if (widget.salonPictures.length != 0) {
+        if (widget.hallPictures.length != 0) {
           return Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5),
@@ -34,7 +34,7 @@ class SalonSliderState extends State<SalonSlider> {
             child: Container(
               padding: EdgeInsets.only(top: 10, bottom: 5),
               child: Image.network(
-                '${widget.salonPictures[index].photo}',
+                '${widget.hallPictures[index].photo}',
                 width: MediaQuery.of(context).size.width,
                 fit: BoxFit.cover,
               ),

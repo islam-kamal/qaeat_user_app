@@ -23,32 +23,37 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
-  carousel_pro:
-  carousel_slider: 2.2.1
+  carousel_pro: 1.0.0
+  carousel_slider:
   rating_bar:
   search_widget: ^1.0.2
-  grouped_buttons: ^1.0.4
+  grouped_buttons: 1.0.4
   google_maps_flutter:
-  intl: ^0.16.0
-  http:
+  intl: ^0.15.1
+  http: ^0.12.0+4
+  http_parser: 4.0.0
   dio:
-  fluttertoast: ^4.0.0
-  shared_preferences: ^0.5.8
+  fluttertoast:
+  shared_preferences:
   progress_dialog: ^1.2.4
-  pin_code_text_field: ^1.7.1
-  url_launcher: ^5.5.0
-  notification_permissions: ^0.4.7
-  firebase_messaging: ^7.0.0
-  flutter_webview_plugin: ^0.3.11
-  location:
-  email_launcher: ^1.0.0
-  geocoder: ^0.2.1
-  flutter_datetime_picker: ^1.4.0
+  pin_code_text_field:
+  url_launcher:
+  notification_permissions:
+  firebase_messaging:
+  flutter_webview_plugin: ^0.4.0
+  location: 4.1.1
+  email_launcher:
+  geocoder:
+  flutter_datetime_picker:  ^1.5.1
+  bottom_navy_bar: ^6.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-
+dependency_overrides:
+  intl: ^0.17.0-nullsafety.2
+  http: ^0.13.1
+  image_picker : 0.7.0-nullsafety
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -72,6 +77,7 @@ flutter:
     - images/background/backgroundassets.png
     - images/filter.png
     - images/home/bell.png
+    - images/home/layer.png
     - images/home/notification.png
     - images/more/search.png
     - images/home/shopping-cart.png

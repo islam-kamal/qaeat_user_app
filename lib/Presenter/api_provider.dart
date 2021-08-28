@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:Qaeat/Model/hall_category_model.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:Qaeat/Custom_Widgets/export_file.dart';
@@ -146,20 +149,24 @@ class ApiProvider {
     }
   }
 
-  static Future<List<ServiceModel>> allServiceList(
+  static Future<HallCategoryModel> allServiceList(
       String token, BuildContext context) async {
-    String serviceList_Url = APP_URL + "/api/admin/services/get-all-services";
+    String serviceList_Url = APP_URL + "/api/admin/categories/get-all-categories";
+    print("111111111111111");
     Dio dio = new Dio();
     try {
       FormData _formData = FormData.fromMap({
         'token': '${token}',
       });
+      print("2222222222");
       final response = await dio.post(serviceList_Url, data: _formData);
+      print("response : ${response}");
+      print("333333333333");
       if (response.data['status']) {
-        final jsonResponse = response.data['services'];
-        List<ServiceModel> temp = (jsonResponse as List)
-            .map((itemWord) => ServiceModel.fromJson(itemWord))
-            .toList();
+        print("44444444444444");
+        final jsonResponse = response.data;
+        HallCategoryModel temp = HallCategoryModel.fromJson(jsonResponse);
+        print("5555555555");
         return temp;
       } else {
        // errorDialog(context: context, text: response.data['msg']);
@@ -308,17 +315,17 @@ class ApiProvider {
   }
 
   static Future<List<SalonDetailsModel>> getAllSalonsByService_id(
-      String token, int service_id, BuildContext context) async {
+      String token, int category_id, BuildContext context) async {
     print(111111);
     print(" token : $token");
-    print("service_id : ${service_id}");
-  //  String SalonList_Url = APP_URL + '/api/admin/services/AllSalonService';
-    String SalonList_Url = APP_URL + '/api/admin/salons/get-salon-rate-list';
+    print("category_id : ${category_id}");
+    //   String SalonList_Url = APP_URL + '/api/admin/salons/get-salon';
+   String SalonList_Url = APP_URL + '/api/admin/salons/get-salon-rate-list';
     Dio dio = new Dio();
     try {
       FormData _formData = FormData.fromMap({
-        'token': '${token}',
-        'id' : service_id
+        'token' : '${token}',
+        'category_id' : category_id
       });
       print(111112);
       final response = await dio.post(SalonList_Url, data: _formData);
@@ -326,12 +333,11 @@ class ApiProvider {
       if (response.data['status']) {
         print(111113);
         final jsonResponse = response.data['salons'];
+        print("jsonResponse : ${jsonResponse}");
         print(111114);
-        List<SalonDetailsModel> temp = (jsonResponse as List)
-            .map((itemWord) => SalonDetailsModel.fromJson(itemWord))
-            .toList();
+        List<SalonDetailsModel> temp = (jsonResponse as List).map((itemWord) => SalonDetailsModel.fromJson(itemWord)).toList();
         print(111115);
-        List<SalonDetailsModel> salonsListByService =
+/*        List<SalonDetailsModel> salonsListByService =
             new List<SalonDetailsModel>();
         print(111116);
         temp.forEach((obj) {
@@ -342,17 +348,50 @@ class ApiProvider {
           if (salon_services_id.contains(service_id)) {
             salonsListByService.add(obj);
           }
-        });
+        });*/
         print(111117);
-        print("ssssss : ${salonsListByService[0].name}");
-        return salonsListByService;
+       print("ssssss : ${temp}");
+        return temp;
       } else {
         print(111118);
+        return null;
      //   errorDialog(context: context, text: response.data['msg']);
       }
     } catch (e) {
       print(111119);
      // errorDialog(context: context, text: e.toString());
+    }
+  }
+
+
+
+  static Future<SalonDetailsModel> getAllSalonsBy_id(
+      String token, int hall_id, BuildContext context) async {
+    print(111111);
+    print("hall_id : ${hall_id}");
+    String hall_details_Url = APP_URL + '/api/admin/salons/get-salon';
+    Dio dio = new Dio();
+    try {
+      FormData _formData = FormData.fromMap({
+        'token': '${token}',
+        'hall_id' : hall_id
+      });
+      print(111112);
+      final response = await dio.post(hall_details_Url, data: _formData);
+      print('response : ${response}');
+      if (response.data['status']) {
+        print(111113);
+        final jsonResponse = response.data['salon'];
+        SalonDetailsModel salonDetailsModel = SalonDetailsModel.fromJson(jsonResponse);
+        print(111114);
+        return salonDetailsModel;
+      } else {
+        print(111115);
+        //   errorDialog(context: context, text: response.data['msg']);
+      }
+    } catch (e) {
+      print(111116);
+      // errorDialog(context: context, text: e.toString());
     }
   }
 
@@ -473,8 +512,8 @@ class ApiProvider {
     Dio dio = new Dio();
     try {
       FormData _formData = FormData.fromMap({
-        //'token': '${token}',
-        'token' : 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9zYWxvbmljLndvdGhvcS5jb1wvYXBpXC9hZG1pblwvbG9naW4iLCJpYXQiOjE2MDE3NDQyMTgsIm5iZiI6MTYwMTc0NDIxOCwianRpIjoiTHE5M0RPbWhzeHVabGdNWCIsInN1YiI6MSwicHJ2IjoiZGY4ODNkYjk3YmQwNWVmOGZmODUwODJkNjg2YzQ1ZTgzMmU1OTNhOSJ9.jepW-3WPmT7PzPKTV0lcH6I4v4ssDo3eTqFMsgllEkU',
+        'token': '${token}',
+       // 'token' : 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9zYWxvbmljLndvdGhvcS5jb1wvYXBpXC9hZG1pblwvbG9naW4iLCJpYXQiOjE2MDE3NDQyMTgsIm5iZiI6MTYwMTc0NDIxOCwianRpIjoiTHE5M0RPbWhzeHVabGdNWCIsInN1YiI6MSwicHJ2IjoiZGY4ODNkYjk3YmQwNWVmOGZmODUwODJkNjg2YzQ1ZTgzMmU1OTNhOSJ9.jepW-3WPmT7PzPKTV0lcH6I4v4ssDo3eTqFMsgllEkU',
       });
       final response = await dio.post(OfferList_Url, data: _formData);
       print('offer response : ${response}');
@@ -741,20 +780,32 @@ class ApiProvider {
 
   static Future<void> senRateForSalon(String token, int salon_id, int user_id,
       int value, String comment, BuildContext context) async {
+    print("token : ${token}");
+    print("salon_id : ${salon_id}");
+    print("user_id : ${user_id}");
+    print("value : ${value}");
+    print("comment : ${comment}");
+
     String SalonRate_Url = APP_URL + '/api/admin/rate/store';
     Dio dio = new Dio();
+    print("2");
     try {
       FormData _formData = FormData.fromMap({
         'token': '${token}',
-        'salon_id': '${salon_id}',
+        'hall_id': '${salon_id}',
         'user_id': '${user_id}',
         'value': '${value}',
         'comment': '${comment}',
       });
+      print("3");
       final response = await dio.post(SalonRate_Url, data: _formData);
+      print("response : ${response.data['status']}");
       if (response.data['status']) {
+        Navigator.pop(context);
+        print("4");
         errorDialog(context: context, text: 'تم التقييم بنجاح');
       } else {
+        print("5");
        // errorDialog(context: context, text: response.data['msg']);
       }
     } catch (e) {
@@ -860,6 +911,7 @@ class ApiProvider {
         'Latitude': '${Latitude}',
       });
       final response = await dio.post(NearestSalons_Url, data: _formData);
+      print("nearest response : ${response}");
       if (response.data['status']) {
         final jsonresponse = response.data['halls'];
         List<SearchByLocationModel> temp = (jsonresponse as List)

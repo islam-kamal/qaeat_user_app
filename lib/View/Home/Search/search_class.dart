@@ -91,15 +91,15 @@ class _HomePageState extends State<SearchClass> {
                     textDirection: TextDirection.rtl,
                     child: widget.map?TextField(
                       decoration: InputDecoration(
-                        hintText: "بحث بـ اسم القاعة",
+                        hintText: "بحث بـ مقدم الخدمة ",
                         hintStyle: TextStyle(
-                          color: Color(0xFFBBBBBB),
+                          color: QaeatColor.gray_color,
                         ),
                         prefixIcon: IconButton(
                           onPressed: () {},
                           icon: Icon(
                             Icons.search,
-                            color: Color(0xFFBBBBBB),
+                            color: QaeatColor.gray_color,
                           ),
                         ),
                       ),
@@ -109,15 +109,15 @@ class _HomePageState extends State<SearchClass> {
                           flex: 3,
                           child: TextField(
                             decoration: InputDecoration(
-                              hintText: "بحث بـ اسم القاعة",
+                              hintText: "بحث بـ مقدم الخدمة",
                               hintStyle: TextStyle(
-                                color: Color(0xFFBBBBBB),
+                                color:QaeatColor.gray_color,fontWeight: FontWeight.bold
                               ),
                               prefixIcon: IconButton(
                                 onPressed: () {},
                                 icon: Icon(
                                   Icons.search,
-                                  color: Color(0xFFBBBBBB),
+                                  color: QaeatColor.gray_color,
                                 ),
                               ),
                             ),
@@ -126,6 +126,7 @@ class _HomePageState extends State<SearchClass> {
                         Expanded(
                           flex: 2,
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
                             children: <Widget>[
                               IconButton(
                                 onPressed: () {
@@ -142,15 +143,16 @@ class _HomePageState extends State<SearchClass> {
                                 },
                                 icon: Icon(
                                   Icons.navigation,
-                                  color: QaeatColor.primary_color,
+                                  color: QaeatColor.gray_color,
                                 ),
                                 alignment: Alignment.centerLeft,
                               ),
                               Text(
-                                'قريب منى',
+                                'بحث متقدم',
                                 style: TextStyle(
-                                    color: QaeatColor.primary_color, fontSize: 14),
-                              )
+                                    color: QaeatColor.gray_color, fontSize: 14,fontWeight: FontWeight.bold),
+                              ),
+                              SizedBox(width: 5,)
                             ],
                           ),
                         )
@@ -178,81 +180,95 @@ class MyTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
+    return Material(
+      elevation: 5.0,
+       color: Colors.grey,
+      shadowColor: Colors.grey,
+      borderRadius: BorderRadius.circular(15),
+      child: Container(
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(6),
-            border: Border.all(color: Colors.black)),
-        child: Directionality(
-          textDirection: TextDirection.rtl,
-          child:map?TextField(
-            controller: controller,
-            focusNode: focusNode,
-            decoration: InputDecoration(
-              hintText: "بحث بـ اسم القاعة",
-              hintStyle: TextStyle(
-                color: Color(0xFFBBBBBB),
-              ),
-              prefixIcon: IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.search,
-                  color: Color(0xFFBBBBBB),
+            borderRadius: BorderRadius.circular(10),
+            //border: Border.all(color: Colors.black)
+          ),
+          child: Directionality(
+            textDirection: TextDirection.rtl,
+            child:map?TextField(
+              controller: controller,
+              focusNode: focusNode,
+              decoration: InputDecoration(
+                hintText: "بحث بـ مقدم الخدمة",
+                hintStyle: TextStyle(
+                  color: QaeatColor.gray_color,
+                ),
+                border: InputBorder.none,
+
+                prefixIcon: IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.search,
+                    color: QaeatColor.gray_color,
+                  ),
                 ),
               ),
-            ),
-          ): Row(
-            children: <Widget>[
-              Expanded(
-                flex: 3,
-                child: TextField(
-                  controller: controller,
-                  focusNode: focusNode,
-                  decoration: InputDecoration(
-                    hintText: "بحث بـ اسم القاعة",
-                    hintStyle: TextStyle(
-                      color: Color(0xFFBBBBBB),
-                    ),
-                    prefixIcon: IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.search,
-                        color: Color(0xFFBBBBBB),
+            ): Row(
+              children: <Widget>[
+                Expanded(
+                  flex: 3,
+                  child: TextField(
+                    controller: controller,
+                    focusNode: focusNode,
+                    decoration: InputDecoration(
+                      hintText: "بحث بـ مقدم الخدمة ",
+                      border: InputBorder.none,
+                      hintStyle: TextStyle(
+                          color: QaeatColor.gray_color,fontWeight: FontWeight.bold
+                      ),
+                      prefixIcon: IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.search,
+                          color: Color(0xFFBBBBBB),
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-              Expanded(
-                flex: 2,
-                child: Row(
-                  children: <Widget>[
-                    IconButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => NearestSalonic(
-                                  token: token,
-                                )));
-                      },
-                      icon: Icon(
-                        Icons.navigation,
-                        color: QaeatColor.primary_color,
+                Expanded(
+                  flex: 2,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+
+                    children: <Widget>[
+                      IconButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => NearestSalonic(
+                                    token: token,
+                                  )));
+                        },
+                        icon: Icon(
+                          Icons.navigation,
+                          color: QaeatColor.gray_color,
+                        ),
+                        alignment: Alignment.centerLeft,
                       ),
-                      alignment: Alignment.centerLeft,
-                    ),
-                    Text(
-                      'قريب منى',
-                      style: TextStyle(color: QaeatColor.primary_color, fontSize: 14),
-                    )
-                  ],
-                ),
-              )
-            ],
-          ),
-        ));
+                      Text(
+                        'بحث متقدم',
+                        style: TextStyle(color: QaeatColor.gray_color, fontSize: 14,fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(width: 5,)
+
+                    ],
+                  ),
+                )
+              ],
+            ),
+          )),
+    );
   }
 }
 

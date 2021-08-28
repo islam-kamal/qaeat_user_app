@@ -1,5 +1,7 @@
 import 'package:Qaeat/Custom_Widgets/export_file.dart';
 import 'package:Qaeat/Model/offer_model.dart';
+import 'package:Qaeat/View/Hall_Details/hall_details.dart';
+import 'file:///D:/Wothoq%20Tech/qaeat/code/qaeat_user_app/lib/Custom_Widgets/custom_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:rating_bar/rating_bar.dart';
 
@@ -65,7 +67,7 @@ class OfferPage_state extends State<OfferPage> {
               ),
             ),
           ),
-          bottomNavigationBar: BottomNavigation(
+          bottomNavigationBar: CustomBottomNavigationBar(
             index: _currentIndex,
           ),
           body: (offerList == null )
@@ -94,219 +96,167 @@ class OfferPage_state extends State<OfferPage> {
                                   bottom: 0),
                               height:
                               MediaQuery.of(context).size.width / 1.8,
-                              child: Card(
-                                clipBehavior: Clip.hardEdge,
-                                child: Stack(
-                                  children: <Widget>[
-                                    Image.network(
-                                      '${snapshot.data[index].banner}',
-                                      height: MediaQuery.of(context)
-                                          .size
-                                          .width /
-                                          1.8,
-                                      width:MediaQuery.of(context).size.width ,
-                                      fit: BoxFit.none,
-                                    ),
-                                    Stack(
-                                      children: <Widget>[
-                                        Image(
-                                          height: MediaQuery.of(context)
-                                              .size
-                                              .width /
-                                              1.7,
-                                          image: AssetImage(
-                                              'images/offer/sa1.png'),
-                                          fit: BoxFit.cover,
-                                        ),
-                                        Stack(
-                                          children: <Widget>[
-                                            Container(
-                                              padding: EdgeInsets.only(
-                                                  top: MediaQuery.of(
-                                                      context)
-                                                      .size
-                                                      .width /
-                                                      4),
-                                              alignment:
-                                              Alignment.bottomRight,
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                CrossAxisAlignment
-                                                    .center,
-                                                children: <Widget>[
-                                           Padding(
-                                             padding: EdgeInsets.only(right:MediaQuery.of(
-                                                 context)
-                                                 .size
-                                                 .width /
-                                                 14),
-                                             child: Row(
-                                               crossAxisAlignment: CrossAxisAlignment.end,
-                                               mainAxisAlignment: MainAxisAlignment.end,
-                                               children: [
-                                                 HelperWidgets
-                                                     .ratingbar_fun(
-                                                     5, rate, 15),
-                                                 SizedBox(width:  MediaQuery.of(
-                                                     context)
-                                                     .size
-                                                     .width /
-                                                     14,),
-                                                 Text(
-                                                   '${snapshot.data[index].hall.name}',
-                                                   style: TextStyle(
-                                                       color:
-                                                       Colors.white,
-                                                       fontFamily:
-                                                       'Cairo',
-                                                       fontWeight:
-                                                       FontWeight
-                                                           .bold),
-                                                 ),
+                              child: InkWell(
+                                onTap: (){
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => HallDetails(
+                                            token: widget.token,
+                                            hall_id: snapshot.data[index].hall.id,
+                                            route: 2,
+                                          )));
+                                },
+                                child:  Card(
+                                  clipBehavior: Clip.hardEdge,
+                                  child: Stack(
+                                    children: <Widget>[
+                                      Image.network(
+                                        '${snapshot.data[index].banner}',
+                                        height: MediaQuery.of(context)
+                                            .size
+                                            .width /
+                                            1.8,
+                                        width:MediaQuery.of(context).size.width ,
+                                        fit: BoxFit.none,
+                                      ),
+                                      Stack(
+                                        children: <Widget>[
+                                          Image(
+                                            height: MediaQuery.of(context).size.width / 1.7,
+                                            image: AssetImage('images/offer/sa1.png'),
+                                            fit: BoxFit.cover,
+                                          ),
+                                          Stack(
+                                            children: <Widget>[
+                                              Container(
+                                                padding: EdgeInsets.only(
+                                                    top: MediaQuery.of(context).size.width / 4),
+                                                alignment:
+                                                Alignment.bottomRight,
+                                                child: Column(
+                                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                                  children: <Widget>[
+                                                    Padding(
+                                                      padding: EdgeInsets.only(right:MediaQuery.of(context).size.width / 14),
+                                                      child: Row(
+                                                        crossAxisAlignment: CrossAxisAlignment.end,
+                                                        mainAxisAlignment: MainAxisAlignment.end,
+                                                        children: [
+                                                          HelperWidgets
+                                                              .ratingbar_fun(
+                                                              5, rate, 15),
+                                                          SizedBox(width:  MediaQuery.of(
+                                                              context)
+                                                              .size
+                                                              .width /
+                                                              14,),
+                                                          Text(
+                                                            '${snapshot.data[index].hall.name}',
+                                                            style: TextStyle(
+                                                                color:
+                                                                Colors.white,
+                                                                fontFamily:
+                                                                'Cairo',
+                                                                fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                          ),
 
-                                               ],
-                                             ),
-                                           ),
-                                                  Container(
-                                                    padding: EdgeInsets.only(right:MediaQuery.of(
-                                                        context)
-                                                        .size
-                                                        .width /
-                                                        14),
-                                                    child: Row(
-                                                      crossAxisAlignment:
-                                                      CrossAxisAlignment
-                                                          .end,
-                                                      mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .end,
-                                                      children: <Widget>[
-                                                        Text(
-                                                          '${snapshot.data[index].hall.address}',
-                                                          style:
-                                                          TextStyle(
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      padding: EdgeInsets.only(right:MediaQuery.of(
+                                                          context)
+                                                          .size
+                                                          .width /
+                                                          14),
+                                                      child: Row(
+                                                        crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .end,
+                                                        mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .end,
+                                                        children: <Widget>[
+                                                          Text(
+                                                            '${snapshot.data[index].hall.address}',
+                                                            style:
+                                                            TextStyle(
+                                                              color: Colors
+                                                                  .white,
+                                                              fontFamily:
+                                                              'Cairo',
+                                                            ),
+                                                          ),
+                                                          SizedBox(
+                                                            width: 15,
+                                                          ),
+                                                          Icon(
+                                                            Icons
+                                                                .location_on,
                                                             color: Colors
                                                                 .white,
-                                                            fontFamily:
-                                                            'Cairo',
                                                           ),
-                                                        ),
-                                                        SizedBox(
-                                                          width: 15,
-                                                        ),
-                                                        Icon(
-                                                          Icons
-                                                              .location_on,
-                                                          color: Colors
-                                                              .white,
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                              /*    Padding(
-                                                    padding:
-                                                    EdgeInsets.only(
-                                                      top: 5,
-                                                    ),
-                                                    child: Builder(
-                                                      builder: (ctx) =>
-                                                      new Container(
-                                                          padding:
-                                                          EdgeInsets
-                                                              .only(
-                                                            top: 5.0,
-                                                            right: 10,
-                                                            left: 10,
-                                                          ),
-                                                          alignment:
-                                                          Alignment
-                                                              .center,
-                                                          child:
-                                                          ButtonTheme(
-                                                            child:
-                                                            RaisedButton(
-                                                              shape:
-                                                              RoundedRectangleBorder(
-                                                                borderRadius:
-                                                                BorderRadius.circular(5.0),
-                                                              ),
-                                                              color: QaeatColor.primary_color,
-                                                              child:
-                                                              Text(
-                                                                'المزيد   ',
-                                                                style: TextStyle(
-                                                                    color: Colors.white,
-                                                                    fontFamily: 'Cairo',
-                                                                    fontWeight: FontWeight.normal),
-                                                                textAlign:
-                                                                TextAlign.center,
-                                                              ),
-                                                              onPressed:
-                                                                  () {
-                                                                Navigator.pushReplacement(
-                                                                    context,
-                                                                    MaterialPageRoute(
-                                                                        builder: (context) => SalonicList(
-                                                                          token: widget.token,
-                                                                          hall_id: snapshot.data[index].hall.id,
-                                                                        )));
-                                                              },
-                                                            ),
-                                                          )),
-                                                    ),
-                                                  ),*/
-                                                ],
-                                              ),
-                                            ),
-                                            Container(
-                                                height:
-                                                MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                    6,
-                                                width:
-                                                MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                    6,
-                                                padding: EdgeInsets.only(
-                                                    top: 2,
-                                                    bottom: 2,
-                                                    right: 10,
-                                                    left: 10),
-                                                margin: EdgeInsets.only(
-                                                    left: 15),
-                                                decoration: BoxDecoration(
-                                                    color:
-                                                    QaeatColor.primary_color,
-                                                    borderRadius:
-                                                    BorderRadius
-                                                        .circular(5)),
-                                                child: Column(
-                                                  children: <Widget>[
-                                                    Text(
-                                                      'خصم',
-                                                      style: TextStyle(
-                                                          fontFamily:
-                                                          'Cairo',
-                                                          color:Colors.white),
-                                                    ),
-                                                    Text(
-                                                      '%${snapshot.data[index].discount}',
-                                                      style: TextStyle(
-                                                          fontFamily:
-                                                          'Cairo',
-                                                          color:Colors.white),
+                                                        ],
+                                                      ),
                                                     ),
                                                   ],
-                                                ))
-                                          ],
-                                        )
-                                      ],
-                                    )
-                                  ],
+                                                ),
+                                              ),
+                                              Container(
+                                                  height:
+                                                  MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                      6,
+                                                  width:
+                                                  MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                      6,
+                                                  padding: EdgeInsets.only(
+                                                      top: 2,
+                                                      bottom: 2,
+                                                      right: 10,
+                                                      left: 10),
+                                                  margin: EdgeInsets.only(
+                                                      left: 15),
+                                                  decoration: BoxDecoration(
+                                                      color:
+                                                      QaeatColor.primary_color,
+                                                      borderRadius:
+                                                      BorderRadius
+                                                          .circular(5)),
+                                                  child: Column(
+                                                    children: <Widget>[
+                                                      Text(
+                                                        'خصم',
+                                                        style: TextStyle(
+                                                            fontFamily:
+                                                            'Cairo',
+                                                            color:Colors.white),
+                                                      ),
+                                                      Text(
+                                                        '%${snapshot.data[index].discount}',
+                                                        style: TextStyle(
+                                                            fontFamily:
+                                                            'Cairo',
+                                                            color:Colors.white),
+                                                      ),
+                                                    ],
+                                                  ))
+                                            ],
+                                          )
+                                        ],
+                                      )
+                                    ],
+                                  ),
                                 ),
-                              ));
+                              )
+
+                             );
                         });
                   } else {
                     Directionality(

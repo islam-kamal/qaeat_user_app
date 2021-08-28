@@ -1,3 +1,4 @@
+import 'package:Qaeat/Model/hall_category_model.dart';
 import 'package:flutter/material.dart';
 import 'package:Qaeat/Custom_Widgets/export_file.dart';
 import 'package:Qaeat/Model/Booking/service_type_model.dart';
@@ -18,7 +19,7 @@ class _ServiceExpansionPanelState extends State<ServiceExpansionPanel> {
 
   int service_id;
   SharedPreferences sharedPrefs;
-  Future<List<ServiceModel>> serviceList;
+  Future<HallCategoryModel> serviceList;
 
   List<Item> generateItems(int numberOfItems) {
     return List.generate(numberOfItems, (int index) {
@@ -70,7 +71,7 @@ class _ServiceExpansionPanelState extends State<ServiceExpansionPanel> {
               },
               body: Container(
                   height: MediaQuery.of(context).size.width / 3,
-                  child: FutureBuilder<List<ServiceModel>>(
+                  child: FutureBuilder<HallCategoryModel>(
                     future: serviceList,
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
@@ -78,7 +79,7 @@ class _ServiceExpansionPanelState extends State<ServiceExpansionPanel> {
                           child: ListView.builder(
                             scrollDirection: Axis.vertical,
                             shrinkWrap: true,
-                            itemCount: snapshot.data.length,
+                            itemCount: snapshot.data.categories.length,
                             itemBuilder: (BuildContext context, int index) {
                               return Directionality(
                                   textDirection: TextDirection.ltr,
@@ -90,23 +91,23 @@ class _ServiceExpansionPanelState extends State<ServiceExpansionPanel> {
                                           RadioListTile(
                                             groupValue: _currentIndex,
                                             title: Text(
-                                              "${snapshot.data[index].name}",
+                                              "${snapshot.data.categories[index].name}",
                                               textDirection: TextDirection.rtl,
                                             ),
-                                            value: snapshot.data[index].id,
+                                            value: snapshot.data.categories[index].id,
                                             onChanged: (val) {
                                               setState(() {
                                                 _currentIndex = val;
                                                 check = false;
                                                 service_id =
-                                                    snapshot.data[index].id;
+                                                    snapshot.data.categories[index].id;
                                                 sharedPrefs.setInt(
                                                     'service_id', service_id);
                                                 (
                                                     "service_id : ${service_id}");
                                                 item.isExpanded = false;
                                                 header_item.add(
-                                                    snapshot.data[index].name);
+                                                    snapshot.data.categories[index].name);
                                                 (
                                                     'header_item : ${header_item}');
                                                 item.headerValue =

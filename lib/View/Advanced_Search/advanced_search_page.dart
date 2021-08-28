@@ -125,7 +125,7 @@ class AdvancedSearchPage_State extends State<AdvancedSearchPage> {
                                                 child: Column(
                                                   children: <Widget>[
                                                     SalonSlider(
-                                                      salonPictures: snapshot
+                                                      hallPictures: snapshot
                                                           .data[index].gallery,
                                                     ),
                                                     Row(
@@ -326,7 +326,7 @@ class AdvancedSearchPage_State extends State<AdvancedSearchPage> {
                                                                           borderRadius: BorderRadius.circular(5)),
                                                                       child:
                                                                       Text(
-                                                                        '  الدفع في المركز  ',
+                                                                        '  الدفع عند مقدم الخدمة  ',
                                                                         style: TextStyle(
                                                                             fontFamily: 'Cairo',
                                                                             color: Color(0xFF292929),
@@ -380,7 +380,7 @@ class AdvancedSearchPage_State extends State<AdvancedSearchPage> {
                                                                     (snapshot.data[index].payment ==
                                                                         1)
                                                                         ? '  اونلاين'
-                                                                        : '   الدفع في المركز   ',
+                                                                        : '   الدفع عند مقدم الخدمة   ',
                                                                     style: TextStyle(
                                                                         fontFamily:
                                                                         'Cairo',
@@ -436,7 +436,7 @@ class AdvancedSearchPage_State extends State<AdvancedSearchPage> {
                                                                           borderRadius: BorderRadius.circular(5)),
                                                                       child:
                                                                       Text(
-                                                                        '  فى المركز  ',
+                                                                        '  عند مقدم الخدمة  ',
                                                                         style: TextStyle(
                                                                             fontFamily: 'Cairo',
                                                                             color: Color(0xFF292929),
@@ -496,7 +496,7 @@ class AdvancedSearchPage_State extends State<AdvancedSearchPage> {
                                                                     (snapshot.data[index].home_service ==
                                                                         1)
                                                                         ? 'فى المنزل'
-                                                                        : ' فى المركز ',
+                                                                        : ' عند مقدم الخدمة ',
                                                                     style: TextStyle(
                                                                         fontFamily:
                                                                         'Cairo',
@@ -640,7 +640,7 @@ class AdvancedSearchPage_State extends State<AdvancedSearchPage> {
                                                 child: Column(
                                                   children: <Widget>[
                                                     SalonSlider(
-                                                      salonPictures:
+                                                      hallPictures:
                                                       widget.item.gallery,
                                                     ),
                                                     Row(
@@ -850,7 +850,7 @@ class AdvancedSearchPage_State extends State<AdvancedSearchPage> {
                                                                       BoxDecoration(color: Color(0xFFDCDCDC), borderRadius: BorderRadius.circular(5)),
                                                                       child:
                                                                       Text(
-                                                                        '  الدفع في المركز  ',
+                                                                        '  الدفع عند مقدم الخدمة  ',
                                                                         style: TextStyle(fontFamily: 'Cairo', color: Color(0xFF292929), fontWeight: FontWeight.normal),
                                                                       ),
                                                                     ),
@@ -893,7 +893,7 @@ class AdvancedSearchPage_State extends State<AdvancedSearchPage> {
                                                                   Text(
                                                                     (widget.item.payment == 1)
                                                                         ? '    اونلاين    '
-                                                                        : '   الدفع في المركز   ',
+                                                                        : '   الدفع عند مقدم الخدمة   ',
                                                                     style: TextStyle(
                                                                         fontFamily: 'Cairo',
                                                                         color: Color(0xFF292929),
@@ -945,7 +945,7 @@ class AdvancedSearchPage_State extends State<AdvancedSearchPage> {
                                                                       BoxDecoration(color: Color(0xFFDCDCDC), borderRadius: BorderRadius.circular(5)),
                                                                       child:
                                                                       Text(
-                                                                        '  فى المركز  ',
+                                                                        '  عند مقدم الخدمة  ',
                                                                         style: TextStyle(fontFamily: 'Cairo', color: Color(0xFF292929), fontWeight: FontWeight.normal),
                                                                       ),
                                                                     ),
@@ -992,7 +992,7 @@ class AdvancedSearchPage_State extends State<AdvancedSearchPage> {
                                                                   Text(
                                                                     (widget.item.home_service == 1)
                                                                         ? 'فى المنزل'
-                                                                        : ' فى المركز ',
+                                                                        : ' عند مقدم الخدمة ',
                                                                     style: TextStyle(
                                                                         fontFamily: 'Cairo',
                                                                         color: Color(0xFF292929),
@@ -1465,7 +1465,7 @@ class AdvancedSearchPage_State extends State<AdvancedSearchPage> {
                                                                         borderRadius: BorderRadius.circular(5)),
                                                                     child:
                                                                     Text(
-                                                                      '  الدفع في المركز  ',
+                                                                      '  الدفع عند مقدم الخدمة  ',
                                                                       style: TextStyle(
                                                                           fontFamily: 'Cairo',
                                                                           color: Color(0xFF292929),
@@ -1520,7 +1520,7 @@ class AdvancedSearchPage_State extends State<AdvancedSearchPage> {
                                                                   (snapshot.data[index].payment ==
                                                                       1)
                                                                       ? '    اونلاين    '
-                                                                      : 'الدفع في المركز',
+                                                                      : 'الدفع عند مقدم الخدمة',
                                                                   style: TextStyle(
                                                                       fontFamily:
                                                                       'Cairo',
@@ -1578,7 +1578,7 @@ class AdvancedSearchPage_State extends State<AdvancedSearchPage> {
                                                                         borderRadius: BorderRadius.circular(5)),
                                                                     child:
                                                                     Text(
-                                                                      '  فى المركز  ',
+                                                                      '  عند مقدم الخدمة  ',
                                                                       style: TextStyle(
                                                                           fontFamily: 'Cairo',
                                                                           color: Color(0xFF292929),
@@ -1640,7 +1640,7 @@ class AdvancedSearchPage_State extends State<AdvancedSearchPage> {
                                                                   (snapshot.data[index].home_service ==
                                                                       1)
                                                                       ? 'فى المنزل'
-                                                                      : ' فى المركز ',
+                                                                      : ' عند مقدم الخدمة ',
                                                                   style: TextStyle(
                                                                       fontFamily:
                                                                       'Cairo',

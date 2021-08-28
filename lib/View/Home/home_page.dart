@@ -1,3 +1,5 @@
+import 'file:///D:/Wothoq%20Tech/qaeat/code/qaeat_user_app/lib/Custom_Widgets/custom_bottom_navigation_bar.dart';
+import 'package:Qaeat/Model/hall_category_model.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -32,17 +34,17 @@ class HomePage_state extends State<HomePage> {
   var index;
   var service_border;
   int _currentIndex;
-  Future<List<ServiceModel>> serviceList;
+  //Future<List<ServiceModel>> serviceList;
   List<ServiceModel> service;
   SharedPreferences sharedPrefs;
   Widget sevicesWidget;
 
-  Future<List<ServiceModel>> allServiceList;
+  Future<HallCategoryModel> allServiceList;
   @override
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-    serviceList = null;
+   // serviceList = null;
     allServiceList = null;
 
   }
@@ -65,32 +67,6 @@ class HomePage_state extends State<HomePage> {
     _currentIndex = 4;
   }
 
-/*  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    sevicesWidget = AllServices(
-      token: (widget.token == StaticMethods.vistor_token)
-          ? StaticMethods.vistor_token
-          : widget.token,
-      home_services: 2,
-    );
-    setState(() {
-      service_border = 3;
-      index = 3;
-    });
-    _currentIndex = 4;
-    SharedPreferences.getInstance().then((prefs) {
-      setState(() {
-        sharedPrefs = prefs;
-      });
-    });
-    // serviceList = ApiProvider.allServiceList(   token: (widget.token == StaticMethods.vistor_token)
-    //          ? StaticMethods.vistor_token
-    //          : widget.token, context);
-    ('home 3');
-  }*/
-
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -98,48 +74,25 @@ class HomePage_state extends State<HomePage> {
     return WillPopScope(
         onWillPop: () async => false,
         child: Scaffold(
-          /*appBar: AppBar(
-            automaticallyImplyLeading: false,
-            title: Padding(
-                padding: EdgeInsets.only(right: 5, left: 5, top: 10),
-                child: SearchClass(
-                  token: (widget.token == StaticMethods.vistor_token)
-                      ? StaticMethods.vistor_token
-                      : widget.token,
-
-                )),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(
-                bottom: Radius.circular(10),
-              ),
-            ),
-            backgroundColor: QaeatColor.primary_color,
-            elevation: 5.0,
-            bottom: PreferredSize(
-                child: Container(), preferredSize: Size.fromHeight(15.0)),
-          ),*/
-          bottomNavigationBar: BottomNavigation(
+          bottomNavigationBar: CustomBottomNavigationBar(
             index: _currentIndex,
           ),
           body: GestureDetector(
             child: SafeArea(
               child: SingleChildScrollView(
                   child: Container(
-                    // height: MediaQuery.of(context).size.height,
-                    color: Color.fromRGBO(255, 255, 255, 1),
                     alignment: Alignment.center,
                     child: Directionality(
                       textDirection: TextDirection.rtl,
                       child: Column(
-                        children: <Widget>[
-
+                        children: [
                           Container(
                             child: Directionality(
                                 textDirection: TextDirection.ltr,
                                 child: Stack(
                                   overflow: Overflow.visible,
                                   alignment: Alignment.bottomCenter,
-                                  clipBehavior: Clip.hardEdge,
+                                  clipBehavior: Clip.antiAliasWithSaveLayer,
                                   children: [
                                     OfferSlider(
                                       token: (widget.token == StaticMethods.vistor_token)
@@ -148,18 +101,15 @@ class HomePage_state extends State<HomePage> {
                                     ),
                                     Positioned(
                                       bottom: -width *0.1,
+                                      right: MediaQuery.of(context).size.width * 0.06,
+                                      left: MediaQuery.of(context).size.width * 0.06,
+                                      child:   SearchClass(
+                                        token: (widget.token == StaticMethods.vistor_token)
+                                            ? StaticMethods.vistor_token
+                                            : widget.token,
 
-                                        right: MediaQuery.of(context).size.width * 0.04,
-                                        left: MediaQuery.of(context).size.width * 0.04,
-                                        child:   Container(
-                                     //     width: MediaQuery.of(context).size.width/1.2,
-                                          child: SearchClass(
-                                            token: (widget.token == StaticMethods.vistor_token)
-                                                ? StaticMethods.vistor_token
-                                                : widget.token,
-
-                                          ),
-                                        ))
+                                      ),
+                                    )
                                   ],
                                 )
 
@@ -167,104 +117,116 @@ class HomePage_state extends State<HomePage> {
                           ),
 
                           Container(
-                            padding: EdgeInsets.only(right: 10, left: 10,top: width * 0.08),
-                            alignment: Alignment.centerRight,
-                            child: Text(
-                              'الخدمات',
-                              style: TextStyle(
-                                  fontFamily: 'Cairo',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20),
-                            ),
-                          ),
-
-
-                          Container(
-                            child: FutureBuilder<List<ServiceModel>>(
+                            child: FutureBuilder<HallCategoryModel>(
                               future: allServiceList,
                               builder: (context, snapshot) {
                                 if (snapshot.connectionState == ConnectionState.done) {
                                   if (snapshot.hasData) {
-                                    if (snapshot.data.length != 0) {
-                                      return Container(
-                                        height: MediaQuery.of(context).size.width/1.5,
-                                        padding: EdgeInsets.all(width * 0.01),
-                                        child: ListView.builder(
-                                            itemCount: snapshot.data.length,
-                                            scrollDirection: Axis.horizontal,
-                                            shrinkWrap: true,
-                                            itemBuilder: (BuildContext context, index) {
-                                              return Padding(
-                                                padding: EdgeInsets.all(width * 0.01),
-                                              child: InkWell(
-                                                child: Stack(
-                                                    children: <Widget>[
+                                    if (snapshot.data.categories.length != 0) {
+                                      return Column(
+                                        children: [
 
-                                                      Card(
-                                                        color: Color(0xFFF6F6F6),
-                                                        child: Image.network(
-                                                          snapshot.data[index].icon,
-                                                          fit: BoxFit.fill,
-                                                          width: MediaQuery.of(context)
-                                                              .size
-                                                              .width /
-                                                              2,
-                                                          height: MediaQuery.of(context)
-                                                              .size
-                                                              .width /
-                                                              2,
-                                                        ),
-                                                      ),
-                                                      Positioned(
-                                                        top: width * 0.43,
-                                                        right: 0,
-                                                        left:0,
-                                                        child: Container(
-                                                          width: MediaQuery.of(context)
-                                                              .size
-                                                              .width /
-                                                              3,
-                                                          child:Align(
+                                          Container(
+                                            padding: EdgeInsets.only(right: 10, left: 10,top: width * 0.15),
+                                            alignment: Alignment.centerRight,
+                                            child: Text(
+                                              'الخدمات',
+                                              style: TextStyle(
+                                                  fontFamily: 'Cairo',
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 20),
+                                            ),
+                                          ),
+                                          Container(
+                                            height: MediaQuery.of(context).size.width/1.2,
+                                            padding: EdgeInsets.all(width * 0.05),
+                                            child: ListView.builder(
+                                                itemCount: snapshot.data.categories.length ,
+                                                scrollDirection: Axis.horizontal,
+                                                shrinkWrap: true,
+                                                itemBuilder: (BuildContext context, index) {
+                                                  print("home icon : ${  snapshot.data.categories[index].icon}");
+                                                  return Container(
+                                                    padding: EdgeInsets.all(width * 0.01),
+                                                    child: InkWell(
+                                                      child: Stack(
+                                                          children: <Widget>[
 
-                                                            child:  Text(
-                                                              '${snapshot.data[index].name}',
-                                                              style: TextStyle(
-                                                                  fontFamily: 'Cairo',
-                                                                  color: QaeatColor.black_color,fontSize: 17,fontWeight: FontWeight.bold),
+                                                            Card(
+                                                                clipBehavior: Clip.hardEdge,
+                                                                color: Color(0xFFF6F6F6),
+                                                                shape: RoundedRectangleBorder(
+                                                                  borderRadius: BorderRadius.circular(15.0),
+                                                                ),
+                                                                child:  Stack(
+                                                                  children: [
+                                                                    Container(
+                                                                        decoration: BoxDecoration(
+                                                                          borderRadius: BorderRadius.circular(15.0),
+                                                                        ),
+                                                                        child:Image.network(
+                                                                          snapshot.data.categories[index].icon,
+                                                                          fit: BoxFit.fill,
+                                                                          width: MediaQuery.of(context).size.width /1.5,
+                                                                          height: MediaQuery.of(context).size.width / 2,
+                                                                        )),
+                                                                    Image(
+                                                                      width: MediaQuery.of(context).size.width /1.5,
+                                                                      height: MediaQuery.of(context).size.width / 2,
+                                                                      image: AssetImage('images/home/layer.png'),
+                                                                      fit: BoxFit.cover,
+                                                                    ),
+                                                                  ],
+                                                                )
+
+
                                                             ),
-                                                            alignment: Alignment.center,
-                                                          ),
-                                                          decoration: BoxDecoration(
-                                                              color: Colors.grey.shade100,
-                                                              borderRadius: BorderRadius.circular(5)
-                                                          ),
-                                                        ),
+                                                            Positioned(
+                                                              top: width * 0.40,
+                                                              right: 0,
+                                                              left:0,
+                                                              child: Container(
+                                                                width: MediaQuery.of(context).size.width / 3,
+                                                                padding: EdgeInsets.only(right: width *0.05),
+                                                                decoration: BoxDecoration(
+                                                                  borderRadius: BorderRadius.circular(15.0),
+                                                                ),
+                                                                child:Align(
 
-                                                      )
-                                                    ]),
+                                                                  child:  Text(
+                                                                    '${snapshot.data.categories[index].name}',
+                                                                    style: TextStyle(
+                                                                        fontFamily: 'Cairo',
+                                                                        color: QaeatColor.secondary_color,fontSize: 17,fontWeight: FontWeight.bold),
+                                                                  ),
+                                                                  alignment: Alignment.centerRight,
+                                                                ),
 
+                                                              ),
+                                                            )
+                                                          ]),
+                                                      onTap: () {
+                                                        Navigator.push(
+                                                            context,
+                                                            MaterialPageRoute(
+                                                                builder: (context) =>
+                                                                    SalonicListByServiceId(
+                                                                      token: (sharedPrefs.getString(
+                                                                          'user_access_token') ==
+                                                                          null)
+                                                                          ? StaticMethods
+                                                                          .vistor_token
+                                                                          : sharedPrefs.getString(
+                                                                          'user_access_token'),
+                                                                      category_id: snapshot.data.categories[index].id,
+                                                                      service_type: 2,
 
-                                                onTap: () {
-                                                  Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              SalonicListByServiceId(
-                                                                token: (sharedPrefs.getString(
-                                                                    'user_access_token') ==
-                                                                    null)
-                                                                    ? StaticMethods
-                                                                    .vistor_token
-                                                                    : sharedPrefs.getString(
-                                                                    'user_access_token'),
-                                                                service_id:
-                                                                snapshot.data[index].id,
-                                                                service_type: 2,
-
-                                                              )));
-                                                },
-                                              ),);
-                                            }),
+                                                                    )));
+                                                      },
+                                                    ),);
+                                                }),
+                                          )
+                                        ],
                                       );
                                     } else {
                                       return Directionality(
@@ -337,143 +299,9 @@ class HomePage_state extends State<HomePage> {
                               },
                             ),
                           )
-
-
-
-                          /* Container(
-                            padding: EdgeInsets.only(right: 20, left: 20),
-                            color: Color(0xFFF6F6F6),
-                            child: Row(
-                              children: <Widget>[
-                                FlatButton(
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      border: service_border == 3
-                                          ? Border(
-                                          bottom: BorderSide(color: Colors.black))
-                                          : Border(
-                                          bottom: BorderSide(
-                                              color: Color(0xFFF6F6F6))),
-                                    ),
-                                    child: Text(
-                                      ' الكل ',
-                                      style: (index == 3)
-                                          ? TextStyle(
-                                          color: Color(0xFF444444),
-                                          fontFamily: 'Cairo',
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.bold)
-                                          : TextStyle(
-                                        color: Color(0xFF444444),
-                                        fontFamily: 'Cairo',
-                                        fontSize: 12,
-                                      ),
-                                    ),
-                                  ),
-                                  onPressed: () {
-                                    setState(() {
-                                      index = 3;
-                                      service_border = 3;
-                                      sevicesWidget = AllServices(
-                                        token: (widget.token ==
-                                            StaticMethods.vistor_token)
-                                            ? StaticMethods.vistor_token
-                                            : widget.token,
-                                        home_services: 2,
-                                      );
-                                    });
-                                  },
-                                ),
-                                Spacer(),
-                                FlatButton(
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      border: service_border == 2
-                                          ? Border(
-                                          bottom: BorderSide(color: Colors.black))
-                                          : Border(
-                                          bottom: BorderSide(
-                                              color: Color(0xFFF6F6F6))),
-                                    ),
-                                    child: Text(
-                                      ' في المنزل ',
-                                      style: (index == 2)
-                                          ? TextStyle(
-                                          color: Color(0xFF444444),
-                                          fontFamily: 'Cairo',
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.bold)
-                                          : TextStyle(
-                                        color: Color(0xFF444444),
-                                        fontFamily: 'Cairo',
-                                        fontSize: 12,
-                                      ),
-                                    ),
-                                  ),
-                                  onPressed: () {
-                                    setState(() {
-                                      index = 2;
-                                      service_border = 2;
-                                      sevicesWidget = HomeServices(
-                                        token: (widget.token ==
-                                            StaticMethods.vistor_token)
-                                            ? StaticMethods.vistor_token
-                                            : widget.token,
-                                        home_services: 1,
-                                      );
-                                    });
-                                  },
-                                ),
-                                Spacer(),
-                                FlatButton(
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      border: service_border == 1
-                                          ? Border(
-                                          bottom: BorderSide(color: Colors.black))
-                                          : Border(
-                                          bottom: BorderSide(
-                                              color: Color(0xFFF6F6F6))),
-                                    ),
-                                    child: Text(
-                                      'في المركز',
-                                      style: (index == 1)
-                                          ? TextStyle(
-                                          color: Color(0xFF444444),
-                                          fontFamily: 'Cairo',
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.bold)
-                                          : TextStyle(
-                                        color: Color(0xFF444444),
-                                        fontFamily: 'Cairo',
-                                        fontSize: 12,
-                                      ),
-                                    ),
-                                  ),
-                                  onPressed: () {
-                                    setState(() {
-                                      index = 1;
-                                      service_border = 1;
-                                      sevicesWidget = AppointmentService(
-                                        token: (widget.token ==
-                                            StaticMethods.vistor_token)
-                                            ? StaticMethods.vistor_token
-                                            : widget.token,
-                                        home_services: 0,
-                                      );
-                                    });
-                                  },
-                                ),
-                              ],
-                            ),
-                          ),
-                          SafeArea(
-                            child: SingleChildScrollView(
-                              child: _helperWidgets.show_service(sevicesWidget),
-                            ),
-                          ),*/
                         ],
-                      ),
+                      )
+
                     ),
                   )),
             ),

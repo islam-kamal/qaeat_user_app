@@ -1,3 +1,4 @@
+import 'package:Qaeat/View/Hall_Details/hall_details.dart';
 import 'package:flutter/material.dart';
 import 'package:Qaeat/Custom_Widgets/export_file.dart';
 import 'package:Qaeat/Model/favourite_model.dart';
@@ -65,13 +66,14 @@ class FavouriteListState extends State<FavouriteList> {
             ),
           ),
           actions: [
-            InkWell(
+        Padding(padding: EdgeInsets.only(right: MediaQuery.of(context).size.width * 0.03),
+      child:InkWell(
               onTap: () {
                 Navigator.pushReplacement(
                     context, MaterialPageRoute(builder: (context) => MorePage()));
               },
               child: Icon(Icons.arrow_forward_ios),
-            )
+            ))
           ],
           backgroundColor: QaeatColor.primary_color,
           shape: RoundedRectangleBorder(
@@ -236,9 +238,10 @@ class FavouriteListState extends State<FavouriteList> {
                                                                           Navigator.pushReplacement(
                                                                               context,
                                                                               MaterialPageRoute(
-                                                                                  builder: (context) => SalonicList(
+                                                                                  builder: (context) => HallDetails(
                                                                                         token: widget.token,
                                                                                         hall_id: snapshot.data[index].halls.id,
+                                                                                    route: 3,
                                                                                       )));
                                                                         },
                                                                       ),
@@ -340,11 +343,16 @@ class FavouriteListState extends State<FavouriteList> {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
-                                Icon(
-                                  Icons.favorite,
-                                  size: 80,
-                                  color: QaeatColor.secondary_color,
+                                Container(
+                                  width: 50,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(60),
+                                      color: QaeatColor.primary_color
+                                  ),
+                                  child: Icon(Icons.favorite,color: Colors.red,),
                                 ),
+
                                 SizedBox(
                                   height: 20,
                                 ),

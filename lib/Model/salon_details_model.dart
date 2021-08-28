@@ -4,6 +4,7 @@ class SalonDetailsModel {
 
   int id;
   String name;
+  String username;
   String Latitude;
   String Longitude;
   String logo;
@@ -13,11 +14,13 @@ class SalonDetailsModel {
   String tax;
   int check_value;
   TotalRate total_rate;
+  int hallMaxNumber;
+  int categoryId;
   List<Service> services;
   List<Gallery> gallery;
 
-  SalonDetailsModel({this.id, this.name, this.Latitude, this.Longitude, this.logo, this.address, this.home_service,
-                 this.payment, this.tax, this.check_value,this.total_rate,this.services,this.gallery});
+  SalonDetailsModel({this.id, this.name,  this.username, this.Latitude, this.Longitude, this.logo, this.address, this.home_service,
+                 this.payment, this.tax, this.check_value,this.total_rate,this.services,this.gallery,this.hallMaxNumber,this.categoryId});
 
 
   factory SalonDetailsModel.fromJson(Map<String,dynamic> json){
@@ -29,6 +32,7 @@ class SalonDetailsModel {
     return SalonDetailsModel(
       id : json['id'],
       name : json['name'],
+      username : json['username'],
       check_value: json['check_value'],
       Latitude : json['Latitude'],
       Longitude : json['Longitude'],
@@ -37,7 +41,10 @@ class SalonDetailsModel {
       home_service :  json['home_service'],
       payment : json['payment'],
       tax : json['tax'],
+        hallMaxNumber : json['hall_max_number'],
+        categoryId : json['category_id'],
       total_rate : TotalRate.fromJson(json['total_rate']),
+
       services: servicelist,
       gallery: galleries_list
 
@@ -48,6 +55,9 @@ class SalonDetailsModel {
     final Map<String,dynamic> data = new Map<String,dynamic>();
     data['id'] = this.id;
     data['name'] = this.name;
+    data['username'] = this.username;
+    data['hall_max_number'] = this.hallMaxNumber;
+    data['category_id'] = this.categoryId;
     data['check_value']=this.check_value;
     data['Latitude'] = this.Latitude;
     data['Longitude'] = this.Longitude;

@@ -12,7 +12,6 @@ class StaticMethods{
  static Future<List<ServiceModel>> serviceList;
  static bool removeFavourite_status =false;
 
-
  static String vistor_token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvc2Fsb25pYy53b3Rob3EuY29cL2FwaVwvdXNlcnNcL2xvZ2luIiwiaWF0IjoxNTk5NjUwNzcwLCJuYmYiOjE1OTk2NTA3NzAsImp0aSI6IjJ5TGxwSVJDbmdWdTdMNzUiLCJzdWIiOjIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.PCldtFTsJ2J85JhUBQfrHEFzPspQtUEq7c1P2tJFZgA';
 
   static int customer_care_value =0;

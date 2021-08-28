@@ -103,7 +103,7 @@ class AllServicesState extends State<AllServices> {
                                             .vistor_token
                                             : sharedPrefs.getString(
                                             'user_access_token'),
-                                        service_id:
+                                        category_id:
                                         snapshot.data[index].id,
                                         service_type: 2,
 

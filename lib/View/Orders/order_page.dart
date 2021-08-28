@@ -1,3 +1,4 @@
+import 'file:///D:/Wothoq%20Tech/qaeat/code/qaeat_user_app/lib/Custom_Widgets/custom_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:Qaeat/Custom_Widgets/export_file.dart';
@@ -77,7 +78,7 @@ class OrdersPage_State extends State<OrdersPage> {
               ),
             ),
           ),
-          bottomNavigationBar: BottomNavigation(
+          bottomNavigationBar: CustomBottomNavigationBar(
             index: _currentIndex,
           ),
           body: Directionality(
@@ -580,7 +581,7 @@ class OrdersPage_State extends State<OrdersPage> {
                                                                 (snapshot.data[index]
                                                                             .type ==
                                                                         0)
-                                                                    ? 'فى المركز'
+                                                                    ? 'عند مقدم الخدمة'
                                                                     : 'فى البيت',
                                                                 style: TextStyle(
                                                                     fontFamily:

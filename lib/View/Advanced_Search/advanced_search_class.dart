@@ -119,7 +119,7 @@ class MyTextField extends StatelessWidget {
                   controller: controller,
                   focusNode: focusNode,
                   decoration: InputDecoration(
-                    hintText: "بحث بـ اسم القاعة",
+                    hintText: "بحث بـ مقدم الخدمة",
                     hintStyle: TextStyle(
                       color: Color(0xFFBBBBBB),
                     ),

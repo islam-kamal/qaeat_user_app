@@ -59,13 +59,14 @@ class MyReservation_State extends State<MyReservation> {
               ),
             ),
             actions: [
-              InkWell(
+              Padding(padding: EdgeInsets.only(right: MediaQuery.of(context).size.width * 0.03),
+                  child: InkWell(
                 onTap: () {
                   Navigator.pushReplacement(
                       context, MaterialPageRoute(builder: (context) => MorePage()));
                 },
                 child: Icon(Icons.arrow_forward_ios),
-              )
+              ))
             ],
             backgroundColor: QaeatColor.primary_color,
             shape: RoundedRectangleBorder(
@@ -210,7 +211,9 @@ class MyReservation_State extends State<MyReservation> {
                                       ),
                                       onPressed:
                                           () {
-                                        rating();
+                                        rating(
+                                          hall_id: snapshot.data[index].hallId
+                                        );
                                       },
                                     ),
                                                                 ),
@@ -513,7 +516,7 @@ class MyReservation_State extends State<MyReservation> {
                                                                               borderRadius: BorderRadius.circular(5)),
                                                                           child:
                                                                               Text(
-                                                                            '  ${(snapshot.data[index].payment == 0) ? 'الدفع في المركز' : 'اونلاين'}    ',
+                                                                            '  ${(snapshot.data[index].payment == 0) ? 'الدفع عند مقدم الخدمة' : 'اونلاين'}    ',
                                                                             style: TextStyle(
                                                                                 fontFamily: 'Cairo',
                                                                                 color: Color(0xFF403E3E),
@@ -775,13 +778,13 @@ class MyReservation_State extends State<MyReservation> {
         ));
   }
 
-  Future<Widget> rating() {
+  Future<Widget> rating({int hall_id}) {
     return showDialog(
       context: context,
       builder: (BuildContext context) {
         return Rating(
           token: widget.token,
-          salon_id: 3,
+          hall_id: hall_id,
           user_id: widget.user_id,
           employee_id: 24,
         );

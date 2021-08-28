@@ -1,3 +1,4 @@
+import 'package:Qaeat/View/Hall_Details/hall_details.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoder/geocoder.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -26,15 +27,15 @@ class RerservationNow extends StatefulWidget {
   List<Gallery> salonPictures;
   SalonDetailsModel item;
   Future<List<FilterModel>> filter_salon;
-  final int
-      salon_list_type; // salon_list_type = 1 for SalonicList and salon_list_type = 2 for SalonicListByServiceId
+  final int salon_list_type; // salon_list_type = 1 for SalonicList and salon_list_type = 2 for SalonicListByServiceId ,
+final int hall_details_route;
   RerservationNow(
       {this.token,
       this.salon_id,
       this.logo,
       this.name,
       this.rate,
-      this.payment,
+      this.payment ,
       this.home_services,
       this.salonPictures,
       this.salon_list_type,
@@ -42,7 +43,8 @@ class RerservationNow extends StatefulWidget {
       this.service_id,
       this.galleries,
       this.item,
-      this.filter_salon});
+      this.filter_salon,
+      this.hall_details_route});
   @override
   State<StatefulWidget> createState() {
     ('salon_id : ${salon_id}');
@@ -53,8 +55,8 @@ class RerservationNow extends StatefulWidget {
 
 class RerservationNow_State extends State<RerservationNow> {
   HelperWidgets _helperWidgets = new HelperWidgets();
-  String _picked_location = 'فى المركز';
-  String _picked_payment = 'الدفع في المركز';
+  String _picked_location = 'عند مقدم الخدمة';
+  String _picked_payment = 'الدفع عند مقدم الخدمة';
 
   DateTime selectedDate = DateTime.now();
   DateTime _dateTime = DateTime.now();
@@ -79,7 +81,6 @@ class RerservationNow_State extends State<RerservationNow> {
             context);
 
     progressDialog = new ProgressDialog(context);
-    ('item : ${widget.item}');
     numberOfUsers = new TextEditingController();
     SharedPreferences.getInstance().then((prefs) {
       setState(() {
@@ -89,26 +90,26 @@ class RerservationNow_State extends State<RerservationNow> {
     payment_type = new List<String>();
     switch (widget.payment) {
       case 0:
-        payment_type.add('الدفع في المركز');
+        payment_type.add('الدفع عند مقدم الخدمة');
         break;
       case 1:
         payment_type.add('اونلاين');
         break;
       case 2:
-        payment_type.add('الدفع في المركز');
+        payment_type.add('الدفع عند مقدم الخدمة');
         payment_type.add('اونلاين');
         break;
     }
     service_location = new List<String>();
     switch (widget.home_services) {
       case 0:
-        service_location.add('فى المركز');
+        service_location.add('عند مقدم الخدمة');
         break;
       case 1:
         service_location.add('في البيت');
         break;
       case 2:
-        service_location.add('فى المركز');
+        service_location.add('عند مقدم الخدمة');
         service_location.add('في البيت');
         break;
     }
@@ -162,7 +163,7 @@ class RerservationNow_State extends State<RerservationNow> {
                               ? StaticMethods.vistor_token
                               : widget.token,
                           service_type: widget.home_services,
-                          service_id: widget.service_id,
+                          category_id: widget.service_id,
                         )));
             break;
           case 3:
@@ -217,6 +218,18 @@ class RerservationNow_State extends State<RerservationNow> {
                           filter_salon: widget.filter_salon,
                         )));
             break;
+          case 7:
+          //HallDetails
+          print("hall------id-------- : ${widget.salon_id}");
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => HallDetails(
+                      token: (sharedPrefs.getString('user_access_token') == null) ? StaticMethods.vistor_token : sharedPrefs.getString('user_access_token'),
+                      hall_id: widget.salon_id,
+                      route: widget.hall_details_route,
+                    )));
+            break;
           default:
             Navigator.pushReplacement(
                 context, MaterialPageRoute(builder: (context) => MorePage()));
@@ -268,7 +281,7 @@ class RerservationNow_State extends State<RerservationNow> {
                                       : widget.token,
 
                                   service_type: widget.home_services,
-                                  service_id: widget.service_id,
+                                  category_id: widget.service_id,
                                 )));
                     break;
                   case 3:
@@ -314,6 +327,18 @@ class RerservationNow_State extends State<RerservationNow> {
                                   filter_salon: widget.filter_salon,
                                 )));
                     break;
+                  case 7:
+                  //HallDetails
+                    print("hall------id-------- : ${widget.salon_id}");
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => HallDetails(
+                              token: (sharedPrefs.getString('user_access_token') == null) ? StaticMethods.vistor_token : sharedPrefs.getString('user_access_token'),
+                              hall_id: widget.salon_id,
+                              route: widget.hall_details_route,
+                            )));
+                    break;
                   default:
                     Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (context) => MorePage()));
@@ -333,7 +358,7 @@ class RerservationNow_State extends State<RerservationNow> {
                         children: <Widget>[
                           (widget.galleries == null)
                               ? SalonSlider(
-                                  salonPictures: widget.salonPictures,
+                                  hallPictures: widget.salonPictures,
                                 )
                               : CarouselSlider.builder(
                                   itemCount: widget.galleries.length,
@@ -464,7 +489,7 @@ class RerservationNow_State extends State<RerservationNow> {
                                 alignment: Alignment.centerRight,
                                 padding: EdgeInsets.only(right: 10, left: 10),
                                 child: Text(
-                                  'اختيار الخدمه',
+                             widget.category_id == 1? 'اختيار القاعة' : widget.category_id == 2 ? 'اختيار السيارة' : 'اختيار الكوشة',
                                   style: TextStyle(
                                       fontFamily: 'Cairo',
                                       fontWeight: FontWeight.bold,
@@ -493,12 +518,11 @@ class RerservationNow_State extends State<RerservationNow> {
                                 ),
                               ),
                               RadioButtonGroup(
-                                orientation:
-                                    GroupedButtonsOrientation.HORIZONTAL,
+                                orientation: GroupedButtonsOrientation.HORIZONTAL,
                                 margin: const EdgeInsets.only(right: 10.0),
                                 onSelected: (String selected) => setState(() {
                                   _picked_payment = selected;
-                                  ('_picked_payment: ${_picked_payment}');
+                                 print('_picked_payment: ${_picked_payment}');
                                 }),
                                 labelStyle: TextStyle(fontFamily: 'Cairo'),
                                 labels: payment_type,
@@ -510,9 +534,7 @@ class RerservationNow_State extends State<RerservationNow> {
                                       rb,
                                       txt,
                                       SizedBox(
-                                        width:
-                                            MediaQuery.of(context).size.width /
-                                                10,
+                                        width: 10,
                                       )
                                     ],
                                   );
@@ -520,8 +542,6 @@ class RerservationNow_State extends State<RerservationNow> {
                               )
                             ],
                           ),
-
-
 
                           new Container(
                               padding: EdgeInsets.only(top: 20.0, bottom: 10),
@@ -557,7 +577,7 @@ class RerservationNow_State extends State<RerservationNow> {
                                         sharedPrefs.setInt('pick_payment', 1);
                                         break;
                                       case 2:
-                                        if (_picked_payment == 'الدفع في المركز') {
+                                        if (_picked_payment == 'الدفع عند مقدم الخدمة') {
                                           sharedPrefs.setInt('pick_payment', 0);
                                         } else {
                                           sharedPrefs.setInt('pick_payment', 1);
@@ -574,7 +594,7 @@ class RerservationNow_State extends State<RerservationNow> {
                                             '_picked_location', 1);
                                         break;
                                       case 2:
-                                        if (_picked_location == 'فى المركز') {
+                                        if (_picked_location == 'عند مقدم الخدمة') {
                                           sharedPrefs.setInt(
                                               '_picked_location', 0);
                                         } else {

@@ -31,9 +31,9 @@ class BookServiceExpansionPanel_State extends State<BookServiceExpansionPanel> {
   int qty = 1;
 
   List<Item> generateItems(int numberOfItems) {
-    ('generateItems---');
+    print('generateItems---');
     return List.generate(numberOfItems, (int index) {
-      ('header index : ${index}');
+      print('header index : ${index}');
       return Item(
         headerValue: header_item[index],
       );
@@ -46,7 +46,7 @@ class BookServiceExpansionPanel_State extends State<BookServiceExpansionPanel> {
   void initState() {
     // TODO: implement initState
     super.initState();
-
+    print("islam 11111");
     _data = generateItems(1);
     picked_services = List<int>();
     number_of_users = List<int>();
@@ -100,12 +100,61 @@ class BookServiceExpansionPanel_State extends State<BookServiceExpansionPanel> {
                               if (snapshot.data.length != 0) {
                                 return Container(
                                     padding: EdgeInsets.only(
-                                        right: 10, left: 10),
+                                        right: 0, left: 0),
                                     child: Column(
                                       children: <Widget>[
                                         CheckboxListTile(
-                                          title: Text(
-                                            '${snapshot.data[index].name} \t \t \t ${snapshot.data[index].price} ريال ',
+                                          title:  Row(
+                                            children: [
+                                        Expanded(
+                                          flex: 2,
+                                          child:  Padding(
+                                            padding: EdgeInsets.all(10),
+                                            child:   InkWell(
+                                              onTap: (){
+                                                showDialog(
+                                                    context: context,
+                                                    barrierDismissible: false,
+                                                    builder: (BuildContext context) {
+                                                      return CupertinoAlertDialog(
+                                                        content: Container(
+                                                            height: MediaQuery.of(context).size.width / 1.5,
+                                                            width: MediaQuery.of(context).size.width ,
+                                                            child:Image.network(
+                                                              snapshot.data[index].icon,
+                                                              fit: BoxFit.fill,
+                                                            ) ),
+                                                        actions: <Widget>[
+                                                          CupertinoDialogAction(
+                                                            child: Text(
+                                                              "حسنا",
+                                                              style: TextStyle(
+                                                                fontWeight: FontWeight.w600,
+                                                                fontFamily: "Cairo",
+                                                                color: QaeatColor.primary_color,
+                                                              ),
+                                                            ),
+                                                            onPressed:  () => Navigator.pop(context),
+                                                          )
+                                                        ],
+                                                      );
+                                                    });
+                                              },
+                                              child:    Image.network(
+                                                snapshot.data[index].icon,
+                                                width: MediaQuery.of(context).size.width * 0.15,
+                                                height: MediaQuery.of(context).size.width * 0.15,
+                                                fit: BoxFit.fill,
+                                              ),
+                                            )
+                                        ),),
+
+                                        Expanded(
+                                            flex: 2,
+                                            child:Text(
+                                                '${snapshot.data[index].name} \t \t ${snapshot.data[index].price} ريال ',
+                                              ))
+                                            ],
                                           ),
                                           value: bookServiceChecked
                                               .contains(snapshot
@@ -114,22 +163,10 @@ class BookServiceExpansionPanel_State extends State<BookServiceExpansionPanel> {
                                             if (val) {
                                               setState(() {
                                            //     numberOfUsersPop();
-                                                (
-                                                    'number_of_users : ${number_of_users}');
-                                                bookServiceChecked.add(
-                                                    snapshot
-                                                        .data[index].id);
+                                                bookServiceChecked.add(snapshot.data[index].id);
                                                 List<String> serviceList =
-                                                bookServiceChecked
-                                                    .map((i) =>
-                                                    i.toString())
-                                                    .toList();
-                                                sharedPrefs.setStringList(
-                                                    'book_service_id',
-                                                    serviceList);
-
-                                                (
-                                                    'ischecked : ${bookServiceChecked}');
+                                                bookServiceChecked.map((i) => i.toString()).toList();
+                                                sharedPrefs.setStringList('book_service_id', serviceList);
                                                 // item.isExpanded =false;
                                                 item.isExpanded = false;
                                                 ('3333333');
@@ -345,10 +382,10 @@ class BookServiceExpansionPanel_State extends State<BookServiceExpansionPanel> {
         ));
   }
 
-  Widget data_list(Item item) {
+/*  Widget data_list(Item item) {
     switch (item.headerValue) {
       case 'اختيار الخدمه':
-        ('service##  ${StaticMethods.bookServiceList}');
+        print('service##  ${StaticMethods.bookServiceList}');
         return Container(
           height: MediaQuery.of(context).size.width / 3,
           child: (StaticMethods.bookServiceList == null)
@@ -366,6 +403,7 @@ class BookServiceExpansionPanel_State extends State<BookServiceExpansionPanel> {
                             shrinkWrap: true,
                             itemCount: snapshot.data.length,
                             itemBuilder: (BuildContext context, int index) {
+                              print("islam 1");
                               if (snapshot.data.length != 0) {
                                 return Container(
                                     padding:
@@ -373,8 +411,17 @@ class BookServiceExpansionPanel_State extends State<BookServiceExpansionPanel> {
                                     child: Column(
                                       children: <Widget>[
                                         CheckboxListTile(
-                                          title: Text(
-                                            '${snapshot.data[index].name} \t \t \t ${snapshot.data[index].price} ريال ',
+                                          title: Row(
+                                            children: [
+                                              Image.network(
+                                                snapshot.data[index].icon,
+                                                width: MediaQuery.of(context).size.width * 0.2,
+                                                height: MediaQuery.of(context).size.width * 0.2,
+                                              fit: BoxFit.fill,),
+                                              Text(
+                                                '${snapshot.data[index].name} \t \t \t ${snapshot.data[index].price} ريال ',
+                                              )
+                                            ],
                                           ),
                                           value: bookServiceChecked.contains(
                                               snapshot.data[index].id),
@@ -382,8 +429,6 @@ class BookServiceExpansionPanel_State extends State<BookServiceExpansionPanel> {
                                             if (val) {
                                               setState(() {
                                                 numberOfUsersPop();
-                                                (
-                                                    'number_of_users : ${number_of_users}');
                                                 bookServiceChecked.add(
                                                     snapshot.data[index].id);
                                                 List<String> serviceList =
@@ -394,12 +439,10 @@ class BookServiceExpansionPanel_State extends State<BookServiceExpansionPanel> {
                                                 sharedPrefs.setStringList(
                                                     'book_service_id',
                                                     serviceList);
-
-                                                (
-                                                    'ischecked : ${bookServiceChecked}');
                                                 // item.isExpanded =false;
                                               });
-                                            } else {
+                                            }
+                                            else {
                                               setState(() {
                                                 //   check = val;
                                                 bookServiceChecked.remove(
@@ -423,8 +466,6 @@ class BookServiceExpansionPanel_State extends State<BookServiceExpansionPanel> {
                                                 sharedPrefs.setStringList(
                                                     'book_users_number',
                                                     users_numberList);
-                                                (
-                                                    'number_of_users : ${number_of_users}');
                                               });
                                             }
                                           },
@@ -460,7 +501,7 @@ class BookServiceExpansionPanel_State extends State<BookServiceExpansionPanel> {
         );
         break;
     }
-  }
+  }*/
 
 
   void numberOfUsersPop() {

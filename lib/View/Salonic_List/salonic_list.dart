@@ -7,8 +7,7 @@ import 'package:Qaeat/Custom_Widgets/export_file.dart';
 class SalonicList extends StatefulWidget {
   final String token;
   final int hall_id;
-  final int
-      route; // if route =1 you must return to map page else return to offer page
+  final int route; // if route =1 you must return to map page else return to offer page
   SalonicList({this.token, this.hall_id, this.route});
   @override
   State<StatefulWidget> createState() {
@@ -143,7 +142,7 @@ class SalonicList_state extends State<SalonicList> {
                                   child: Column(
                                     children: <Widget>[
                                       SalonSlider(
-                                        salonPictures:
+                                        hallPictures:
                                             snapshot.data[index].gallery,
                                       ),
                                       Row(
@@ -337,7 +336,7 @@ class SalonicList_state extends State<SalonicList> {
                                                                           .circular(
                                                                               5)),
                                                               child: Text(
-                                                                '  الدفع في المركز  ',
+                                                                '  الدفع عند مقدم الخدمة  ',
                                                                 style: TextStyle(
                                                                     fontFamily:
                                                                         'Cairo',
@@ -400,7 +399,7 @@ class SalonicList_state extends State<SalonicList> {
                                                                         .payment ==
                                                                     1)
                                                                 ? '    اونلاين    '
-                                                                : '   الدفع في المركز   ',
+                                                                : '   الدفع عند مقدم الخدمة   ',
                                                             style: TextStyle(
                                                                 fontFamily:
                                                                     'Cairo',
@@ -458,7 +457,7 @@ class SalonicList_state extends State<SalonicList> {
                                                                           .circular(
                                                                               5)),
                                                               child: Text(
-                                                                '  فى المركز  ',
+                                                                '  عند مقدم الخدمة  ',
                                                                 style: TextStyle(
                                                                     fontFamily:
                                                                         'Cairo',
@@ -531,7 +530,7 @@ class SalonicList_state extends State<SalonicList> {
                                                                         .home_service ==
                                                                     1)
                                                                 ? 'فى البيت'
-                                                                : ' فى المركز ',
+                                                                : ' عند مقدم الخدمة ',
                                                             style: TextStyle(
                                                                 fontFamily:
                                                                     'Cairo',
@@ -674,7 +673,7 @@ class SalonicList_state extends State<SalonicList> {
                                     child: Column(
                                       children: <Widget>[
                                         SalonSlider(
-                                          salonPictures:
+                                          hallPictures:
                                               snapshot.data[index].gallery,
                                         ),
                                         Row(
@@ -866,7 +865,7 @@ class SalonicList_state extends State<SalonicList> {
                                                             Expanded(
                                                               flex: 2,
                                                               child: Text(
-                                                                'الدفع في المركز',
+                                                                'الدفع عند مقدم الخدمة',
                                                                 style: TextStyle(
                                                                     fontFamily:
                                                                         'Cairo',
@@ -913,7 +912,7 @@ class SalonicList_state extends State<SalonicList> {
                                                                           .payment ==
                                                                       1)
                                                                   ? '    اونلاين    '
-                                                                  : '   الدفع في المركز   ',
+                                                                  : '   الدفع عند مقدم الخدمة   ',
                                                               style: TextStyle(
                                                                   fontFamily:
                                                                       'Cairo',
@@ -970,7 +969,7 @@ class SalonicList_state extends State<SalonicList> {
                                                                         BorderRadius.circular(
                                                                             5)),
                                                                 child: Text(
-                                                                  '  فى المركز  ',
+                                                                  '  عند مقدم الخدمة  ',
                                                                   style: TextStyle(
                                                                       fontFamily:
                                                                           'Cairo',
@@ -1042,7 +1041,7 @@ class SalonicList_state extends State<SalonicList> {
                                                                           .home_service ==
                                                                       1)
                                                                   ? 'فى البيت'
-                                                                  : ' فى المركز ',
+                                                                  : ' عند مقدم الخدمة ',
                                                               style: TextStyle(
                                                                   fontFamily:
                                                                       'Cairo',

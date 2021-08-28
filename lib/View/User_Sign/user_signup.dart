@@ -91,13 +91,14 @@ class UserSignUp_State extends State<UserSignUp> {
           ),
         ),
         actions: [
-          InkWell(
-            onTap: (){
-              Navigator.pushReplacement(context, MaterialPageRoute(
-                  builder: (context)=> UserSignIn()));
-            },
-            child: Icon(Icons.arrow_forward_ios),
-          )
+        Padding(padding: EdgeInsets.only(right: MediaQuery.of(context).size.width * 0.03),
+        child:   InkWell(
+          onTap: (){
+            Navigator.pushReplacement(context, MaterialPageRoute(
+                builder: (context)=> UserSignIn()));
+          },
+          child: Icon(Icons.arrow_forward_ios),
+        ),)
         ],
         backgroundColor: QaeatColor.primary_color,
         shape: RoundedRectangleBorder(
@@ -148,7 +149,7 @@ class UserSignUp_State extends State<UserSignUp> {
                                               fillColor: Color(0xFFF6F6F6),
                                               border: InputBorder.none,
                                               hintText:
-                                              ' اسم المستخدم ',
+                                              'اكتب اسمك هنا',
                                               enabledBorder:
                                               OutlineInputBorder(
                                                 borderRadius:
@@ -351,53 +352,6 @@ class UserSignUp_State extends State<UserSignUp> {
                                       ),
                                     ],
                                   ),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        top: 10,
-                                        left: 10,
-                                        right: 10,
-                                        bottom: 10),
-                                    child: new Container(
-                                        decoration: BoxDecoration(
-                                          color: Color(0xFFF6F6F6),
-                                          borderRadius:
-                                          BorderRadius.circular(5),
-                                        ),
-                                        child: Row(
-                                          children: <Widget>[
-                                            SizedBox(
-                                              child: CheckboxListTile(
-                                                title:
-                                                Text("انا لست روبوت"),
-                                                value: checkedValue,
-                                                onChanged: (newValue) {
-                                                  setState(() {
-                                                    checkedValue = newValue;
-                                                    if (checkedValue) {
-                                                      reCAPTCHA = 'on';
-                                                    } else {
-                                                      reCAPTCHA = 'off';
-                                                    }
-                                                  });
-                                                },
-                                                checkColor: Colors.white,
-                                                controlAffinity:
-                                                ListTileControlAffinity
-                                                    .leading, //  <-- leading Checkbox
-                                              ),
-                                              width: MediaQuery.of(context)
-                                                  .size
-                                                  .width /
-                                                  2,
-                                            ),
-                                            Spacer(),
-                                            Image(
-                                              image: AssetImage(
-                                                  'images/user_sign/reeeeee.png'),
-                                            )
-                                          ],
-                                        )),
-                                  ),
 
                                   // use Builder to solve Scaffold.of() called with a context that does not contain a Scaffold Exception
                                   Padding(
@@ -415,7 +369,7 @@ class UserSignUp_State extends State<UserSignUp> {
                                             minWidth: MediaQuery.of(context)
                                                 .size
                                                 .width /
-                                                2,
+                                                1.5,
                                             child: RaisedButton(
                                               padding:
                                               const EdgeInsets.all(5.0),
@@ -451,7 +405,7 @@ class UserSignUp_State extends State<UserSignUp> {
                                                       _PhoneNumber.text
                                                           .trim(),
                                                       _password.text.trim(),
-                                                      reCAPTCHA,
+                                                      'on',
                                                       deviceToken,
                                                       context);
                                                 }

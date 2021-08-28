@@ -68,13 +68,14 @@ class ResetPassword3State extends State<ResetPassword3> {
             ),
           ),
           actions: [
-            InkWell(
+            Padding(padding: EdgeInsets.only(right: MediaQuery.of(context).size.width * 0.03),
+                child: InkWell(
               onTap: () {
                 Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (context) => ResetPassword2()));
               },
               child: Icon(Icons.arrow_forward_ios),
-            )
+    ) )
           ],
           backgroundColor: QaeatColor.primary_color,
           shape: RoundedRectangleBorder(
@@ -107,14 +108,14 @@ class ResetPassword3State extends State<ResetPassword3> {
                                         left: 10,
                                         right: 10,
                                         bottom: 10),
-                                    child: Text('قم بكتابه كلمه السر الجديده لك',
+                                    child: Text('قم بكتابه كلمة المرور الجديده لك',
                                       style: TextStyle(fontFamily: 'Cairo',fontWeight: FontWeight.normal,fontSize: 18,color: Color(0xFF535353)),)
                                 ),
                                 Padding(
                                   padding: EdgeInsets.only(
                                       left: 10, right: 10),
                                   child: Text(
-                                    'الرقم السرى',
+                                    'كلمة المرور',
                                     style: style,
                                   ),
                                 ),
@@ -180,7 +181,7 @@ class ResetPassword3State extends State<ResetPassword3> {
                                   padding: EdgeInsets.only(
                                       left: 10, right: 10),
                                   child: Text(
-                                    'اعاده كتابه كلمه السر',
+                                    'اعادة كتابة كلمة المرور',
                                     style: style,
                                   ),
                                 ),
@@ -265,11 +266,11 @@ class ResetPassword3State extends State<ResetPassword3> {
                                       minWidth:
                                       MediaQuery.of(context)
                                           .size
-                                          .width/2,
+                                          .width/1.5,
                                       child: RaisedButton(
                                         padding:
                                         const EdgeInsets.all(
-                                            5.0),
+                                            10.0),
                                         shape:
                                         RoundedRectangleBorder(
                                           borderRadius:
@@ -285,7 +286,7 @@ class ResetPassword3State extends State<ResetPassword3> {
                                           'تغيير',
                                           style: TextStyle(
                                               color: Colors.white,
-                                              fontSize: 18.0,
+                                              fontSize: 20.0,
                                               fontWeight:
                                               FontWeight.bold),
                                         ),

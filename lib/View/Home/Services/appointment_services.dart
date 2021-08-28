@@ -103,7 +103,7 @@ class AppointmentServiceState extends State<AppointmentService> {
                                             .vistor_token
                                             : sharedPrefs.getString(
                                             'user_access_token'),
-                                        service_id: snapshot
+                                        category_id: snapshot
                                             .data[index].id,
                                         service_type: 0,
                                       )));

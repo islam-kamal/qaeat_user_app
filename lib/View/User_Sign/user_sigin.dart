@@ -255,13 +255,13 @@ class UserSignInState extends State<UserSignIn> {
                                         context)
                                         .size
                                         .width /
-                                        2,
+                                        1.5,
                                     child:
                                     RaisedButton(
                                       padding:
                                       const EdgeInsets
                                           .all(
-                                          5.0),
+                                          10.0),
                                       shape:
                                       RoundedRectangleBorder(
                                         borderRadius:

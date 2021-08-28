@@ -56,13 +56,14 @@ class ResetPassword2State extends State<ResetPassword2> {
             ),
           ),
           actions: [
-            InkWell(
+            Padding(padding: EdgeInsets.only(right: MediaQuery.of(context).size.width * 0.03),
+                child:  InkWell(
               onTap: () {
                 Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (context) => ResetPassword()));
               },
               child: Icon(Icons.arrow_forward_ios),
-            )
+            ))
           ],
           backgroundColor: QaeatColor.primary_color,
           shape: RoundedRectangleBorder(
@@ -77,11 +78,11 @@ class ResetPassword2State extends State<ResetPassword2> {
             textDirection: TextDirection.rtl,
             child: Container(
               padding:
-                  EdgeInsets.only(top: MediaQuery.of(context).size.width / 3),
+                  EdgeInsets.only(top: MediaQuery.of(context).size.width / 7),
               child: Form(
                   key: _formResetPwKey,
                   child: new Container(
-                    padding: EdgeInsets.only(right: 10, left: 5, top: 10),
+                    padding: EdgeInsets.only(right: 10, left: 5),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
@@ -89,7 +90,7 @@ class ResetPassword2State extends State<ResetPassword2> {
                           padding: EdgeInsets.only(
                               top: 10, left: 10, right: 20, bottom: 5),
                           child: Text(
-                            'ادخل الكود الذى تم ارساله اليك',
+                            'ادخل رمز التفعيل الذى تم ارساله اليك',
                             style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.normal,
@@ -100,14 +101,14 @@ class ResetPassword2State extends State<ResetPassword2> {
 
                         Container(
                           alignment: Alignment.center,
-                          padding: EdgeInsets.all(10),
+                          padding: EdgeInsets.all(30),
                           child: PinCodeTextField(
                             autofocus: true,
                             controller: otp_controller,
                             hideCharacter: false,
                             highlight: true,
                             highlightColor: Colors.blue,
-                            defaultBorderColor: QaeatColor.secondary_color,
+                            defaultBorderColor: QaeatColor.gray_color,
                             hasTextBorderColor: QaeatColor.primary_color,
                             maxLength: pinLength,
                             hasError: hasError,
@@ -161,13 +162,13 @@ class ResetPassword2State extends State<ResetPassword2> {
                               top: 10, left: 10, right: 10, bottom: 5),
                           child: Builder(
                             builder: (ctx) => new Container(
-                                padding: EdgeInsets.only(top: 15.0),
+                                padding: EdgeInsets.only(top: 25.0),
                                 alignment: Alignment.center,
                                 child: ButtonTheme(
                                   minWidth:
-                                      MediaQuery.of(context).size.width / 2,
+                                      MediaQuery.of(context).size.width / 1.5,
                                   child: RaisedButton(
-                                    padding: const EdgeInsets.all(5.0),
+                                    padding: const EdgeInsets.all(10.0),
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(5.0),
                                       side: BorderSide(
@@ -180,7 +181,7 @@ class ResetPassword2State extends State<ResetPassword2> {
                                       'التالى',
                                       style: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 18.0,
+                                          fontSize: 20.0,
                                           fontWeight: FontWeight.bold),
                                     ),
                                     onPressed: () {
@@ -200,7 +201,7 @@ class ResetPassword2State extends State<ResetPassword2> {
                           child: Center(
                             child: InkWell(
                               child: Text(
-                                'اعاده ارسال الكود؟',
+                                'اعادة ارسال رمز التفعيل؟',
                                 style: style,
                               ),
                               onTap: () {

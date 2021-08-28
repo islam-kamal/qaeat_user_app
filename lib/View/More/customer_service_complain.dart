@@ -73,13 +73,14 @@ class CustomerServiceComplain_state extends State<CustomerServiceComplain> {
           ),
         ),
         actions: [
-          InkWell(
+          Padding(padding: EdgeInsets.only(right: MediaQuery.of(context).size.width * 0.03),
+              child: InkWell(
             onTap: () {
               Navigator.pushReplacement(
                   context, MaterialPageRoute(builder: (context) => MorePage()));
             },
             child: Icon(Icons.arrow_forward_ios),
-          )
+          ))
         ],
         backgroundColor: QaeatColor.primary_color,
         shape: RoundedRectangleBorder(

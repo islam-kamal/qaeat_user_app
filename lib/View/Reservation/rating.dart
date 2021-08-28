@@ -5,10 +5,10 @@ import 'package:Qaeat/Custom_Widgets/export_file.dart';
 class Rating extends StatefulWidget {
   final String token;
   final int user_id;
-  final int salon_id;
+  final int hall_id;
   final int employee_id;
 
-  Rating({this.token, this.user_id, this.salon_id, this.employee_id});
+  Rating({this.token, this.user_id, this.hall_id, this.employee_id});
 
   @override
   State<StatefulWidget> createState() {
@@ -67,7 +67,7 @@ class RatingState extends State<Rating> {
                         Container(
                           alignment: Alignment.center,
                           child: Text(
-                            'نشكرك على حسن تعاونك معنا يمكنك \n                تقييم القاعةا',
+                            'نشكرك على حسن تعاونك معنا يمكنك \n                تقييم مقدم الخدمة',
                             style: TextStyle(fontFamily: 'Cairo'),
                           ),
                         ),
@@ -125,9 +125,9 @@ class RatingState extends State<Rating> {
                               ),
                               Padding(
                                 padding:
-                                EdgeInsets.only(right: 20, top: 10),
+                                EdgeInsets.only( top: 20),
                                 child: new Container(
-                                  alignment: Alignment.centerRight,
+                                  alignment: Alignment.center,
                                   child: ButtonTheme(
                                     minWidth: MediaQuery.of(context)
                                         .size
@@ -153,15 +153,13 @@ class RatingState extends State<Rating> {
                                       ),
                                       onPressed: () {
                                         int value = salon_rate.toInt();
-                                        String comment = (salon_comment
-                                            .text
-                                            .trim() ==
-                                            null)
-                                            ? ''
+                                        print("value : $value");
+                                        String comment = (salon_comment.text.trim() == null) ? ''
                                             : salon_comment.text.trim();
+                                        print("comment : $comment");
                                         ApiProvider.senRateForSalon(
                                             widget.token,
-                                            widget.salon_id,
+                                            widget.hall_id,
                                             widget.user_id,
                                             value,
                                             comment,

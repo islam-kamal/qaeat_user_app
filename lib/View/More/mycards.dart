@@ -73,13 +73,14 @@ class MyCards_State extends State<MyCards> {
             ),
           ),
           actions: [
-            InkWell(
+            Padding(padding: EdgeInsets.only(right: MediaQuery.of(context).size.width * 0.03),
+                child: InkWell(
               onTap: () {
                 Navigator.pushReplacement(
                     context, MaterialPageRoute(builder: (context) => MorePage()));
               },
               child: Icon(Icons.arrow_forward_ios),
-            )
+            ))
           ],
           backgroundColor: QaeatColor.primary_color,
           shape: RoundedRectangleBorder(
@@ -577,15 +578,14 @@ class MyCards_State extends State<MyCards> {
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
-                                      Image(
-                                        width:
-                                            MediaQuery.of(context).size.width /
-                                                3,
-                                        height:
-                                            MediaQuery.of(context).size.height /
-                                                4,
-                                        image: AssetImage(
-                                            'images/splash_screen/Qaeat_logo.png'),
+                                      Container(
+                                        width: 50,
+                                        height: 50,
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(60),
+                                            color: QaeatColor.primary_color
+                                        ),
+                                        child: Icon(Icons.credit_card,color: Colors.yellow,),
                                       ),
                                       SizedBox(
                                         height: 20,
@@ -611,14 +611,14 @@ class MyCards_State extends State<MyCards> {
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
-                                    Image(
-                                      width:
-                                          MediaQuery.of(context).size.width / 3,
-                                      height:
-                                          MediaQuery.of(context).size.height /
-                                              4,
-                                      image: AssetImage(
-                                          'images/splash_screen/Qaeat_logo.png'),
+                                    Container(
+                                      width: 50,
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(60),
+                                          color: QaeatColor.primary_color
+                                      ),
+                                      child: Icon(Icons.credit_card,color: Colors.yellow,),
                                     ),
                                     SizedBox(
                                       height: 20,

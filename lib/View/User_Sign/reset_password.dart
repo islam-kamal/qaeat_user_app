@@ -59,13 +59,14 @@ class ResetPasswordState extends State<ResetPassword> {
           ),
         ),
         actions: [
-          InkWell(
+          Padding(padding: EdgeInsets.only(right: MediaQuery.of(context).size.width * 0.03),
+              child:   InkWell(
             onTap: (){
               Navigator.pushReplacement(context, MaterialPageRoute(
                   builder: (context)=> UserSignIn()));
             },
             child: Icon(Icons.arrow_forward_ios),
-          )
+          ))
         ],
         backgroundColor: QaeatColor.primary_color,
         shape: RoundedRectangleBorder(
@@ -87,14 +88,15 @@ class ResetPasswordState extends State<ResetPassword> {
                       crossAxisAlignment:
                       CrossAxisAlignment.start,
                       children: <Widget>[
+                    Column(
+                      children: [
                         Padding(
                           padding: EdgeInsets.only(
                               top: 10,
                               left: 10,
-                              right: 10,
-                              bottom: 20),
+                              right: 10,),
                           child: Text(
-                            'تعديل كلمه السر الخاص بك؟',
+                            'هل نسيت كلمة المرور الخاص بك؟',
                             style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold,
@@ -102,13 +104,30 @@ class ResetPasswordState extends State<ResetPassword> {
                                 fontSize: 16),
                           ),
                         ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                              left: 10,
+                              right: 10,
+                              bottom: 20),
+                          child: Text(
+                            'اكتب بريدك الإلكتروني وسنرسلها لك',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.normal,
+                                fontFamily: 'Cairo',
+                                fontSize: 14),
+                          ),
+                        ),
+                      ],
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                    ),
                         Column(
                           crossAxisAlignment:
                           CrossAxisAlignment.start,
                           children: <Widget>[
                             Padding(
                               padding: EdgeInsets.only(
-                                  left: 10, right: 10),
+                                  left: 10, right: 10,top: 20),
                               child: Text(
                                 'البريد الالكترونى',
                                 style: TextStyle(
@@ -169,7 +188,7 @@ class ResetPasswordState extends State<ResetPassword> {
 
                         Padding(
                           padding: EdgeInsets.only(
-                              top: 10,
+                              top: 20,
                               left: 10,
                               right: 10,
                               bottom: 5),
@@ -183,11 +202,11 @@ class ResetPasswordState extends State<ResetPassword> {
                                   MediaQuery.of(context)
                                       .size
                                       .width /
-                                      2,
+                                      1.5,
                                   child: RaisedButton(
                                     padding:
                                     const EdgeInsets.all(
-                                        3.0),
+                                        8.0),
                                     shape:
                                     RoundedRectangleBorder(
                                       borderRadius:
@@ -230,20 +249,25 @@ class ResetPasswordState extends State<ResetPassword> {
 
 
   sendOtpToEmail(String email) async {
+    print("email : ${email}");
     _progressDialog.show();
     String sendOtp_Url = ApiProvider.APP_URL + "/api/users/sendNotification";
     Dio dio = new Dio();
+    print("1");
     try {
       FormData _formData = FormData.fromMap({
         'email': '${email}',
       });
       final response = await dio.post(sendOtp_Url, data: _formData);
+      print("response : ${response}");
       (response);
       if (response.data['success'] == 'success') {
+        print("2");
         _progressDialog.hide();
         setState(() {
           valid_code=false;
         });
+        print("3");
         Navigator.pushReplacement(
             context,
             MaterialPageRoute(
@@ -251,6 +275,7 @@ class ResetPasswordState extends State<ResetPassword> {
                       email: email,
                     )));
       } else {
+        print("4");
         _progressDialog.hide();
         setState(() {
           valid_code=true;
@@ -263,49 +288,4 @@ class ResetPasswordState extends State<ResetPassword> {
   }
 
 
-
-  Widget page_header() {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      child: Column(
-        children: <Widget>[
-          Container(
-            alignment: Alignment.centerLeft,
-            padding: EdgeInsets.only(top: 20),
-            child: Row(
-              children: <Widget>[
-                Expanded(
-                  child: Container(),
-                ),
-                Expanded(
-                  flex: 2,
-                  child: Text(
-                    'ارسال كلمه السر',
-                    style: TextStyle(
-                        color: Colors.white, fontFamily: 'Cairo', fontSize: 20),
-                  ),
-                ),
-                Expanded(
-                  child: IconButton(
-                    alignment: Alignment.centerLeft,
-                    icon: Icon(
-                      Icons.arrow_forward_ios,
-                      size: 25,
-                      color: Colors.white,
-                    ),
-                    onPressed: () {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => UserSignIn()));
-                    },
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 }

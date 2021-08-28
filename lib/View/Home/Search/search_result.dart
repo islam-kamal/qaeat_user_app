@@ -92,7 +92,7 @@ class SearchResultState extends State<SearchResult> {
                               child: Column(
                                 children: <Widget>[
                                   SalonSlider(
-                                    salonPictures: widget.item.gallery,
+                                    hallPictures: widget.item.gallery,
                                   ),
                                   Row(
                                     children: <Widget>[
@@ -273,7 +273,7 @@ class SearchResultState extends State<SearchResult> {
                                                             .circular(
                                                             5)),
                                                     child: Text(
-                                                      '  الدفع في المركز  ',
+                                                      '  الدفع عند مقدم الخدمة  ',
                                                       style: TextStyle(
                                                           fontFamily:
                                                           'Cairo',
@@ -332,7 +332,7 @@ class SearchResultState extends State<SearchResult> {
                                                   (widget.item.payment ==
                                                       1)
                                                       ? '    اونلاين    '
-                                                      : '   الدفع في المركز   ',
+                                                      : '   الدفع عند مقدم الخدمة   ',
                                                   style: TextStyle(
                                                       fontFamily: 'Cairo',
                                                       color: Color(
@@ -384,7 +384,7 @@ class SearchResultState extends State<SearchResult> {
                                                             .circular(
                                                             5)),
                                                     child: Text(
-                                                      '  فى المركز  ',
+                                                      '  عند مقدم الخدمة  ',
                                                       style: TextStyle(
                                                           fontFamily:
                                                           'Cairo',
@@ -452,7 +452,7 @@ class SearchResultState extends State<SearchResult> {
                                                   (widget.item.home_service ==
                                                       1)
                                                       ? 'فى البيت'
-                                                      : ' فى المركز ',
+                                                      : ' عند مقدم الخدمة ',
                                                   style: TextStyle(
                                                       fontFamily: 'Cairo',
                                                       color: Color(

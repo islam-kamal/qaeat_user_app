@@ -1,4 +1,5 @@
 
+import 'package:Qaeat/View/Hall_Details/hall_details.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
@@ -35,11 +36,11 @@ class NearestSalonic_State extends State<NearestSalonic> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    ('--1--');
+   print ('--1--');
     getApiData();
-    ('--2--');
+    print ('--2--');
     _markers = <Marker>[];
-    ('--3--');
+    print ('--3--');
   }
 
   @override
@@ -91,7 +92,8 @@ class NearestSalonic_State extends State<NearestSalonic> {
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
               if (snapshot.hasData) {
-                ('nearest : ${snapshot.data}');
+                print('nearest : ${snapshot.data}');
+                print('nearest length : ${snapshot.data.length}');
                 salons_data(snapshot.data);
                 return Padding(
                   padding: EdgeInsets.all(0),
@@ -131,12 +133,9 @@ class NearestSalonic_State extends State<NearestSalonic> {
 
   void salons_data(List<SearchByLocationModel> nearest_salons_list) {
     nearest_salons_list.forEach((f) {
-      double lat =
-          double.parse((f.Latitude.isEmpty) ? '25.9616242' : f.Latitude);
-      double lng =
-          double.parse((f.Longitude.isEmpty) ? '44.7585477' : f.Longitude);
+      double lat = double.parse((f.Latitude.isEmpty) ? '25.9616242' : f.Latitude);
+      double lng = double.parse((f.Longitude.isEmpty) ? '44.7585477' : f.Longitude);
       _markers.add(Marker(
-
           markerId: MarkerId(f.name),
           position: LatLng(lat, lng),
           onTap: () {
@@ -154,8 +153,7 @@ class NearestSalonic_State extends State<NearestSalonic> {
       final LocationData _locationResult = await location.getLocation();
       setState(() {
         _location = _locationResult;
-        (
-            'latitude : ${_location.latitude} , longitude ${_location.longitude}');
+       print ('latitude : ${_location.latitude} , longitude ${_location.longitude}');
       });
     } catch (err) {
       setState(() {
@@ -173,91 +171,89 @@ class NearestSalonic_State extends State<NearestSalonic> {
         _location.longitude,
         _location.latitude,
         context);
-    ('nearest_listOfSalons : ${nearest_listOfSalons}');
+    print('nearest_listOfSalons : ${nearest_listOfSalons}');
   }
 
   void bottomSheetWidget(SearchByLocationModel f) {
+    print("f.logo : ${f.logo}");
     showModalBottomSheet<void>(
       context: context,
       builder: (BuildContext context) {
         return Container(
-            height: MediaQuery.of(context).size.width / 1.5,
+            height: MediaQuery.of(context).size.height / 1.5,
             color: Color(0xFFF6F6F6),
             child: Padding(
-              padding: EdgeInsets.only(top: 20),
+              padding: EdgeInsets.only(top: 0),
               child: Column(
                 children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        flex: 2,
-                        child: Padding(
-                            padding: EdgeInsets.all(10),
-                            child: Image.network(
-                              '${f.logo}',
-                              height: MediaQuery.of(context).size.width / 4,
-                              fit: BoxFit.fill,
-                            )),
-                      ),
-                      Expanded(
-                        flex: 3,
-                        child: Directionality(
-                          textDirection: TextDirection.rtl,
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    left: 10, right: 10, bottom: 5),
-                                child: Text(
-                                  f.name,
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    left: 10, right: 10, bottom: 5),
-                                child: Text(
-                                  '${f.address}',
+                   Container(
+                     decoration: BoxDecoration(
+                       borderRadius: BorderRadius.circular(20)
+                     ),   
+                     child: Image.network(
+                        '${f.logo}',
+                          height: MediaQuery.of(context).size.width / 2,
+                          width: MediaQuery.of(context).size.width ,
+                          fit: BoxFit.fill,
+                        ),
+                  ),
+                  SizedBox(height: 20,),
+                   Directionality(
+                      textDirection: TextDirection.rtl,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(
+                                left: 10, right: 10, bottom: 5),
+                            child: Text(
+                              f.name,
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(
+                                left: 10, right: 10, bottom: 5),
+                            child: Text(
+                              '${f.address}',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.normal),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(
+                                left: 10, right: 10, bottom: 5),
+                            child: Row(
+                              children: [
+                                Text(
+                                  'المسافة : ',
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 16,
                                       fontWeight: FontWeight.normal),
                                 ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    left: 10, right: 10, bottom: 5),
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      'المسافة : ',
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.normal),
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Text(
-                                      '${f.distance.toStringAsFixed(2)}  كيلو متر',
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.normal),
-                                    ),
-                                  ],
+                                SizedBox(
+                                  width: 10,
                                 ),
-                              ),
-                            ],
+                                Text(
+                                  '${f.distance.toStringAsFixed(2)}  كيلو متر',
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.normal),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      )
-                    ],
-                  ),
+                        ],
+                      ),
+                    ),
+                  SizedBox(height: 20,),
                   Padding(
                     padding: EdgeInsets.only(left: 10),
                     child: new Container(
@@ -275,7 +271,7 @@ class NearestSalonic_State extends State<NearestSalonic> {
                             ),
                             color: QaeatColor.primary_color,
                             child: Text(
-                              'المزيد',
+                              'اذهب الى مقدم الخدمة',
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 14.0,
@@ -286,7 +282,7 @@ class NearestSalonic_State extends State<NearestSalonic> {
                               Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => SalonicList(
+                                      builder: (context) => HallDetails(
                                             token: widget.token,
                                             hall_id: f.id,
                                             route: 1,

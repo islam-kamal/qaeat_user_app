@@ -1,3 +1,4 @@
+import 'file:///D:/Wothoq%20Tech/qaeat/code/qaeat_user_app/lib/Custom_Widgets/custom_bottom_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:Qaeat/Custom_Widgets/export_file.dart';
@@ -59,7 +60,7 @@ class Notifications_state extends State<Notifications> {
               ),
             ),
           ),
-          bottomNavigationBar: BottomNavigation(
+          bottomNavigationBar: CustomBottomNavigationBar(
             index: _currentIndex,
           ),
           body: Directionality(
@@ -87,14 +88,14 @@ class Notifications_state extends State<Notifications> {
                                                 child: Image(
                                                   //width:MediaQuery.of(context).size.width/8 ,
                                                   image: AssetImage(
-                                                      'images/notifications/Hair_Salon.png'),
+                                                      'images/splash_screen/Qaeat_logo.png'),
                                                   fit: BoxFit.fitHeight,
                                                   alignment: Alignment.topCenter,
                                                 ),
                                               )
                                           ),
                                           Expanded(
-                                              flex: 5,
+                                              flex: 6,
                                               child: Container(
                                                 padding:
                                                     EdgeInsets.only(right: 10),
@@ -213,10 +214,14 @@ class Notifications_state extends State<Notifications> {
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
-                                    Image(
-                                      image: AssetImage(
-                                          'images/notifications/notification.png'),
-                                      color: QaeatColor.primary_color,
+                                    Container(
+                                      width: 50,
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(60),
+                                          color: QaeatColor.primary_color
+                                      ),
+                                      child: Icon(Icons.notifications,color: Colors.yellow,),
                                     ),
                                     SizedBox(
                                       height: 20,
@@ -242,10 +247,14 @@ class Notifications_state extends State<Notifications> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                  Image(
-                                    image: AssetImage(
-                                        'images/notifications/notification.png'),
-                                    color: QaeatColor.primary_color,
+                                  Container(
+                                    width: 50,
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(60),
+                                        color: QaeatColor.primary_color
+                                    ),
+                                    child: Icon(Icons.notifications,color: Colors.yellow,),
                                   ),
                                   SizedBox(
                                     height: 20,

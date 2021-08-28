@@ -5,19 +5,19 @@ import 'package:Qaeat/View/Home/Services/all_services.dart';
 
 class SalonicListByServiceId extends StatefulWidget {
   final String token;
-  final int service_id;
+  final int category_id;
   final int service_type;
   SalonicListByServiceId({
     this.token,
-    this.service_id,
+    this.category_id,
     this.service_type,
   });
   @override
   State<StatefulWidget> createState() {
-    ('SalonicListByServiceId page');
-    ('--- serviceId ----- : ${service_id}');
-    ('--- service_type ----- : ${service_type}');
-    ('--- token ----- : ${token}');
+  print  ('SalonicListByServiceId page');
+  print ('--- category_id ----- : ${category_id}');
+  print  ('--- service_type ----- : ${service_type}');
+  print  ('--- token ----- : ${token}');
     // TODO: implement createState
     return SalonicListByServiceId_State();
   }
@@ -31,6 +31,8 @@ class SalonicListByServiceId_State extends State<SalonicListByServiceId> {
   Future<List<SalonDetailsModel>> salonsList;
   SharedPreferences sharedPrefs;
   int category;
+  List<int> payment_method_list =[];
+
   @override
   void initState() {
     // TODO: implement initState
@@ -43,7 +45,7 @@ class SalonicListByServiceId_State extends State<SalonicListByServiceId> {
       });
     });
     salonsList = ApiProvider.getAllSalonsByService_id(
-        widget.token, widget.service_id, context);
+        widget.token, widget.category_id, context);
   }
 
   @override
@@ -116,11 +118,17 @@ class SalonicListByServiceId_State extends State<SalonicListByServiceId> {
                           ? 0.0
                           : snapshot.data[index].total_rate.value.toDouble();
                       for (int i = 0; i < snapshot.data[index].services.length; i++){
-                        if (snapshot.data[index].services[i].id == widget.service_id) {
+                        if (snapshot.data[index].services[i].id == widget.category_id) {
                           category = snapshot.data[index].services[i].category_id;
                         }
                       }
                       print("snap : 4");
+                      snapshot.data[index].services.forEach((element) {
+                        payment_method_list.add(element.payment);
+                      });
+                      print("-------- payment_method_list ------------ : ${payment_method_list}");
+                      payment_method_list.toList().toSet();
+                      print("--------sorted  payment_method_list ------------ : ${payment_method_list}");
 
                       return Wrap(
                         children: [
@@ -139,7 +147,7 @@ class SalonicListByServiceId_State extends State<SalonicListByServiceId> {
                                   child: Column(
                                     children: <Widget>[
                                       SalonSlider(
-                                        salonPictures:
+                                        hallPictures:
                                         snapshot.data[index].gallery,
                                       ),
                                       Row(
@@ -156,7 +164,7 @@ class SalonicListByServiceId_State extends State<SalonicListByServiceId> {
                                                     padding: EdgeInsets.only(
                                                         right: 20),
                                                     child: Text(
-                                                      '${snapshot.data[index].name.isEmpty ? '' : snapshot.data[index].name}',
+                                                      '${snapshot.data[index].username.isEmpty ? '' : snapshot.data[index].username}',
                                                       style: TextStyle(
                                                           fontFamily: 'Cairo',
                                                           color:
@@ -232,39 +240,19 @@ class SalonicListByServiceId_State extends State<SalonicListByServiceId> {
                                                                 builder:
                                                                     (context) =>
                                                                     RerservationNow(
-                                                                      token: widget
-                                                                          .token,
-                                                                      salon_id: snapshot
-                                                                          .data[
-                                                                      index]
-                                                                          .id,
-                                                                      logo: snapshot
-                                                                          .data[
-                                                                      index]
-                                                                          .logo,
-                                                                      name: snapshot
-                                                                          .data[
-                                                                      index]
-                                                                          .name,
+                                                                      token: widget.token,
+                                                                      salon_id: snapshot.data[index].id,
+                                                                      logo: snapshot.data[index].logo,
+                                                                      name: snapshot.data[index].name,
                                                                       rate: rate,
-                                                                      home_services:
-                                                                      widget
-                                                                          .service_type,
-                                                                      payment: snapshot
-                                                                          .data[
-                                                                      index]
-                                                                          .payment,
+                                                                      home_services: widget.service_type,
+                                                                      payment:  payment_method_list.contains(2)?
+                                                                      2 :  payment_method_list.contains(1) ? 1 : 0,
                                                                       salonPictures:
-                                                                      snapshot
-                                                                          .data[
-                                                                      index]
-                                                                          .gallery,
-                                                                      salon_list_type:
-                                                                      2,
-                                                                      category_id:
-                                                                      category,
-                                                                      service_id: widget
-                                                                          .service_id,
+                                                                      snapshot.data[index].gallery,
+                                                                      salon_list_type: 2,
+                                                                      category_id: snapshot.data[index].categoryId,
+                                                                      service_id: widget.category_id,
                                                                     ),
                                                               ));
                                                         },
@@ -323,9 +311,8 @@ class SalonicListByServiceId_State extends State<SalonicListByServiceId> {
                                                         Color(0xFF292929)),
                                                   ),
                                                 ),
-                                                (snapshot.data[index].payment ==
-                                                    2)
-                                                    ? Row(
+                                                payment_method_list.contains(2)   ?
+                                                Row(
                                                   children: <Widget>[
                                                     Container(
                                                       padding:
@@ -345,15 +332,13 @@ class SalonicListByServiceId_State extends State<SalonicListByServiceId> {
                                                                 .circular(
                                                                 5)),
                                                         child: Text(
-                                                          '  الدفع في المركز  ',
+                                                          '  الدفع عند مقدم الخدمة  ',
                                                           style: TextStyle(
-                                                              fontFamily:
-                                                              'Cairo',
-                                                              color: Color(
-                                                                  0xFF292929),
-                                                              fontWeight:
-                                                              FontWeight
-                                                                  .normal),
+                                                              fontFamily: 'Cairo',
+                                                              color: Color(0xFF292929),
+                                                              fontWeight: FontWeight.normal,
+                                                            fontSize: 12
+                                                          ),
                                                         ),
                                                       ),
                                                     ),
@@ -404,11 +389,9 @@ class SalonicListByServiceId_State extends State<SalonicListByServiceId> {
                                                             .circular(
                                                             5)),
                                                     child: Text(
-                                                      (snapshot.data[index]
-                                                          .payment ==
-                                                          1)
-                                                          ? '    اونلاين    '
-                                                          : '   الدفع في المركز   ',
+                                                      payment_method_list.contains(1) ?
+                                                      '    اونلاين    '
+                                                          : '   الدفع عند مقدم الخدمة   ',
                                                       style: TextStyle(
                                                           fontFamily:
                                                           'Cairo',
@@ -423,7 +406,8 @@ class SalonicListByServiceId_State extends State<SalonicListByServiceId> {
                                               ],
                                             ),
                                           ),
-                                          Container(
+                                          (snapshot.data[index].categoryId == 1) // ----------------- if category id represent hall will shoe number of indivdaual
+                                              ?   Container(
                                             padding: EdgeInsets.only(top: 10,bottom: 10),
                                             child: Row(
                                               children: <Widget>[
@@ -431,128 +415,37 @@ class SalonicListByServiceId_State extends State<SalonicListByServiceId> {
                                                   padding: EdgeInsets.only(
                                                       right: 20, left: 10),
                                                   child: Text(
-                                                    'خدمات الحجز :',
+                                                    'عدد الافراد :',
                                                     style: TextStyle(
                                                         fontFamily: 'Cairo',
                                                         color:
                                                         Color(0xFF292929)),
                                                   ),
                                                 ),
-                                                (snapshot.data[index]
-                                                    .home_service ==
-                                                    2)
-                                                    ? Row(
-                                                  children: <Widget>[
-                                                    Container(
-                                                      padding:
-                                                      EdgeInsets.only(
-                                                          right: 10,
-                                                          left: 10),
-                                                      child: Container(
-                                                        width: MediaQuery.of(
-                                                            context)
-                                                            .size
-                                                            .width /
-                                                            4,
-                                                        alignment:
-                                                        Alignment
-                                                            .center,
-                                                        decoration: BoxDecoration(
-                                                            color: Color(
-                                                                0xFFDCDCDC),
-                                                            borderRadius:
-                                                            BorderRadius
-                                                                .circular(
-                                                                5)),
-                                                        child: Text(
-                                                          '  فى المركز  ',
-                                                          style: TextStyle(
-                                                              fontFamily:
-                                                              'Cairo',
-                                                              color: Color(
-                                                                  0xFF292929),
-                                                              fontWeight:
-                                                              FontWeight
-                                                                  .normal),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Container(
-                                                      padding:
-                                                      EdgeInsets.only(
-                                                          right: 10,
-                                                          left: 10),
-                                                      child: Container(
-                                                        width: MediaQuery.of(
-                                                            context)
-                                                            .size
-                                                            .width /
-                                                            4,
-                                                        alignment:
-                                                        Alignment
-                                                            .center,
-                                                        decoration: BoxDecoration(
-                                                            color: Color(
-                                                                0xFFDCDCDC),
-                                                            borderRadius:
-                                                            BorderRadius
-                                                                .circular(
-                                                                5)),
-                                                        child: Text(
-                                                          'في المنزل',
-                                                          style: TextStyle(
-                                                              fontFamily:
-                                                              'Cairo',
-                                                              color: Color(
-                                                                  0xFF292929),
-                                                              fontWeight:
-                                                              FontWeight
-                                                                  .normal),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                )
-                                                    : Container(
-                                                  padding:
-                                                  EdgeInsets.only(
-                                                      right: 10,
-                                                      left: 10),
+                                               Container(
+                                                  padding: EdgeInsets.only(right: 10, left: 10),
                                                   child: Container(
-                                                    width: MediaQuery.of(
-                                                        context)
-                                                        .size
-                                                        .width /
-                                                        4,
-                                                    alignment:
-                                                    Alignment.center,
-                                                    decoration: BoxDecoration(
-                                                        color: Color(
-                                                            0xFFDCDCDC),
-                                                        borderRadius:
-                                                        BorderRadius
-                                                            .circular(
-                                                            5)),
-                                                    child: Text(
-                                                      (snapshot.data[index]
-                                                          .home_service ==
-                                                          1)
-                                                          ? 'فى البيت'
-                                                          : ' فى المركز ',
-                                                      style: TextStyle(
-                                                          fontFamily:
-                                                          'Cairo',
-                                                          color: Color(
-                                                              0xFF292929),
-                                                          fontWeight:
-                                                          FontWeight
-                                                              .normal),
+                                                    width: MediaQuery.of(context).size.width / 4,
+                                                    alignment: Alignment.center,
+                                                    decoration: BoxDecoration(color: Color(0xFFDCDCDC),
+                                                        borderRadius: BorderRadius.circular(5)),
+                                                    child: Center(
+                                                      child: Text(
+                                                        ' ${snapshot.data[index].hallMaxNumber} ', //---------------------- hall individuals number .....................
+                                                        style: TextStyle(
+                                                            fontFamily: 'Cairo',
+                                                            color: Color(0xFF292929),
+                                                            fontWeight: FontWeight.normal),
+                                                      ),
                                                     ),
                                                   ),
-                                                ),
+                                                )
+
                                               ],
                                             ),
-                                          ),
+                                          ) : Container(),
+                                          SizedBox(height: 10,),
+
                                         ],
                                       )
                                     ],
@@ -653,7 +546,7 @@ class SalonicListByServiceId_State extends State<SalonicListByServiceId> {
                             height: 20,
                           ),
                           Text(
-                            ' المراكز غير متوفرة فى الوقت الحالى ',
+                            ' مقدم الخدمة غير متوفرة فى الوقت الحالى ',
                             style: TextStyle(
                                 fontFamily: 'Cairo',
                                 color: QaeatColor.secondary_color,
